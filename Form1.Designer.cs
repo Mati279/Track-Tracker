@@ -28,32 +28,102 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.gbPerfil = new System.Windows.Forms.GroupBox();
+            this.lbViendo = new System.Windows.Forms.Label();
+            this.butGabi = new System.Windows.Forms.Button();
+            this.butPablo = new System.Windows.Forms.Button();
+            this.butMati = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.gbPerfil.SuspendLayout();
             this.SuspendLayout();
             // 
-            // listBox1
+            // gbPerfil
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 15;
-            this.listBox1.Location = new System.Drawing.Point(573, 273);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 94);
-            this.listBox1.TabIndex = 0;
+            this.gbPerfil.Controls.Add(this.lbViendo);
+            this.gbPerfil.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.gbPerfil.Location = new System.Drawing.Point(12, 12);
+            this.gbPerfil.Name = "gbPerfil";
+            this.gbPerfil.Size = new System.Drawing.Size(112, 57);
+            this.gbPerfil.TabIndex = 0;
+            this.gbPerfil.TabStop = false;
+            this.gbPerfil.Text = "Viendo como:";
+            // 
+            // lbViendo
+            // 
+            this.lbViendo.AutoSize = true;
+            this.lbViendo.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lbViendo.Location = new System.Drawing.Point(28, 19);
+            this.lbViendo.Name = "lbViendo";
+            this.lbViendo.Size = new System.Drawing.Size(53, 25);
+            this.lbViendo.TabIndex = 0;
+            this.lbViendo.Text = "Gabi";
+            // 
+            // butGabi
+            // 
+            this.butGabi.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.butGabi.Location = new System.Drawing.Point(12, 104);
+            this.butGabi.Name = "butGabi";
+            this.butGabi.Size = new System.Drawing.Size(112, 32);
+            this.butGabi.TabIndex = 1;
+            this.butGabi.Text = "Gabi";
+            this.butGabi.UseVisualStyleBackColor = true;
+            // 
+            // butPablo
+            // 
+            this.butPablo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.butPablo.Location = new System.Drawing.Point(12, 159);
+            this.butPablo.Name = "butPablo";
+            this.butPablo.Size = new System.Drawing.Size(112, 32);
+            this.butPablo.TabIndex = 1;
+            this.butPablo.Text = "Pablo";
+            this.butPablo.UseVisualStyleBackColor = true;
+            // 
+            // butMati
+            // 
+            this.butMati.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.butMati.Location = new System.Drawing.Point(12, 214);
+            this.butMati.Name = "butMati";
+            this.butMati.Size = new System.Drawing.Size(112, 32);
+            this.butMati.TabIndex = 1;
+            this.butMati.Text = "Mati";
+            this.butMati.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(12, 86);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(52, 15);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Perfiles:";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.listBox1);
+            this.ClientSize = new System.Drawing.Size(690, 450);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.butMati);
+            this.Controls.Add(this.butPablo);
+            this.Controls.Add(this.butGabi);
+            this.Controls.Add(this.gbPerfil);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.gbPerfil.ResumeLayout(false);
+            this.gbPerfil.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private ListBox listBox1;
+        private GroupBox gbPerfil;
+        private Label lbViendo;
+        private Button butGabi;
+        private Button butPablo;
+        private Button butMati;
+        private Label label1;
     }
 }
