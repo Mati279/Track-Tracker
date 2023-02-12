@@ -28,7 +28,11 @@ namespace Track_Tracker
             InitializeComponent();
             //Perfil del usuario seteado como Gabi por defecto.
             perfilUsuario = Gabi;
+<<<<<<< Updated upstream
             MessageBox.Show("Testasdfdsf");
+=======
+           
+>>>>>>> Stashed changes
         }
        
         //=============================================================================================
