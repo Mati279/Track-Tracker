@@ -1,0 +1,18 @@
+D:\Programas Propios\Track Tracker\bin\Debug\net6.0-windows\Track Tracker.exe
+D:\Programas Propios\Track Tracker\bin\Debug\net6.0-windows\Track Tracker.deps.json
+D:\Programas Propios\Track Tracker\bin\Debug\net6.0-windows\Track Tracker.runtimeconfig.json
+D:\Programas Propios\Track Tracker\bin\Debug\net6.0-windows\Track Tracker.dll
+D:\Programas Propios\Track Tracker\bin\Debug\net6.0-windows\Track Tracker.pdb
+D:\Programas Propios\Track Tracker\obj\Debug\net6.0-windows\Track Tracker.csproj.AssemblyReference.cache
+D:\Programas Propios\Track Tracker\obj\Debug\net6.0-windows\Track_Tracker.FAgregarTema.resources
+D:\Programas Propios\Track Tracker\obj\Debug\net6.0-windows\Track_Tracker.Form1.resources
+D:\Programas Propios\Track Tracker\obj\Debug\net6.0-windows\Track Tracker.csproj.GenerateResource.cache
+D:\Programas Propios\Track Tracker\obj\Debug\net6.0-windows\Track Tracker.GeneratedMSBuildEditorConfig.editorconfig
+D:\Programas Propios\Track Tracker\obj\Debug\net6.0-windows\Track Tracker.AssemblyInfoInputs.cache
+D:\Programas Propios\Track Tracker\obj\Debug\net6.0-windows\Track Tracker.AssemblyInfo.cs
+D:\Programas Propios\Track Tracker\obj\Debug\net6.0-windows\Track Tracker.csproj.CoreCompileInputs.cache
+D:\Programas Propios\Track Tracker\obj\Debug\net6.0-windows\Track Tracker.dll
+D:\Programas Propios\Track Tracker\obj\Debug\net6.0-windows\refint\Track Tracker.dll
+D:\Programas Propios\Track Tracker\obj\Debug\net6.0-windows\Track Tracker.pdb
+D:\Programas Propios\Track Tracker\obj\Debug\net6.0-windows\Track Tracker.genruntimeconfig.cache
+D:\Programas Propios\Track Tracker\obj\Debug\net6.0-windows\ref\Track Tracker.dll

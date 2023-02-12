@@ -12,7 +12,10 @@ namespace Track_Tracker
 
 
 
-        
+        public CPerfil(string _nombre)
+        {
+            Nombre = _nombre;
+        }
 
 
     }
