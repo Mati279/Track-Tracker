@@ -8,23 +8,28 @@ namespace Track_Tracker
         //=============================================================================================
 
         //Instanciación de Formas secundarias.
-        //Forma Agregar Temas.
         FAgregarTema fAgregarTema = new FAgregarTema();
 
+        //Instanciación de Perfiles.
+        CPerfil Gabi = new CPerfil("Gabi");
+        CPerfil Pablo = new CPerfil("Pablo");
+        CPerfil Mati = new CPerfil("Mati");
         #endregion
 
+        #region//Constructor.
         //Constructor de Form1.
         public Form1()
         {
             InitializeComponent();
         }
+        #endregion
 
         #region//Handlers.
         //=============================================================================================
         //Handlers  --  Handlers  --  Handlers  --  Handlers  --  Handlers  --  Handlers  --  Handlers  
         //=============================================================================================
 
-        //Form1_Load -- Form1_Load -- Form1_Load -- Form1_Load -- Form1_Load -- Form1_Load -- Form1_Loa 
+        //(Form1_Load) -- (Form1_Load) -- (Form1_Load) -- (Form1_Load) -- (Form1_Load) -- (Form1_Load) 
         private void Form1_Load(object sender, EventArgs e)
         {
 

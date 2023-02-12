@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace Track_Tracker
 {
-    internal class CPerfil
+    public class CPerfil
     {
+        public string Nombre { get; set; }
+
+
+
+        
+
+
     }
 }
