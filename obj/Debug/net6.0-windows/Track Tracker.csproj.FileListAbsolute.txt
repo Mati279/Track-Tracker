@@ -16,3 +16,21 @@ D:\Programas Propios\Track Tracker\obj\Debug\net6.0-windows\refint\Track Tracker
 D:\Programas Propios\Track Tracker\obj\Debug\net6.0-windows\Track Tracker.pdb
 D:\Programas Propios\Track Tracker\obj\Debug\net6.0-windows\Track Tracker.genruntimeconfig.cache
 D:\Programas Propios\Track Tracker\obj\Debug\net6.0-windows\ref\Track Tracker.dll
+C:\Users\mamse\Documents\GitHub\Track-Tracker\bin\Debug\net6.0-windows\Track Tracker.exe
+C:\Users\mamse\Documents\GitHub\Track-Tracker\bin\Debug\net6.0-windows\Track Tracker.deps.json
+C:\Users\mamse\Documents\GitHub\Track-Tracker\bin\Debug\net6.0-windows\Track Tracker.runtimeconfig.json
+C:\Users\mamse\Documents\GitHub\Track-Tracker\bin\Debug\net6.0-windows\Track Tracker.dll
+C:\Users\mamse\Documents\GitHub\Track-Tracker\bin\Debug\net6.0-windows\Track Tracker.pdb
+C:\Users\mamse\Documents\GitHub\Track-Tracker\obj\Debug\net6.0-windows\Track Tracker.csproj.AssemblyReference.cache
+C:\Users\mamse\Documents\GitHub\Track-Tracker\obj\Debug\net6.0-windows\Track_Tracker.FAgregarTema.resources
+C:\Users\mamse\Documents\GitHub\Track-Tracker\obj\Debug\net6.0-windows\Track_Tracker.Form1.resources
+C:\Users\mamse\Documents\GitHub\Track-Tracker\obj\Debug\net6.0-windows\Track Tracker.csproj.GenerateResource.cache
+C:\Users\mamse\Documents\GitHub\Track-Tracker\obj\Debug\net6.0-windows\Track Tracker.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mamse\Documents\GitHub\Track-Tracker\obj\Debug\net6.0-windows\Track Tracker.AssemblyInfoInputs.cache
+C:\Users\mamse\Documents\GitHub\Track-Tracker\obj\Debug\net6.0-windows\Track Tracker.AssemblyInfo.cs
+C:\Users\mamse\Documents\GitHub\Track-Tracker\obj\Debug\net6.0-windows\Track Tracker.csproj.CoreCompileInputs.cache
+C:\Users\mamse\Documents\GitHub\Track-Tracker\obj\Debug\net6.0-windows\Track Tracker.dll
+C:\Users\mamse\Documents\GitHub\Track-Tracker\obj\Debug\net6.0-windows\refint\Track Tracker.dll
+C:\Users\mamse\Documents\GitHub\Track-Tracker\obj\Debug\net6.0-windows\Track Tracker.pdb
+C:\Users\mamse\Documents\GitHub\Track-Tracker\obj\Debug\net6.0-windows\Track Tracker.genruntimeconfig.cache
+C:\Users\mamse\Documents\GitHub\Track-Tracker\obj\Debug\net6.0-windows\ref\Track Tracker.dll
