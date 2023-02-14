@@ -9,6 +9,7 @@ namespace Track_Tracker
     public class CPerfil
     {
         public string Nombre { get; set; }
+        public int Edad {get; set; }
 
 
 
