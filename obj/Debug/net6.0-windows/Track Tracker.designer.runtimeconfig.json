@@ -12,7 +12,7 @@
       }
     ],
     "additionalProbingPaths": [
-      "C:\\Users\\mamse\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\matim\\.dotnet\\store\\|arch|\\|tfm|",
       "C:\\Users\\mamse\\.nuget\\packages"
     ],
     "configProperties": {
