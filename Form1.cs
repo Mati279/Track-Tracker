@@ -14,6 +14,8 @@ namespace Track_Tracker
         CPerfil Gabi = new CPerfil("Gabi");
         CPerfil Pablo = new CPerfil("Pablo");
         CPerfil Mati = new CPerfil("Matías");
+
+        List<CPerfil> lCPerfiles = new List<CPerfil>();
         //=============================================================================================
         //Atributos -- Atributos -- Atributos -- Atributos -- Atributos -- Atributos -- Atributos -- At
         //=============================================================================================
@@ -26,7 +28,7 @@ namespace Track_Tracker
         {
             InitializeComponent();
             //Perfil del usuario seteado como Gabi por defecto.
-            cboxPerfiles.SelectedIndex = 0; // 0 Gabi, 1 Mati, 2 Pablo -- Definir que lea el Perfil deseado de algún lado.
+           // cboxPerfiles.SelectedIndex = 0; // 0 Gabi, 1 Mati, 2 Pablo -- Definir que lea el Perfil deseado de algún lado.
         }
        
         //=============================================================================================
@@ -36,7 +38,13 @@ namespace Track_Tracker
         //(Form1_Load) -- (Form1_Load) -- (Form1_Load) -- (Form1_Load) -- (Form1_Load) -- (Form1_Load) 
         private void Form1_Load(object sender, EventArgs e)
         {
-                     
+            lCPerfiles.Add(Gabi);//Se agregan a la lista de perfiles los 3 predefinidos
+            lCPerfiles.Add(Mati);
+            lCPerfiles.Add(Pablo);
+            cboxPerfiles.DataSource = lCPerfiles;
+            cboxPerfiles.ValueMember = "Nombre";
+
+
         }
         //|Publicar Tema| -- |Publicar Tema| -- |Publicar Tema| -- |Publicar Tema| -- |Publicar Tema| -
         private void butPublicarTema_Click(object sender, EventArgs e)
@@ -47,9 +55,13 @@ namespace Track_Tracker
         }
 
         //|Gabi| -- |Gabi| -- |Gabi| -- |Gabi| -- |Gabi| -- |Gabi| -- |Gabi| -- |Gabi| -- |Gabi| -- |Ga
+        CPerfil Julio;
         private void butGabi_Click(object sender, EventArgs e)
         {
-
+            Julio = new CPerfil("Julio");
+            lCPerfiles.Add(Julio);
+            cboxPerfiles.DataSource = null;
+            cboxPerfiles.DataSource = lCPerfiles;
         }
         //|Pablo| -- |Pablo| -- |Pablo| -- |Pablo| -- |Pablo| -- |Pablo| -- |Pablo| -- |Pablo| -- |Pabl
         private void butPablo_Click(object sender, EventArgs e)
@@ -63,14 +75,12 @@ namespace Track_Tracker
         }
 
         //|Cambiar Perfil| -- |Cambiar Perfil| -- |Cambiar Perfil| -- |Cambiar Perfil| -- |Cambiar Perfil| -
+      
         private void cboxPerfiles_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (cboxPerfiles.Text)
-            {
-                case "Gabi":  perfilUsuario = Gabi; break;
-                case "Mati": perfilUsuario = Mati; break;
-                case "Pablo": perfilUsuario = Pablo; break;
-            }
+            perfilUsuario = (CPerfil)cboxPerfiles.SelectedItem;
+
+          //  MessageBox.Show("perfilUsuario "+ perfilUsuario.Nombre);
         }
     }
 }
