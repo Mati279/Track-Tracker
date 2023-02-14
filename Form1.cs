@@ -28,7 +28,6 @@ namespace Track_Tracker
             InitializeComponent();
             //Perfil del usuario seteado como Gabi por defecto.
             perfilUsuario = Gabi;
-            MessageBox.Show("Test");
         }
        
         //=============================================================================================
