@@ -13,7 +13,7 @@ namespace Track_Tracker
         //Instanciación de Perfiles.
         CPerfil Gabi = new CPerfil("Gabi");
         CPerfil Pablo = new CPerfil("Pablo");
-        CPerfil Mati = new CPerfil("Mati");
+        CPerfil Mati = new CPerfil("Matías");
 
         //=============================================================================================
         //Atributos -- Atributos -- Atributos -- Atributos -- Atributos -- Atributos -- Atributos -- At
@@ -28,11 +28,7 @@ namespace Track_Tracker
             InitializeComponent();
             //Perfil del usuario seteado como Gabi por defecto.
             perfilUsuario = Gabi;
-<<<<<<< Updated upstream
-            MessageBox.Show("Testasdfdsf");
-=======
-           
->>>>>>> Stashed changes
+
         }
        
         //=============================================================================================
