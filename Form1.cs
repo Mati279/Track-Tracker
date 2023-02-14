@@ -26,7 +26,7 @@ namespace Track_Tracker
         {
             InitializeComponent();
             //Perfil del usuario seteado como Gabi por defecto.
-            perfilUsuario = Gabi;
+            cboxPerfiles.SelectedIndex = 0; // 0 Gabi, 1 Mati, 2 Pablo -- Definir que lea el Perfil deseado de algún lado.
         }
        
         //=============================================================================================
@@ -36,8 +36,7 @@ namespace Track_Tracker
         //(Form1_Load) -- (Form1_Load) -- (Form1_Load) -- (Form1_Load) -- (Form1_Load) -- (Form1_Load) 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //Label "Viendo como:" = al nombre del usuario.
-            lbViendo.Text = perfilUsuario.Nombre;
+                     
         }
         //|Publicar Tema| -- |Publicar Tema| -- |Publicar Tema| -- |Publicar Tema| -- |Publicar Tema| -
         private void butPublicarTema_Click(object sender, EventArgs e)
@@ -63,5 +62,15 @@ namespace Track_Tracker
 
         }
 
+        //|Cambiar Perfil| -- |Cambiar Perfil| -- |Cambiar Perfil| -- |Cambiar Perfil| -- |Cambiar Perfil| -
+        private void cboxPerfiles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (cboxPerfiles.Text)
+            {
+                case "Gabi":  perfilUsuario = Gabi; break;
+                case "Mati": perfilUsuario = Mati; break;
+                case "Pablo": perfilUsuario = Pablo; break;
+            }
+        }
     }
 }

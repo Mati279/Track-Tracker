@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.gbPerfil = new System.Windows.Forms.GroupBox();
+            this.cboxPerfiles = new System.Windows.Forms.ComboBox();
             this.lbViendo = new System.Windows.Forms.Label();
             this.butGabi = new System.Windows.Forms.Button();
             this.butPablo = new System.Windows.Forms.Button();
@@ -40,7 +41,7 @@
             // 
             // gbPerfil
             // 
-            this.gbPerfil.Controls.Add(this.lbViendo);
+            this.gbPerfil.Controls.Add(this.cboxPerfiles);
             this.gbPerfil.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.gbPerfil.Location = new System.Drawing.Point(12, 12);
             this.gbPerfil.Name = "gbPerfil";
@@ -49,11 +50,25 @@
             this.gbPerfil.TabStop = false;
             this.gbPerfil.Text = "Viendo como:";
             // 
+            // cboxPerfiles
+            // 
+            this.cboxPerfiles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxPerfiles.FormattingEnabled = true;
+            this.cboxPerfiles.Items.AddRange(new object[] {
+            "Gabi",
+            "Mati",
+            "Pablo"});
+            this.cboxPerfiles.Location = new System.Drawing.Point(12, 22);
+            this.cboxPerfiles.Name = "cboxPerfiles";
+            this.cboxPerfiles.Size = new System.Drawing.Size(84, 23);
+            this.cboxPerfiles.TabIndex = 0;
+            this.cboxPerfiles.SelectedIndexChanged += new System.EventHandler(this.cboxPerfiles_SelectedIndexChanged);
+            // 
             // lbViendo
             // 
             this.lbViendo.AutoSize = true;
             this.lbViendo.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lbViendo.Location = new System.Drawing.Point(28, 19);
+            this.lbViendo.Location = new System.Drawing.Point(55, 367);
             this.lbViendo.Name = "lbViendo";
             this.lbViendo.Size = new System.Drawing.Size(53, 25);
             this.lbViendo.TabIndex = 0;
@@ -111,13 +126,13 @@
             this.butPublicarTema.TabIndex = 3;
             this.butPublicarTema.Text = "Publicar Tema";
             this.butPublicarTema.UseVisualStyleBackColor = true;
-            
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(690, 450);
+            this.Controls.Add(this.lbViendo);
             this.Controls.Add(this.butPublicarTema);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.butMati);
@@ -129,7 +144,6 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.gbPerfil.ResumeLayout(false);
-            this.gbPerfil.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -144,5 +158,6 @@
         private Button butMati;
         private Label label1;
         private Button butPublicarTema;
+        private ComboBox cboxPerfiles;
     }
 }
