@@ -14,7 +14,6 @@ namespace Track_Tracker
         CPerfil Gabi = new CPerfil("Gabi");
         CPerfil Pablo = new CPerfil("Pablo");
         CPerfil Mati = new CPerfil("Matias");
-        CPerfil LaMonaGimenez = new CPerfil("LaMona");
         //=============================================================================================
         //Atributos -- Atributos -- Atributos -- Atributos -- Atributos -- Atributos -- Atributos -- At
         //=============================================================================================
