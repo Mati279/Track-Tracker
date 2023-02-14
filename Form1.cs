@@ -13,7 +13,7 @@ namespace Track_Tracker
         //Instanciación de Perfiles.
         CPerfil Gabi = new CPerfil("Gabi");
         CPerfil Pablo = new CPerfil("Pablo");
-        CPerfil Mati = new CPerfil("Mati");
+        CPerfil Mati = new CPerfil("Matias");
 
         //=============================================================================================
         //Atributos -- Atributos -- Atributos -- Atributos -- Atributos -- Atributos -- Atributos -- At
