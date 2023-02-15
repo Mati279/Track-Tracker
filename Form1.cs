@@ -1,67 +1,79 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
 namespace Track_Tracker
 {
     public partial class Form1 : Form
     {
-        
-        //=============================================================================================
-        //Instancias -- Instancias -- Instancias -- Instancias -- Instancias -- Instancias -- Instancia
-        //=============================================================================================
 
         //Instanciación de Formas secundarias.
         FAgregarTema fAgregarTema = new FAgregarTema();
 
-        //Instanciación de Perfiles.
+        //Instanciación de Perfiles y lista de perfiles.
         CPerfil Gabi = new CPerfil("Gabi");
         CPerfil Pablo = new CPerfil("Pablo");
         CPerfil Mati = new CPerfil("Matías");
-        //=============================================================================================
-        //Atributos -- Atributos -- Atributos -- Atributos -- Atributos -- Atributos -- Atributos -- At
-        //=============================================================================================
+        List<CPerfil> listaPerfiles = new List<CPerfil> { };
 
-        //Perfil del usuario.
-        CPerfil perfilUsuario;
 
         //Constructor de Form1.
         public Form1()
         {
             InitializeComponent();
-            //Perfil del usuario seteado como Gabi por defecto.
-            perfilUsuario = Gabi;
+
+            
+            //Se agregan a listaPerfiles los tres perfiles por defecto.
+            listaPerfiles.Add(Gabi);
+            listaPerfiles.Add(Pablo);
+            listaPerfiles.Add(Mati);
+
+            //Default.
+            CPerfil.perfilUsuario = Gabi;
+
+            // ---> No es necesario setear default al parecer. Parece que el primer elemento de la listaPerfiles es seleccionado sólo en la ComboBox.
+            cboxPerfiles.DisplayMember = "Nombre"; //---> Para que en el ComboBox aparezan los nombres de los perfiles y no de los objetos.
+            cboxPerfiles.DataSource = listaPerfiles;
+
         }
        
-        //=============================================================================================
-        //Handlers  --  Handlers  --  Handlers  --  Handlers  --  Handlers  --  Handlers  --  Handlers  
-        //=============================================================================================
-
-        //(Form1_Load) -- (Form1_Load) -- (Form1_Load) -- (Form1_Load) -- (Form1_Load) -- (Form1_Load) 
+       
         private void Form1_Load(object sender, EventArgs e)
         {
             //Label "Viendo como:" = al nombre del usuario.
-            lbViendo.Text = perfilUsuario.Nombre;
+            lbViendo.Text = CPerfil.perfilUsuario.Nombre;
         }
-        //|Publicar Tema| -- |Publicar Tema| -- |Publicar Tema| -- |Publicar Tema| -- |Publicar Tema| -
-        private void butPublicarTema_Click(object sender, EventArgs e)
+       
+        private void butPublicarTema_Click(object sender, EventArgs e) 
         {
-            //Envía el objeto CPerfil de quien publicará el tema. 
-            fAgregarTema.RecibirPerfil(perfilUsuario);
             fAgregarTema.ShowDialog();
+            
         }
 
-        //|Gabi| -- |Gabi| -- |Gabi| -- |Gabi| -- |Gabi| -- |Gabi| -- |Gabi| -- |Gabi| -- |Gabi| -- |Ga
         private void butGabi_Click(object sender, EventArgs e)
         {
 
         }
-        //|Pablo| -- |Pablo| -- |Pablo| -- |Pablo| -- |Pablo| -- |Pablo| -- |Pablo| -- |Pablo| -- |Pabl
+       
         private void butPablo_Click(object sender, EventArgs e)
         {
 
         }
-        //|Mati| -- |Mati| -- |Mati| -- |Mati| -- |Mati| -- |Mati| -- |Mati| -- |Mati| -- |Mati| -- |Ma
+       
         private void butMati_Click(object sender, EventArgs e)
         {
 
         }
-
+        private void cboxPerfiles_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            CPerfil.perfilUsuario = (CPerfil)cboxPerfiles.SelectedItem;
+            lbViendo.Text = CPerfil.perfilUsuario.Nombre;
+        }
     }
 }

@@ -8,8 +8,10 @@ namespace Track_Tracker
 {
     public class CPerfil
     {
-        public string Nombre { get; set; } 
+        public static CPerfil perfilUsuario; //---> Agregué esto como estático ya que todas las formas van a necesitar saberlo.
+        public string Nombre { get; set; }
 
+        
         public CPerfil(string _nombre)
         {
             Nombre = _nombre;
