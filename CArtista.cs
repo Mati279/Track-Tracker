@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Track_Tracker
 {
-    internal class CArtista
+    public class CArtista
     {
     }
 }
