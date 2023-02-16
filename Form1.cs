@@ -65,8 +65,10 @@ namespace Track_Tracker
         {
             CPerfil.perfilUsuario = (CPerfil)cboxPerfiles.SelectedItem;
 
+            //Si perfilusuario = null, entonces se asigna Gabi.
             CPerfil.perfilUsuario ??= Gabi;
 
+            //Etiqueta para probar.
             lbViendo.Text = CPerfil.perfilUsuario.Nombre;
           
         }
