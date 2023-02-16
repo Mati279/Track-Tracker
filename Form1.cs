@@ -3,74 +3,83 @@ namespace Track_Tracker
     public partial class Form1 : Form
     {
         
-        //=============================================================================================
-        //Instancias -- Instancias -- Instancias -- Instancias -- Instancias -- Instancias -- Instancia
-        //=============================================================================================
-
         //Instanciación de Formas secundarias.
         FAgregarTema fAgregarTema = new FAgregarTema();
 
-        //Instanciación de Perfiles.
+        //Instanciación de Perfiles y lista de perfiles.
         CPerfil Gabi = new CPerfil("Gabi");
         CPerfil Pablo = new CPerfil("Pablo");
         CPerfil Mati = new CPerfil("Matías");
-        //=============================================================================================
-        //Atributos -- Atributos -- Atributos -- Atributos -- Atributos -- Atributos -- Atributos -- At
-        //=============================================================================================
 
-        //Perfil del usuario.
-        CPerfil perfilUsuario;
+        List<CPerfil> lCPerfiles = new List<CPerfil>();
+       
+
 
         //Constructor de Form1.
         public Form1()
         {
             InitializeComponent();
-            //Perfil del usuario seteado como Gabi por defecto.
-            cboxPerfiles.SelectedIndex = 0; // 0 Gabi, 1 Mati, 2 Pablo -- Definir que lea el Perfil deseado de algún lado.
+
         }
        
-        //=============================================================================================
-        //Handlers  --  Handlers  --  Handlers  --  Handlers  --  Handlers  --  Handlers  --  Handlers  
-        //=============================================================================================
+       
 
-        //(Form1_Load) -- (Form1_Load) -- (Form1_Load) -- (Form1_Load) -- (Form1_Load) -- (Form1_Load) 
         private void Form1_Load(object sender, EventArgs e)
         {
-                     
-        }
-        //|Publicar Tema| -- |Publicar Tema| -- |Publicar Tema| -- |Publicar Tema| -- |Publicar Tema| -
-        private void butPublicarTema_Click(object sender, EventArgs e)
-        {
-            //Envía el objeto CPerfil de quien publicará el tema. 
-            fAgregarTema.RecibirPerfil(perfilUsuario);
-            fAgregarTema.ShowDialog();
+            //Se agregan a la lista de perfiles los 3 predefinidos
+            lCPerfiles.Add(Gabi);
+            lCPerfiles.Add(Mati);
+            lCPerfiles.Add(Pablo);
+
+            //Gabi por defecto, acá habría que hacer lo del archivo para que recuerde la setting local.
+            CPerfil.perfilUsuario = Gabi;
+
+            ActualizarCBPerfiles();
         }
 
-        //|Gabi| -- |Gabi| -- |Gabi| -- |Gabi| -- |Gabi| -- |Gabi| -- |Gabi| -- |Gabi| -- |Gabi| -- |Ga
+
+        private void butPublicarTema_Click_1(object sender, EventArgs e) //Tuve que agregar _1 al final del nombre del evento, no sé por qué.
+        {
+           fAgregarTema.ShowDialog();
+        }
+
+       
         private void butGabi_Click(object sender, EventArgs e)
         {
+            //Esto funciona para agregar a Julio apretando el botón Gabi.
+            CPerfil Julio = new CPerfil("Julio");
+            lCPerfiles.Add(Julio);
+
+            ActualizarCBPerfiles();
 
         }
-        //|Pablo| -- |Pablo| -- |Pablo| -- |Pablo| -- |Pablo| -- |Pablo| -- |Pablo| -- |Pablo| -- |Pabl
         private void butPablo_Click(object sender, EventArgs e)
         {
 
         }
-        //|Mati| -- |Mati| -- |Mati| -- |Mati| -- |Mati| -- |Mati| -- |Mati| -- |Mati| -- |Mati| -- |Ma
         private void butMati_Click(object sender, EventArgs e)
         {
 
         }
 
-        //|Cambiar Perfil| -- |Cambiar Perfil| -- |Cambiar Perfil| -- |Cambiar Perfil| -- |Cambiar Perfil| -
         private void cboxPerfiles_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (cboxPerfiles.Text)
-            {
-                case "Gabi":  perfilUsuario = Gabi; break;
-                case "Mati": perfilUsuario = Mati; break;
-                case "Pablo": perfilUsuario = Pablo; break;
-            }
+            CPerfil.perfilUsuario = (CPerfil)cboxPerfiles.SelectedItem;
+
+            //Si perfilusuario = null, entonces se asigna Gabi.
+            CPerfil.perfilUsuario ??= Gabi;
+
+            //Etiqueta para probar.
+            lbViendo.Text = CPerfil.perfilUsuario.Nombre;
+          
         }
+
+        private void ActualizarCBPerfiles()
+        {
+            cboxPerfiles.DataSource = null;
+            cboxPerfiles.DataSource = lCPerfiles;
+            cboxPerfiles.DisplayMember = "Nombre";
+        }
+       
     }
 }

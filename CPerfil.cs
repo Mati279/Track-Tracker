@@ -8,6 +8,7 @@ namespace Track_Tracker
 {
     public class CPerfil
     {
+        public static CPerfil perfilUsuario;
         public string Nombre { get; set; } 
 
         public CPerfil(string _nombre)
