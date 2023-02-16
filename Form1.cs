@@ -19,7 +19,7 @@ namespace Track_Tracker
         public Form1()
         {
             InitializeComponent();
-
+            
         }
        
        
@@ -35,6 +35,8 @@ namespace Track_Tracker
             CPerfil.perfilUsuario = Gabi;
 
             ActualizarCBPerfiles();
+
+            
         }
 
 
@@ -49,7 +51,7 @@ namespace Track_Tracker
             //Esto funciona para agregar a Julio apretando el botón Gabi.
             CPerfil Julio = new CPerfil("Julio");
             lCPerfiles.Add(Julio);
-
+            
             ActualizarCBPerfiles();
 
         }
