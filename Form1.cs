@@ -46,6 +46,7 @@ namespace Track_Tracker
        
         private void butGabi_Click(object sender, EventArgs e)
         {
+            //Esto funciona para agregar a Julio apretando el botón Gabi.
             CPerfil Julio = new CPerfil("Julio");
             lCPerfiles.Add(Julio);
 
