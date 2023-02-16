@@ -36,6 +36,7 @@
             this.butMati = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.butPublicarTema = new System.Windows.Forms.Button();
+            this.butAgregarPerfil = new System.Windows.Forms.Button();
             this.gbPerfil.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -124,11 +125,24 @@
             this.butPublicarTema.UseVisualStyleBackColor = true;
             this.butPublicarTema.Click += new System.EventHandler(this.butPublicarTema_Click_1);
             // 
+            // butAgregarPerfil
+            // 
+            this.butAgregarPerfil.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.butAgregarPerfil.Location = new System.Drawing.Point(130, 36);
+            this.butAgregarPerfil.Name = "butAgregarPerfil";
+            this.butAgregarPerfil.Size = new System.Drawing.Size(20, 19);
+            this.butAgregarPerfil.TabIndex = 4;
+            this.butAgregarPerfil.Text = "+";
+            this.butAgregarPerfil.UseMnemonic = false;
+            this.butAgregarPerfil.UseVisualStyleBackColor = true;
+            this.butAgregarPerfil.Click += new System.EventHandler(this.butAgregarPerfil_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(690, 450);
+            this.Controls.Add(this.butAgregarPerfil);
             this.Controls.Add(this.lbViendo);
             this.Controls.Add(this.butPublicarTema);
             this.Controls.Add(this.label1);
@@ -156,5 +170,6 @@
         private Label label1;
         private Button butPublicarTema;
         private ComboBox cboxPerfiles;
+        private Button butAgregarPerfil;
     }
 }
