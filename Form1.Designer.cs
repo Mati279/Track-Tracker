@@ -54,10 +54,6 @@
             // 
             this.cboxPerfiles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboxPerfiles.FormattingEnabled = true;
-            this.cboxPerfiles.Items.AddRange(new object[] {
-            "Gabi",
-            "Mati",
-            "Pablo"});
             this.cboxPerfiles.Location = new System.Drawing.Point(12, 22);
             this.cboxPerfiles.Name = "cboxPerfiles";
             this.cboxPerfiles.Size = new System.Drawing.Size(84, 23);
@@ -126,6 +122,7 @@
             this.butPublicarTema.TabIndex = 3;
             this.butPublicarTema.Text = "Publicar Tema";
             this.butPublicarTema.UseVisualStyleBackColor = true;
+            this.butPublicarTema.Click += new System.EventHandler(this.butPublicarTema_Click_1);
             // 
             // Form1
             // 
