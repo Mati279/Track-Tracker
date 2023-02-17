@@ -12,6 +12,7 @@ namespace Track_Tracker
 {
     public partial class FAgregarPerfil : Form
     {
+        Form1 oForm1;
         public FAgregarPerfil()
         {
             InitializeComponent();
@@ -19,7 +20,22 @@ namespace Track_Tracker
 
         private void FAgregarPerfil_Load(object sender, EventArgs e)
         {
+            oForm1 = SingletonData.Instance.sForm1;
+        }
 
+       
+        private void butAgregarPerfil_Click(object sender, EventArgs e)
+        {
+            if (textboxNombrePerfil.Text != "")
+            {
+                oForm1.AgregarPerfilNuevo(textboxNombrePerfil.Text);
+                textboxNombrePerfil.Text = "";
+                this.Close();
+            }
+            else 
+            {
+                MessageBox.Show("Nombre Inválido");
+            }
         }
     }
 }

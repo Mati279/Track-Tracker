@@ -7,11 +7,6 @@ namespace Track_Tracker
         FAgregarTema fAgregarTema = new FAgregarTema();
         FAgregarPerfil fAgregarPerfil = new FAgregarPerfil();
 
-        //Instanciación de Perfiles y lista de perfiles.
-        /*CPerfil Gabi = new CPerfil("Gabi");
-        CPerfil Pablo = new CPerfil("Pablo");
-        CPerfil Mati = new CPerfil("Matías");*/
-
         List<CPerfil> lCPerfiles = new List<CPerfil>();
        
 
@@ -27,6 +22,9 @@ namespace Track_Tracker
         #region 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //Se agrega referencia al Singleton_Data de este mismo objeto
+            SingletonData.Instance.sForm1 = this;
+
             //Se agregan a la lista de perfiles los 3 predefinidos
             AgregarPerfilNuevo("Gabi");
             AgregarPerfilNuevo("Mati");
@@ -85,12 +83,22 @@ namespace Track_Tracker
             cboxPerfiles.DisplayMember = "Nombre";
         }
 
-        private void AgregarPerfilNuevo(string sNombre) 
+        public void AgregarPerfilNuevo(string sNombre) 
         {
             CPerfil perfilNuevo = new CPerfil(sNombre);
-            lCPerfiles.Add(perfilNuevo);
+                     
 
+            lCPerfiles.Add(perfilNuevo);
             ActualizarCBPerfiles();
+
+            //Decisión de diseño, al crear perfil nuevo lo pone como perfil actual
+            CPerfil.perfilUsuario = perfilNuevo;
+            lbViendo.Text = CPerfil.perfilUsuario.Nombre;
+            int cantidad = lCPerfiles.Count;
+            cboxPerfiles.SelectedIndex = cantidad-1;
+
+
+
         }
 
        
