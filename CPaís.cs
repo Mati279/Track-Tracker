@@ -9,5 +9,10 @@ namespace Track_Tracker
     public class CPaís : ICalificable
     {
         public string País { get; set; }
+
+        public void ObtenerTemas()
+        {
+
+        }
     }
 }

@@ -50,7 +50,7 @@ namespace Track_Tracker
        
         private void butGabi_Click(object sender, EventArgs e)
         {
-            AgregarPerfilNuevo("Julio");
+            
         }
         private void butPablo_Click(object sender, EventArgs e)
         {
