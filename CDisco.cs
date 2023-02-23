@@ -8,5 +8,11 @@ namespace Track_Tracker
 {
     public class CDisco : ICalificable
     {
+
+
+        public void ObtenerTemas()
+        {
+            
+        }
     }
 }

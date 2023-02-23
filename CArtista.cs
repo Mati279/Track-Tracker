@@ -25,13 +25,7 @@ namespace Track_Tracker
         //Obtiene los temas publicados por este Perfil.
         public void ObtenerTemas()
         {
-            foreach (CTema tema in CTema.temasTotales)
-            {
-                if (tema.publicador == this)
-                {
-                    temasPerfil.Add(tema);
-                }
-            }
+            
         }
 
 
@@ -45,12 +39,12 @@ namespace Track_Tracker
 
             this.ObtenerTemas();
 
-            foreach (CTema tema in temasPerfil)
-            {
-                contador++;
-                notas += tema.notaTotal;
-            }
-            promedio = notas / contador;
+            //foreach (CTema tema in temasPerfil)
+            //{
+            //    contador++;
+            //    notas += tema.notaTotal;
+            //}
+            //promedio = notas / contador;
             return promedio;
         }
 

@@ -12,6 +12,9 @@ namespace Track_Tracker
         public string Estilo { get; set; }
 
 
+        public void ObtenerTemas()
+        {
 
+        }
     }
 }
