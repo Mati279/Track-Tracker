@@ -3,7 +3,7 @@ namespace Track_Tracker
     public partial class Form1 : Form
     {
         
-        //Instanciación de Formas secundarias.
+        //Instanciaciï¿½n de Formas secundarias.
         FAgregarTema fAgregarTema = new FAgregarTema();
         FAgregarPerfil fAgregarPerfil = new FAgregarPerfil();
 
@@ -15,7 +15,7 @@ namespace Track_Tracker
         public Form1()
         {
             InitializeComponent();
-
+            
         }
 
         //|| Interacciones con la Interfaz - Forms ||
@@ -31,16 +31,18 @@ namespace Track_Tracker
             AgregarPerfilNuevo("Pablo");
            
 
-            //Gabi por defecto, acá habría que hacer lo del archivo para que recuerde la setting local.
+            //Gabi por defecto, acï¿½ habrï¿½a que hacer lo del archivo para que recuerde la setting local.
             CPerfil.perfilUsuario = lCPerfiles[0]; 
 
 
 
             ActualizarCBPerfiles();
+
+            
         }
 
 
-        private void butPublicarTema_Click_1(object sender, EventArgs e) //Tuve que agregar _1 al final del nombre del evento, no sé por qué.
+        private void butPublicarTema_Click_1(object sender, EventArgs e) //Tuve que agregar _1 al final del nombre del evento, no sï¿½ por quï¿½.
         {
            fAgregarTema.ShowDialog();
         }
@@ -48,7 +50,7 @@ namespace Track_Tracker
        
         private void butGabi_Click(object sender, EventArgs e)
         {
-            AgregarPerfilNuevo("Julio");
+            
         }
         private void butPablo_Click(object sender, EventArgs e)
         {
@@ -91,7 +93,7 @@ namespace Track_Tracker
             lCPerfiles.Add(perfilNuevo);
             ActualizarCBPerfiles();
 
-            //Decisión de diseño, al crear perfil nuevo lo pone como perfil actual
+            //Decisiï¿½n de diseï¿½o, al crear perfil nuevo lo pone como perfil actual
             CPerfil.perfilUsuario = perfilNuevo;
             lbViendo.Text = CPerfil.perfilUsuario.Nombre;
             int cantidad = lCPerfiles.Count;

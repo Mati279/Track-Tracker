@@ -35,3 +35,4 @@ C:\Users\mamse\Documents\GitHub\Track-Tracker\obj\Debug\net6.0-windows\Track Tra
 C:\Users\mamse\Documents\GitHub\Track-Tracker\obj\Debug\net6.0-windows\Track Tracker.genruntimeconfig.cache
 C:\Users\mamse\Documents\GitHub\Track-Tracker\obj\Debug\net6.0-windows\ref\Track Tracker.dll
 C:\Users\mamse\Documents\GitHub\Track-Tracker\obj\Debug\net6.0-windows\Track_Tracker.FAgregarPerfil.resources
+D:\Programas Propios\Track Tracker\obj\Debug\net6.0-windows\Track_Tracker.FAgregarPerfil.resources
