@@ -5,11 +5,7 @@ namespace Track_Tracker
         
         //Instanciación de Formas secundarias.
         FAgregarTema fAgregarTema = new FAgregarTema();
-
-        //Instanciación de Perfiles y lista de perfiles.
-        CPerfil Gabi = new CPerfil("Gabi");
-        CPerfil Pablo = new CPerfil("Pablo");
-        CPerfil Mati = new CPerfil("Matías");
+        FAgregarPerfil fAgregarPerfil = new FAgregarPerfil();
 
         List<CPerfil> lCPerfiles = new List<CPerfil>();
        
@@ -21,18 +17,24 @@ namespace Track_Tracker
             InitializeComponent();
 
         }
-       
-       
 
+        //|| Interacciones con la Interfaz - Forms ||
+        #region 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //Se agrega referencia al Singleton_Data de este mismo objeto
+            SingletonData.Instance.sForm1 = this;
+
             //Se agregan a la lista de perfiles los 3 predefinidos
-            lCPerfiles.Add(Gabi);
-            lCPerfiles.Add(Mati);
-            lCPerfiles.Add(Pablo);
+            AgregarPerfilNuevo("Gabi");
+            AgregarPerfilNuevo("Mati");
+            AgregarPerfilNuevo("Pablo");
+           
 
             //Gabi por defecto, acá habría que hacer lo del archivo para que recuerde la setting local.
-            CPerfil.perfilUsuario = Gabi;
+            CPerfil.perfilUsuario = lCPerfiles[0]; 
+
+
 
             ActualizarCBPerfiles();
         }
@@ -46,12 +48,7 @@ namespace Track_Tracker
        
         private void butGabi_Click(object sender, EventArgs e)
         {
-            //Esto funciona para agregar a Julio apretando el botón Gabi.
-            CPerfil Julio = new CPerfil("Julio");
-            lCPerfiles.Add(Julio);
-
-            ActualizarCBPerfiles();
-
+            AgregarPerfilNuevo("Julio");
         }
         private void butPablo_Click(object sender, EventArgs e)
         {
@@ -61,18 +58,23 @@ namespace Track_Tracker
         {
 
         }
-
+        private void butAgregarPerfil_Click(object sender, EventArgs e)
+        {
+            fAgregarPerfil.ShowDialog();
+        }
         private void cboxPerfiles_SelectedIndexChanged(object sender, EventArgs e)
         {
             CPerfil.perfilUsuario = (CPerfil)cboxPerfiles.SelectedItem;
 
             //Si perfilusuario = null, entonces se asigna Gabi.
-            CPerfil.perfilUsuario ??= Gabi;
+            CPerfil.perfilUsuario ??= lCPerfiles[0];
 
             //Etiqueta para probar.
             lbViendo.Text = CPerfil.perfilUsuario.Nombre;
-          
+
+                      
         }
+        #endregion
 
         private void ActualizarCBPerfiles()
         {
@@ -80,6 +82,25 @@ namespace Track_Tracker
             cboxPerfiles.DataSource = lCPerfiles;
             cboxPerfiles.DisplayMember = "Nombre";
         }
+
+        public void AgregarPerfilNuevo(string sNombre) 
+        {
+            CPerfil perfilNuevo = new CPerfil(sNombre);
+                     
+
+            lCPerfiles.Add(perfilNuevo);
+            ActualizarCBPerfiles();
+
+            //Decisión de diseño, al crear perfil nuevo lo pone como perfil actual
+            CPerfil.perfilUsuario = perfilNuevo;
+            lbViendo.Text = CPerfil.perfilUsuario.Nombre;
+            int cantidad = lCPerfiles.Count;
+            cboxPerfiles.SelectedIndex = cantidad-1;
+
+
+
+        }
+
        
     }
 }
