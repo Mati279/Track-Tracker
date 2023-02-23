@@ -12,12 +12,14 @@ namespace Track_Tracker
 {
     public partial class FAgregarTema : Form
     {
+        FAgregarArtista fAgregarArtista = new FAgregarArtista();
 
         public string nombreUsuario { get; set; }
         //Constructor de FAgregarTema.
         public FAgregarTema()
         {
             InitializeComponent();
+            Actualizar();
         }
 
         private void FAgregarTema_Load(object sender, EventArgs e)
@@ -26,5 +28,19 @@ namespace Track_Tracker
             nombreUsuario = CPerfil.perfilUsuario.Nombre;
             this.Text = $"Publicar tema como {nombreUsuario}";
         }
+
+        private void butAgrArtista_Click(object sender, EventArgs e)
+        {
+            fAgregarArtista.ShowDialog();
+        }
+
+        private void Actualizar()
+        {
+            cbSelArtista.DataSource = null;
+            cbSelArtista.DataSource = CArtista.Artistas;
+            cbSelArtista.DisplayMember = "Nombre";
+
+        }
+        
     }
 }

@@ -9,14 +9,21 @@ namespace Track_Tracker
     public class CArtista : ICalificable
     {
         public string Nombre { get; set; }
-        public string País { get; set; }
+        public CPaís País { get; set; }
         public int Año { get; set; }
         public CEstilo Estilo { get; set; }
 
-        public List<CTema> temasArtista = new List<CTema>();
-        public CArtista()
-        {
+        public static List<CArtista> Artistas = new List<CArtista>();
 
+        public List<CTema> temasArtista = new List<CTema>();
+        public CArtista(string _nombre, int _año, CPaís _país, CEstilo _estilo)
+        {
+            Nombre = _nombre;
+            Año = _año;
+            País = _país;
+            Estilo = _estilo;
+
+            Artistas.Add(this);
         }
 
 

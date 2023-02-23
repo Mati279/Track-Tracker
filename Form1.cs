@@ -6,6 +6,7 @@ namespace Track_Tracker
         //Instanciaci�n de Formas secundarias.
         FAgregarTema fAgregarTema = new FAgregarTema();
         FAgregarPerfil fAgregarPerfil = new FAgregarPerfil();
+        
 
         List<CPerfil> lCPerfiles = new List<CPerfil>();
        
@@ -34,11 +35,7 @@ namespace Track_Tracker
             //Gabi por defecto, ac� habr�a que hacer lo del archivo para que recuerde la setting local.
             CPerfil.perfilUsuario = lCPerfiles[0]; 
 
-
-
             ActualizarCBPerfiles();
-
-            
         }
 
 
@@ -73,8 +70,6 @@ namespace Track_Tracker
 
             //Etiqueta para probar.
             lbViendo.Text = CPerfil.perfilUsuario.Nombre;
-
-                      
         }
         #endregion
 
@@ -98,11 +93,6 @@ namespace Track_Tracker
             lbViendo.Text = CPerfil.perfilUsuario.Nombre;
             int cantidad = lCPerfiles.Count;
             cboxPerfiles.SelectedIndex = cantidad-1;
-
-
-
         }
-
-       
     }
 }
