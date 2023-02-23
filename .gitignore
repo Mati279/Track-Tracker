@@ -9,3 +9,9 @@
 *.vsidx
 *.vsidx
 *.v2
+*.txt
+*.cache
+obj/Debug/net6.0-windows/Track Tracker.csproj.CoreCompileInputs.cache
+obj/Debug/net6.0-windows/Track Tracker.csproj.FileListAbsolute.txt
+obj/Debug/net6.0-windows/Track Tracker.csproj.CoreCompileInputs.cache
+obj/Debug/net6.0-windows/Track Tracker.csproj.FileListAbsolute.txt
