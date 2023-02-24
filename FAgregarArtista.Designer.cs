@@ -102,6 +102,7 @@
             this.butAgrPaís.TabIndex = 3;
             this.butAgrPaís.Text = "+";
             this.butAgrPaís.UseVisualStyleBackColor = true;
+            this.butAgrPaís.Click += new System.EventHandler(this.butAgrPaís_Click);
             // 
             // label4
             // 
@@ -130,6 +131,7 @@
             this.butAgrEstilo.TabIndex = 3;
             this.butAgrEstilo.Text = "+";
             this.butAgrEstilo.UseVisualStyleBackColor = true;
+            this.butAgrEstilo.Click += new System.EventHandler(this.butAgrEstilo_Click);
             // 
             // butOK
             // 

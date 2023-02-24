@@ -9,12 +9,21 @@ namespace Track_Tracker
 {
     public class CEstilo : ICalificable
     {
-        public string Estilo { get; set; }
+        public string Nombre { get; set; }
+        public static List<CEstilo> Estilos = new List<CEstilo>();
+        public CEstilo(string _estilo)
+        {
+            Nombre = _estilo;
+            Estilos.Add(this);
 
+        }
 
         public void ObtenerTemas()
         {
 
         }
+
+
+     
     }
 }

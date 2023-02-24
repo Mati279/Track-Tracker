@@ -8,17 +8,22 @@ namespace Track_Tracker
 {
     public class CPaís : ICalificable
     {
-        public string País { get; set; }
+        public string Nombre { get; set; }
+
         public static List<CPaís> Países = new List<CPaís>();
 
-        public CPaís()
+        public CPaís(string _nombre)
         {
+            Nombre = _nombre;
             Países.Add(this);
 
         }
         public void ObtenerTemas()
         {
-            
+           
         }
+
+
+       
     }
 }

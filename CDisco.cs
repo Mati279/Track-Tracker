@@ -9,10 +9,12 @@ namespace Track_Tracker
     public class CDisco : ICalificable
     {
 
-
+        public string Nombre { get; set; }
         public void ObtenerTemas()
         {
             
         }
+
+
     }
 }
