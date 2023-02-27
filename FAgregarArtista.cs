@@ -50,11 +50,13 @@ namespace Track_Tracker
         {
             fNombre = tbNombre.Text;
             try { fAño = Convert.ToInt16(tbAño.Text); }
-            catch { MessageBox.Show("Introduce un año válido."); }
+            catch { MessageBox.Show("Introduce un año válido."); return; }
             fEstilo = (CEstilo)cbEstilo.SelectedItem;
             fPaís = (CPaís)cbPaíses.SelectedItem;
 
-
+            tbNombre.Text = "";
+            tbAño.Text = "";
+         
             CArtista nuevoArtista = new CArtista(fNombre, fAño, fPaís, fEstilo);
             this.Close();
             

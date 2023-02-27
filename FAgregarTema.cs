@@ -41,6 +41,11 @@ namespace Track_Tracker
             cbSelArtista.DisplayMember = "Nombre";
 
         }
-        
+
+        private void FAgregarTema_Activated(object sender, EventArgs e)
+        {
+            Actualizar();
+         
+        }
     }
 }
