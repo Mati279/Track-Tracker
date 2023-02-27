@@ -43,52 +43,50 @@ namespace Track_Tracker
                 cbEstilo.DataSource = CEstilo.Estilos;
                 cbEstilo.DisplayMember = "Nombre";
             }
-
         }
 
         private void butOK_Click(object sender, EventArgs e)
         {
             fNombre = tbNombre.Text;
             try { fAño = Convert.ToInt16(tbAño.Text); }
-            catch { MessageBox.Show("Introduce un año válido."); return; }
+            catch { MessageBox.Show("Introduce un año válido."); tbAño.Text = ""; return; }
             fEstilo = (CEstilo)cbEstilo.SelectedItem;
             fPaís = (CPaís)cbPaíses.SelectedItem;
 
             tbNombre.Text = "";
             tbAño.Text = "";
-         
+
             CArtista nuevoArtista = new CArtista(fNombre, fAño, fPaís, fEstilo);
             this.Close();
-            
         }
 
         private void butAgrPaís_Click(object sender, EventArgs e)
         {
             if (cbPaíses.Text != "")
             {
-                List<CPaís> lList = CPaís.Países;
+                List<CPaís> lList = CPaís.Países; 
+                
                 bool bRepetido = false;
-                foreach (CPaís objeto in lList)
+                foreach (CPaís pais in lList)  
                 {
-                    if (objeto.Nombre == cbPaíses.Text) { bRepetido = true;}
+                    if (pais.Nombre.ToLower() == cbPaíses.Text.ToLower()) { bRepetido = true; break; }
                 }
 
                 if (!bRepetido)
                 {
-
                     CPaís oPaís = new CPaís(cbPaíses.Text);
                     MessageBox.Show($"{cbPaíses.Text} agregado a Países.");
                     Actualizar(oPaís);
 
                     int cantidad = CPaís.Países.Count;
-                    cbPaíses.SelectedIndex = cantidad - 1;
+                    cbPaíses.SelectedIndex = cantidad - 1; 
                 }
                 else { MessageBox.Show($"Ese país ya existe."); cbPaíses.Text = ""; }
 
             }
             else 
             {
-                MessageBox.Show("Nombre inválido o ya existente.");
+                MessageBox.Show("Nombre inválido."); 
             }
         }
 
@@ -98,9 +96,9 @@ namespace Track_Tracker
             {
                 List<CEstilo> lList = CEstilo.Estilos;
                 bool bRepetido = false;
-                foreach (CEstilo objeto in lList)
+                foreach (CEstilo estilo in lList)
                 {
-                    if (objeto.Nombre == cbEstilo.Text) { bRepetido = true; }
+                    if (estilo.Nombre.ToLower() == cbEstilo.Text.ToLower()) { bRepetido = true; break; }
                 }
 
 

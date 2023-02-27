@@ -17,7 +17,7 @@ namespace Track_Tracker
 
         public CArtista artista { get; set; }
 
-        public CEstilo estilo { get; set; }
+        public string tipo { get; set; }
 
         public CDisco disco { get; set; }
 

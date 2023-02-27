@@ -11,6 +11,8 @@ namespace Track_Tracker
         //Atributo estático del Perfil del usuario del programa.
         public static CPerfil perfilUsuario;
 
+        public CTema ultimoTema;
+
         //Nombre del Perfil.
         public string Nombre { get; set; } 
 
@@ -37,9 +39,6 @@ namespace Track_Tracker
                 }
             }
         }
-
-
-
         //Obtiene el promedio de los temas publicados por este Perfil.
         public double ObtenerPromedio()
         {

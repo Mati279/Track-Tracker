@@ -35,19 +35,24 @@ namespace Track_Tracker
             //Gabi por defecto, ac� habr�a que hacer lo del archivo para que recuerde la setting local.
             CPerfil.perfilUsuario = lCPerfiles[0]; 
 
-            ActualizarCBPerfiles();
+            Actualizar();
         }
 
 
         private void butPublicarTema_Click_1(object sender, EventArgs e) //Tuve que agregar _1 al final del nombre del evento, no s� por qu�.
         {
            fAgregarTema.ShowDialog();
+           Actualizar();
         }
 
        
         private void butGabi_Click(object sender, EventArgs e)
         {
-            
+            Actualizar();
+            foreach(CArtista artista in CArtista.Artistas)
+            {
+                MessageBox.Show(artista.Nombre);
+            }
         }
         private void butPablo_Click(object sender, EventArgs e)
         {
@@ -73,11 +78,16 @@ namespace Track_Tracker
         }
         #endregion
 
-        private void ActualizarCBPerfiles()
+        private void Actualizar()
         {
             cboxPerfiles.DataSource = null;
             cboxPerfiles.DataSource = lCPerfiles;
             cboxPerfiles.DisplayMember = "Nombre";
+
+            dgArtista.DataSource = null;
+            dgArtista.DataSource = CArtista.Artistas;
+            //dgArtista.Columns[1].Disp;
+            
         }
 
         public void AgregarPerfilNuevo(string sNombre) 
@@ -86,7 +96,7 @@ namespace Track_Tracker
                      
 
             lCPerfiles.Add(perfilNuevo);
-            ActualizarCBPerfiles();
+            Actualizar();
 
             //Decisi�n de dise�o, al crear perfil nuevo lo pone como perfil actual
             CPerfil.perfilUsuario = perfilNuevo;
@@ -94,5 +104,7 @@ namespace Track_Tracker
             int cantidad = lCPerfiles.Count;
             cboxPerfiles.SelectedIndex = cantidad-1;
         }
+
+        
     }
 }

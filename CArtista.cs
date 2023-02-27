@@ -15,6 +15,8 @@ namespace Track_Tracker
 
         public static List<CArtista> Artistas = new List<CArtista>();
 
+        public List<CDisco> Discos = new List<CDisco>();
+
         public List<CTema> temasArtista = new List<CTema>();
         public CArtista(string _nombre, int _año, CPaís _país, CEstilo _estilo)
         {

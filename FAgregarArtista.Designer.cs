@@ -165,6 +165,7 @@
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Name = "FAgregarArtista";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Agregar Artista";
             this.Load += new System.EventHandler(this.FAgregarArtista_Load);
             this.ResumeLayout(false);

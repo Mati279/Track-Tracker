@@ -34,6 +34,7 @@
             this.tbDisco = new System.Windows.Forms.TextBox();
             this.lbDisco = new System.Windows.Forms.Label();
             this.lbNombreTema = new System.Windows.Forms.Label();
+            this.btOK = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // butAgrArtista
@@ -91,11 +92,23 @@
             this.lbNombreTema.TabIndex = 5;
             this.lbNombreTema.Text = "Nombre";
             // 
+            // btOK
+            // 
+            this.btOK.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btOK.Location = new System.Drawing.Point(173, 314);
+            this.btOK.Name = "btOK";
+            this.btOK.Size = new System.Drawing.Size(75, 23);
+            this.btOK.TabIndex = 6;
+            this.btOK.Text = "OK";
+            this.btOK.UseVisualStyleBackColor = true;
+            this.btOK.Click += new System.EventHandler(this.btOK_Click);
+            // 
             // FAgregarTema
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(479, 450);
+            this.Controls.Add(this.btOK);
             this.Controls.Add(this.lbNombreTema);
             this.Controls.Add(this.lbDisco);
             this.Controls.Add(this.tbDisco);
@@ -105,9 +118,7 @@
             this.Name = "FAgregarTema";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FAgregarTema";
-            this.Activated += new System.EventHandler(this.FAgregarTema_Activated);
             this.Load += new System.EventHandler(this.FAgregarTema_Load);
-            this.EnabledChanged += new System.EventHandler(this.FAgregarTema_Activated);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -121,5 +132,6 @@
         private TextBox tbDisco;
         private Label lbDisco;
         private Label lbNombreTema;
+        private Button btOK;
     }
 }

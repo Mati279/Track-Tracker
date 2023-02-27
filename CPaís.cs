@@ -22,8 +22,12 @@ namespace Track_Tracker
         {
            
         }
+        public override string ToString()
+        {
+            return Nombre;
+        }
+         
 
 
-       
     }
 }

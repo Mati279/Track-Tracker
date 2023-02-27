@@ -32,6 +32,7 @@ namespace Track_Tracker
         private void butAgrArtista_Click(object sender, EventArgs e)
         {
             fAgregarArtista.ShowDialog();
+            Actualizar();
         }
 
         private void Actualizar()
@@ -39,13 +40,13 @@ namespace Track_Tracker
             cbSelArtista.DataSource = null;
             cbSelArtista.DataSource = CArtista.Artistas;
             cbSelArtista.DisplayMember = "Nombre";
-
         }
 
-        private void FAgregarTema_Activated(object sender, EventArgs e)
+        private void btOK_Click(object sender, EventArgs e)
         {
-            Actualizar();
-         
+
+            
+            this.Close();
         }
     }
 }
