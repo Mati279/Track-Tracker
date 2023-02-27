@@ -73,7 +73,7 @@
             this.tbAño.Location = new System.Drawing.Point(83, 59);
             this.tbAño.Name = "tbAño";
             this.tbAño.Size = new System.Drawing.Size(100, 23);
-            this.tbAño.TabIndex = 1;
+            this.tbAño.TabIndex = 2;
             // 
             // label3
             // 
@@ -91,7 +91,7 @@
             this.cbPaíses.Location = new System.Drawing.Point(83, 88);
             this.cbPaíses.Name = "cbPaíses";
             this.cbPaíses.Size = new System.Drawing.Size(100, 23);
-            this.cbPaíses.TabIndex = 2;
+            this.cbPaíses.TabIndex = 3;
             // 
             // butAgrPaís
             // 
@@ -99,7 +99,7 @@
             this.butAgrPaís.Location = new System.Drawing.Point(189, 88);
             this.butAgrPaís.Name = "butAgrPaís";
             this.butAgrPaís.Size = new System.Drawing.Size(35, 23);
-            this.butAgrPaís.TabIndex = 3;
+            this.butAgrPaís.TabIndex = 6;
             this.butAgrPaís.Text = "+";
             this.butAgrPaís.UseVisualStyleBackColor = true;
             this.butAgrPaís.Click += new System.EventHandler(this.butAgrPaís_Click);
@@ -120,15 +120,18 @@
             this.cbEstilo.Location = new System.Drawing.Point(83, 117);
             this.cbEstilo.Name = "cbEstilo";
             this.cbEstilo.Size = new System.Drawing.Size(100, 23);
-            this.cbEstilo.TabIndex = 2;
+            this.cbEstilo.TabIndex = 4;
             // 
             // butAgrEstilo
             // 
+            this.butAgrEstilo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.butAgrEstilo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.butAgrEstilo.Location = new System.Drawing.Point(189, 117);
             this.butAgrEstilo.Name = "butAgrEstilo";
             this.butAgrEstilo.Size = new System.Drawing.Size(35, 23);
-            this.butAgrEstilo.TabIndex = 3;
+            this.butAgrEstilo.TabIndex = 7;
             this.butAgrEstilo.Text = "+";
             this.butAgrEstilo.UseVisualStyleBackColor = true;
             this.butAgrEstilo.Click += new System.EventHandler(this.butAgrEstilo_Click);
@@ -139,7 +142,7 @@
             this.butOK.Location = new System.Drawing.Point(83, 166);
             this.butOK.Name = "butOK";
             this.butOK.Size = new System.Drawing.Size(75, 23);
-            this.butOK.TabIndex = 4;
+            this.butOK.TabIndex = 5;
             this.butOK.Text = "OK";
             this.butOK.UseVisualStyleBackColor = true;
             this.butOK.Click += new System.EventHandler(this.butOK_Click);
