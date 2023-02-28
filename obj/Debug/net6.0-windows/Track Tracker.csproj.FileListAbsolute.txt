@@ -38,3 +38,4 @@ C:\Users\mamse\Documents\GitHub\Track-Tracker\obj\Debug\net6.0-windows\Track_Tra
 D:\Programas Propios\Track Tracker\obj\Debug\net6.0-windows\Track_Tracker.FAgregarPerfil.resources
 D:\Programas Propios\Track Tracker\obj\Debug\net6.0-windows\Track_Tracker.FAgregarArtista.resources
 C:\Users\mamse\Documents\GitHub\Track-Tracker\obj\Debug\net6.0-windows\Track_Tracker.FAgregarArtista.resources
+D:\Programas Propios\Track Tracker\obj\Debug\net6.0-windows\Track_Tracker.FAgregarDisco.resources

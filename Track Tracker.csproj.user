@@ -4,6 +4,9 @@
     <Compile Update="FAgregarArtista.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="FAgregarDisco.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="FAgregarTema.cs">
       <SubType>Form</SubType>
     </Compile>

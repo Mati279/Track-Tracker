@@ -37,9 +37,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.butPublicarTema = new System.Windows.Forms.Button();
             this.butAgregarPerfil = new System.Windows.Forms.Button();
-            this.dgArtista = new System.Windows.Forms.DataGridView();
             this.gbPerfil.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgArtista)).BeginInit();
             this.SuspendLayout();
             // 
             // gbPerfil
@@ -139,21 +137,11 @@
             this.butAgregarPerfil.UseVisualStyleBackColor = true;
             this.butAgregarPerfil.Click += new System.EventHandler(this.butAgregarPerfil_Click);
             // 
-            // dgArtista
-            // 
-            this.dgArtista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgArtista.Location = new System.Drawing.Point(160, 97);
-            this.dgArtista.Name = "dgArtista";
-            this.dgArtista.RowTemplate.Height = 25;
-            this.dgArtista.Size = new System.Drawing.Size(458, 150);
-            this.dgArtista.TabIndex = 5;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(690, 450);
-            this.Controls.Add(this.dgArtista);
             this.Controls.Add(this.butAgregarPerfil);
             this.Controls.Add(this.lbViendo);
             this.Controls.Add(this.butPublicarTema);
@@ -167,7 +155,6 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.gbPerfil.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgArtista)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -184,6 +171,5 @@
         private Button butPublicarTema;
         private ComboBox cboxPerfiles;
         private Button butAgregarPerfil;
-        private DataGridView dgArtista;
     }
 }

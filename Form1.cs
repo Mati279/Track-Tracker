@@ -30,7 +30,9 @@ namespace Track_Tracker
             AgregarPerfilNuevo("Gabi");
             AgregarPerfilNuevo("Mati");
             AgregarPerfilNuevo("Pablo");
-           
+
+            //Crea a Sonata default, para testing. 
+            CArtista Sonata = new CArtista("Sonata Arctica", 1996, new CPaís("Finlandia"), new CEstilo("Power Metal"));
 
             //Gabi por defecto, ac� habr�a que hacer lo del archivo para que recuerde la setting local.
             CPerfil.perfilUsuario = lCPerfiles[0]; 
@@ -48,11 +50,7 @@ namespace Track_Tracker
        
         private void butGabi_Click(object sender, EventArgs e)
         {
-            Actualizar();
-            foreach(CArtista artista in CArtista.Artistas)
-            {
-                MessageBox.Show(artista.Nombre);
-            }
+           
         }
         private void butPablo_Click(object sender, EventArgs e)
         {
@@ -84,8 +82,7 @@ namespace Track_Tracker
             cboxPerfiles.DataSource = lCPerfiles;
             cboxPerfiles.DisplayMember = "Nombre";
 
-            dgArtista.DataSource = null;
-            dgArtista.DataSource = CArtista.Artistas;
+            
             //dgArtista.Columns[1].Disp;
             
         }

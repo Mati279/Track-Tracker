@@ -13,6 +13,8 @@ namespace Track_Tracker
     public partial class FAgregarTema : Form
     {
         FAgregarArtista fAgregarArtista = new FAgregarArtista();
+        FAgregarDisco  fAgregarDisco = new FAgregarDisco();
+        
 
         public string nombreUsuario { get; set; }
         //Constructor de FAgregarTema.
@@ -27,6 +29,9 @@ namespace Track_Tracker
             //Para que cambie el título de la ventana.
             nombreUsuario = CPerfil.perfilUsuario.Nombre;
             this.Text = $"Publicar tema como {nombreUsuario}";
+
+            
+            Actualizar();
         }
 
         private void butAgrArtista_Click(object sender, EventArgs e)
@@ -40,13 +45,40 @@ namespace Track_Tracker
             cbSelArtista.DataSource = null;
             cbSelArtista.DataSource = CArtista.Artistas;
             cbSelArtista.DisplayMember = "Nombre";
+
+            cbSelDisco.DataSource = null;
+            cbSelDisco.DataSource = ((CArtista)cbSelArtista.SelectedItem)?.Discos;
+            cbSelDisco.DisplayMember = "Nombre";
         }
 
         private void btOK_Click(object sender, EventArgs e)
         {
-
-            
             this.Close();
+        }
+
+        private void cbSelArtista_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Cambia la Data Source del ComboBox de discos dependiendo de la banda seleccionada.
+            cbSelDisco.DataSource = null;
+            cbSelDisco.DataSource = ((CArtista)cbSelArtista.SelectedItem)?.Discos;
+            cbSelDisco.DisplayMember = "Nombre";
+
+        }
+
+        private void butAgregarDisco_Click(object sender, EventArgs e)
+        {
+            //Selecciona el Artista del Disco nuevo dependiendo del Artista seleccionado en el cbSelArtista.
+
+            if (cbSelArtista.SelectedItem is CArtista)
+            {
+                fAgregarDisco.ObtenerArtista((CArtista)cbSelArtista.SelectedItem);
+                fAgregarDisco.ShowDialog();
+                Actualizar();
+            }
+            else
+            {
+                MessageBox.Show("Selecciona un artista para agregar el disco.");
+            }
         }
     }
 }

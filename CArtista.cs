@@ -37,6 +37,12 @@ namespace Track_Tracker
             
         }
 
+        public void ObtenerDisco(CDisco _disco)
+        {
+            Discos.Add(_disco);
+
+        }
+
 
 
         //Obtiene el promedio de los temas publicados por este Perfil.

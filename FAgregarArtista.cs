@@ -14,8 +14,8 @@ namespace Track_Tracker
     {
         string fNombre;
         int fAño;
-        CEstilo fEstilo;
-        CPaís fPaís;
+        CEstilo fEstilo = null;
+        CPaís fPaís = null;
 
         public FAgregarArtista()
         {
