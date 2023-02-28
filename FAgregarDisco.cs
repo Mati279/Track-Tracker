@@ -16,7 +16,7 @@ namespace Track_Tracker
         string fNombre;
         int fAño;
         CEstilo fEstilo = null;
-        
+
 
 
         public FAgregarDisco()
@@ -28,6 +28,15 @@ namespace Track_Tracker
         private void FAgregarDisco_Load(object sender, EventArgs e)
         {
             this.Text = $"Agregar tema para {fArtista.Nombre}";
+            Actualizar();
+        }
+
+        private void Actualizar()
+        {
+            cbSelEstilo.DataSource = null;
+            cbSelEstilo.DataSource = CEstilo.Estilos;
+            cbSelEstilo.DisplayMember = "Nombre";
+
         }
         public void ObtenerArtista(CArtista _artista)
         {
@@ -36,12 +45,12 @@ namespace Track_Tracker
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+
             fNombre = tbNombre.Text;
             try { fAño = Convert.ToInt16(tbAño.Text); }
             catch { MessageBox.Show("Introduce un año válido."); tbAño.Text = ""; return; }
             fEstilo = (CEstilo)cbSelEstilo.SelectedItem;
-            
+
 
             tbNombre.Text = "";
             tbAño.Text = "";
@@ -49,8 +58,37 @@ namespace Track_Tracker
             CDisco nuevoDisco = new CDisco(fNombre, fAño, new CEstilo("Power Metal"), fArtista);
             CDisco.Discos.Add(nuevoDisco);
             fArtista.ObtenerDisco(nuevoDisco);
-           
+
             this.Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (cbSelEstilo.Text != "")
+            {
+                List<CEstilo> lList = CEstilo.Estilos;
+                bool bRepetido = false;
+                foreach (CEstilo estilo in lList)
+                {
+                    if (estilo.Nombre.ToLower() == cbSelEstilo.Text.ToLower()) { bRepetido = true; break; }
+                }
+
+
+                if (!bRepetido)
+                {
+                    CEstilo oEstilo = new CEstilo(cbSelEstilo.Text);
+                    MessageBox.Show($"{cbSelEstilo.Text} agregado a Estilo.");
+                    Actualizar();
+
+                    int cantidad = CEstilo.Estilos.Count;
+                    cbSelEstilo.SelectedIndex = cantidad - 1;
+                }
+                else { MessageBox.Show($"Ese estilo ya existe."); cbSelEstilo.Text = ""; }
+            }
+            else
+            {
+                MessageBox.Show("Nombre inválido.");
+            }
         }
     }
 }

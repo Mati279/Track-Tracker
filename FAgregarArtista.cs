@@ -20,13 +20,17 @@ namespace Track_Tracker
         public FAgregarArtista()
         {
             InitializeComponent();
-            Actualizar(fEstilo);
-            Actualizar(fPaís);
+          
         }
 
         private void FAgregarArtista_Load(object sender, EventArgs e)
         {
-
+            cbPaíses.DataSource = null;
+            cbPaíses.DataSource = CPaís.Países;
+            cbPaíses.DisplayMember = "Nombre";
+            cbEstilo.DataSource = null;
+            cbEstilo.DataSource = CEstilo.Estilos;
+            cbEstilo.DisplayMember = "Nombre";
         }
 
         private void Actualizar(ICalificable aActualizar)
