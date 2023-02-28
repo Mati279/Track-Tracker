@@ -31,6 +31,7 @@ namespace Track_Tracker
             cbEstilo.DataSource = null;
             cbEstilo.DataSource = CEstilo.Estilos;
             cbEstilo.DisplayMember = "Nombre";
+
         }
 
         private void Actualizar(ICalificable aActualizar)

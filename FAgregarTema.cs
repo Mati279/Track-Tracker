@@ -13,8 +13,8 @@ namespace Track_Tracker
     public partial class FAgregarTema : Form
     {
         FAgregarArtista fAgregarArtista = new FAgregarArtista();
-        FAgregarDisco  fAgregarDisco = new FAgregarDisco();
-        
+        FAgregarDisco fAgregarDisco = new FAgregarDisco();
+
 
         public string nombreUsuario { get; set; }
         //Constructor de FAgregarTema.
@@ -30,7 +30,7 @@ namespace Track_Tracker
             nombreUsuario = CPerfil.perfilUsuario.Nombre;
             this.Text = $"Publicar tema como {nombreUsuario}";
 
-            
+
             Actualizar();
         }
 
