@@ -35,7 +35,7 @@
             cbSelDisco = new ComboBox();
             cbSelTipo = new ComboBox();
             button1 = new Button();
-            textBox1 = new TextBox();
+            tbNombreTema = new TextBox();
             butAgregarDisco = new Button();
             SuspendLayout();
             // 
@@ -108,13 +108,14 @@
             button1.TabIndex = 7;
             button1.Text = "+";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
-            // textBox1
+            // tbNombreTema
             // 
-            textBox1.Location = new Point(12, 28);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(121, 23);
-            textBox1.TabIndex = 8;
+            tbNombreTema.Location = new Point(12, 28);
+            tbNombreTema.Name = "tbNombreTema";
+            tbNombreTema.Size = new Size(121, 23);
+            tbNombreTema.TabIndex = 8;
             // 
             // butAgregarDisco
             // 
@@ -133,7 +134,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(262, 254);
             Controls.Add(butAgregarDisco);
-            Controls.Add(textBox1);
+            Controls.Add(tbNombreTema);
             Controls.Add(button1);
             Controls.Add(btOK);
             Controls.Add(lbNombreTema);
@@ -158,7 +159,7 @@
         private ComboBox cbSelDisco;
         private ComboBox cbSelTipo;
         private Button button1;
-        private TextBox textBox1;
+        private TextBox tbNombreTema;
         private Button butAgregarDisco;
     }
 }

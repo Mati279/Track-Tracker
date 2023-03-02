@@ -21,7 +21,8 @@ namespace Track_Tracker
         public FAgregarTema()
         {
             InitializeComponent();
-            Actualizar();
+            ActualizarArtista();
+            ActualizarDisco();
         }
 
         private void FAgregarTema_Load(object sender, EventArgs e)
@@ -31,21 +32,26 @@ namespace Track_Tracker
             this.Text = $"Publicar tema como {nombreUsuario}";
 
 
-            Actualizar();
+            ActualizarArtista();
+            ActualizarDisco();
         }
 
         private void butAgrArtista_Click(object sender, EventArgs e)
         {
             fAgregarArtista.ShowDialog();
-            Actualizar();
+            ActualizarArtista();
+            ActualizarDisco();
         }
 
-        private void Actualizar()
+        private void ActualizarArtista()
         {
             cbSelArtista.DataSource = null;
             cbSelArtista.DataSource = CArtista.Artistas;
             cbSelArtista.DisplayMember = "Nombre";
-
+      
+        }
+        private void ActualizarDisco()
+        {
             cbSelDisco.DataSource = null;
             cbSelDisco.DataSource = ((CArtista)cbSelArtista.SelectedItem)?.Discos;
             cbSelDisco.DisplayMember = "Nombre";
@@ -53,6 +59,10 @@ namespace Track_Tracker
 
         private void btOK_Click(object sender, EventArgs e)
         {
+            new CTema(CPerfil.perfilUsuario, (CArtista)cbSelArtista.SelectedItem, cbSelTipo.Text, tbNombreTema.Text, (CDisco)cbSelDisco.SelectedItem, ((CArtista)cbSelArtista.SelectedItem).País);
+
+
+
             this.Close();
         }
 
@@ -73,12 +83,17 @@ namespace Track_Tracker
             {
                 fAgregarDisco.ObtenerArtista((CArtista)cbSelArtista.SelectedItem);
                 fAgregarDisco.ShowDialog();
-                Actualizar();
+                ActualizarDisco();
             }
             else
             {
                 MessageBox.Show("Selecciona un artista para agregar el disco.");
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

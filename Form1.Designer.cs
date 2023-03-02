@@ -28,136 +28,243 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.gbPerfil = new System.Windows.Forms.GroupBox();
-            this.cboxPerfiles = new System.Windows.Forms.ComboBox();
-            this.lbViendo = new System.Windows.Forms.Label();
-            this.butGabi = new System.Windows.Forms.Button();
-            this.butPablo = new System.Windows.Forms.Button();
-            this.butMati = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.butPublicarTema = new System.Windows.Forms.Button();
-            this.butAgregarPerfil = new System.Windows.Forms.Button();
-            this.gbPerfil.SuspendLayout();
-            this.SuspendLayout();
+            gbPerfil = new GroupBox();
+            cboxPerfiles = new ComboBox();
+            lbViendo = new Label();
+            butGabi = new Button();
+            butPablo = new Button();
+            butMati = new Button();
+            label1 = new Label();
+            butPublicarTema = new Button();
+            butAgregarPerfil = new Button();
+            lbGabTemActual = new Label();
+            lbGabNombreTema = new Label();
+            lbGabBandaTema = new Label();
+            lbPabTemaActual = new Label();
+            lbPabNombreTema = new Label();
+            lbPabBandaTema = new Label();
+            lbMatTemaActual = new Label();
+            lbMatNombreTema = new Label();
+            lbMatBandaTema = new Label();
+            gbPerfil.SuspendLayout();
+            SuspendLayout();
             // 
             // gbPerfil
             // 
-            this.gbPerfil.Controls.Add(this.cboxPerfiles);
-            this.gbPerfil.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.gbPerfil.Location = new System.Drawing.Point(12, 12);
-            this.gbPerfil.Name = "gbPerfil";
-            this.gbPerfil.Size = new System.Drawing.Size(112, 57);
-            this.gbPerfil.TabIndex = 0;
-            this.gbPerfil.TabStop = false;
-            this.gbPerfil.Text = "Viendo como:";
+            gbPerfil.Controls.Add(cboxPerfiles);
+            gbPerfil.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            gbPerfil.Location = new Point(12, 12);
+            gbPerfil.Name = "gbPerfil";
+            gbPerfil.Size = new Size(112, 57);
+            gbPerfil.TabIndex = 0;
+            gbPerfil.TabStop = false;
+            gbPerfil.Text = "Viendo como:";
             // 
             // cboxPerfiles
             // 
-            this.cboxPerfiles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboxPerfiles.FormattingEnabled = true;
-            this.cboxPerfiles.Location = new System.Drawing.Point(12, 22);
-            this.cboxPerfiles.Name = "cboxPerfiles";
-            this.cboxPerfiles.Size = new System.Drawing.Size(84, 23);
-            this.cboxPerfiles.TabIndex = 0;
-            this.cboxPerfiles.SelectedIndexChanged += new System.EventHandler(this.cboxPerfiles_SelectedIndexChanged);
+            cboxPerfiles.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboxPerfiles.FormattingEnabled = true;
+            cboxPerfiles.Location = new Point(12, 22);
+            cboxPerfiles.Name = "cboxPerfiles";
+            cboxPerfiles.Size = new Size(84, 23);
+            cboxPerfiles.TabIndex = 0;
+            cboxPerfiles.SelectedIndexChanged += cboxPerfiles_SelectedIndexChanged;
             // 
             // lbViendo
             // 
-            this.lbViendo.AutoSize = true;
-            this.lbViendo.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lbViendo.Location = new System.Drawing.Point(55, 367);
-            this.lbViendo.Name = "lbViendo";
-            this.lbViendo.Size = new System.Drawing.Size(53, 25);
-            this.lbViendo.TabIndex = 0;
-            this.lbViendo.Text = "Gabi";
+            lbViendo.AutoSize = true;
+            lbViendo.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            lbViendo.Location = new Point(55, 367);
+            lbViendo.Name = "lbViendo";
+            lbViendo.Size = new Size(53, 25);
+            lbViendo.TabIndex = 0;
+            lbViendo.Text = "Gabi";
             // 
             // butGabi
             // 
-            this.butGabi.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.butGabi.Location = new System.Drawing.Point(12, 97);
-            this.butGabi.Name = "butGabi";
-            this.butGabi.Size = new System.Drawing.Size(112, 32);
-            this.butGabi.TabIndex = 1;
-            this.butGabi.Text = "Gabi";
-            this.butGabi.UseVisualStyleBackColor = true;
-            this.butGabi.Click += new System.EventHandler(this.butGabi_Click);
+            butGabi.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            butGabi.Location = new Point(12, 97);
+            butGabi.Name = "butGabi";
+            butGabi.Size = new Size(112, 32);
+            butGabi.TabIndex = 1;
+            butGabi.Text = "Gabi";
+            butGabi.UseVisualStyleBackColor = true;
+            butGabi.Click += butGabi_Click;
             // 
             // butPablo
             // 
-            this.butPablo.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.butPablo.Location = new System.Drawing.Point(12, 152);
-            this.butPablo.Name = "butPablo";
-            this.butPablo.Size = new System.Drawing.Size(112, 32);
-            this.butPablo.TabIndex = 1;
-            this.butPablo.Text = "Pablo";
-            this.butPablo.UseVisualStyleBackColor = true;
-            this.butPablo.Click += new System.EventHandler(this.butPablo_Click);
+            butPablo.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            butPablo.Location = new Point(12, 152);
+            butPablo.Name = "butPablo";
+            butPablo.Size = new Size(112, 32);
+            butPablo.TabIndex = 1;
+            butPablo.Text = "Pablo";
+            butPablo.UseVisualStyleBackColor = true;
+            butPablo.Click += butPablo_Click;
             // 
             // butMati
             // 
-            this.butMati.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.butMati.Location = new System.Drawing.Point(12, 207);
-            this.butMati.Name = "butMati";
-            this.butMati.Size = new System.Drawing.Size(112, 32);
-            this.butMati.TabIndex = 1;
-            this.butMati.Text = "Mati";
-            this.butMati.UseVisualStyleBackColor = true;
-            this.butMati.Click += new System.EventHandler(this.butMati_Click);
+            butMati.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            butMati.Location = new Point(12, 207);
+            butMati.Name = "butMati";
+            butMati.Size = new Size(112, 32);
+            butMati.TabIndex = 1;
+            butMati.Text = "Mati";
+            butMati.UseVisualStyleBackColor = true;
+            butMati.Click += butMati_Click;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(12, 79);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 15);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Perfiles:";
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(12, 79);
+            label1.Name = "label1";
+            label1.Size = new Size(52, 15);
+            label1.TabIndex = 2;
+            label1.Text = "Perfiles:";
             // 
             // butPublicarTema
             // 
-            this.butPublicarTema.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.butPublicarTema.Location = new System.Drawing.Point(250, 21);
-            this.butPublicarTema.Name = "butPublicarTema";
-            this.butPublicarTema.Size = new System.Drawing.Size(146, 48);
-            this.butPublicarTema.TabIndex = 3;
-            this.butPublicarTema.Text = "Publicar Tema";
-            this.butPublicarTema.UseVisualStyleBackColor = true;
-            this.butPublicarTema.Click += new System.EventHandler(this.butPublicarTema_Click_1);
+            butPublicarTema.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            butPublicarTema.Location = new Point(250, 21);
+            butPublicarTema.Name = "butPublicarTema";
+            butPublicarTema.Size = new Size(146, 48);
+            butPublicarTema.TabIndex = 3;
+            butPublicarTema.Text = "Publicar Tema";
+            butPublicarTema.UseVisualStyleBackColor = true;
+            butPublicarTema.Click += butPublicarTema_Click_1;
             // 
             // butAgregarPerfil
             // 
-            this.butAgregarPerfil.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.butAgregarPerfil.Location = new System.Drawing.Point(130, 36);
-            this.butAgregarPerfil.Name = "butAgregarPerfil";
-            this.butAgregarPerfil.Size = new System.Drawing.Size(20, 19);
-            this.butAgregarPerfil.TabIndex = 4;
-            this.butAgregarPerfil.Text = "+";
-            this.butAgregarPerfil.UseMnemonic = false;
-            this.butAgregarPerfil.UseVisualStyleBackColor = true;
-            this.butAgregarPerfil.Click += new System.EventHandler(this.butAgregarPerfil_Click);
+            butAgregarPerfil.Font = new Font("Segoe UI", 8F, FontStyle.Bold, GraphicsUnit.Point);
+            butAgregarPerfil.Location = new Point(130, 36);
+            butAgregarPerfil.Name = "butAgregarPerfil";
+            butAgregarPerfil.Size = new Size(20, 19);
+            butAgregarPerfil.TabIndex = 4;
+            butAgregarPerfil.Text = "+";
+            butAgregarPerfil.UseMnemonic = false;
+            butAgregarPerfil.UseVisualStyleBackColor = true;
+            butAgregarPerfil.Click += butAgregarPerfil_Click;
+            // 
+            // lbGabTemActual
+            // 
+            lbGabTemActual.AutoSize = true;
+            lbGabTemActual.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            lbGabTemActual.Location = new Point(151, 104);
+            lbGabTemActual.Name = "lbGabTemActual";
+            lbGabTemActual.Size = new Size(95, 19);
+            lbGabTemActual.TabIndex = 5;
+            lbGabTemActual.Text = "Tema Actual:";
+            // 
+            // lbGabNombreTema
+            // 
+            lbGabNombreTema.AutoSize = true;
+            lbGabNombreTema.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lbGabNombreTema.Location = new Point(250, 106);
+            lbGabNombreTema.Name = "lbGabNombreTema";
+            lbGabNombreTema.Size = new Size(79, 15);
+            lbGabNombreTema.TabIndex = 5;
+            lbGabNombreTema.Text = "NombreTema";
+            // 
+            // lbGabBandaTema
+            // 
+            lbGabBandaTema.AutoSize = true;
+            lbGabBandaTema.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lbGabBandaTema.Location = new Point(357, 106);
+            lbGabBandaTema.Name = "lbGabBandaTema";
+            lbGabBandaTema.Size = new Size(40, 15);
+            lbGabBandaTema.TabIndex = 5;
+            lbGabBandaTema.Text = "Banda";
+            // 
+            // lbPabTemaActual
+            // 
+            lbPabTemaActual.AutoSize = true;
+            lbPabTemaActual.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            lbPabTemaActual.Location = new Point(151, 160);
+            lbPabTemaActual.Name = "lbPabTemaActual";
+            lbPabTemaActual.Size = new Size(95, 19);
+            lbPabTemaActual.TabIndex = 5;
+            lbPabTemaActual.Text = "Tema Actual:";
+            // 
+            // lbPabNombreTema
+            // 
+            lbPabNombreTema.AutoSize = true;
+            lbPabNombreTema.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lbPabNombreTema.Location = new Point(250, 162);
+            lbPabNombreTema.Name = "lbPabNombreTema";
+            lbPabNombreTema.Size = new Size(79, 15);
+            lbPabNombreTema.TabIndex = 5;
+            lbPabNombreTema.Text = "NombreTema";
+            // 
+            // lbPabBandaTema
+            // 
+            lbPabBandaTema.AutoSize = true;
+            lbPabBandaTema.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lbPabBandaTema.Location = new Point(357, 162);
+            lbPabBandaTema.Name = "lbPabBandaTema";
+            lbPabBandaTema.Size = new Size(40, 15);
+            lbPabBandaTema.TabIndex = 5;
+            lbPabBandaTema.Text = "Banda";
+            // 
+            // lbMatTemaActual
+            // 
+            lbMatTemaActual.AutoSize = true;
+            lbMatTemaActual.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            lbMatTemaActual.Location = new Point(151, 215);
+            lbMatTemaActual.Name = "lbMatTemaActual";
+            lbMatTemaActual.Size = new Size(95, 19);
+            lbMatTemaActual.TabIndex = 5;
+            lbMatTemaActual.Text = "Tema Actual:";
+            // 
+            // lbMatNombreTema
+            // 
+            lbMatNombreTema.AutoSize = true;
+            lbMatNombreTema.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lbMatNombreTema.Location = new Point(250, 217);
+            lbMatNombreTema.Name = "lbMatNombreTema";
+            lbMatNombreTema.Size = new Size(79, 15);
+            lbMatNombreTema.TabIndex = 5;
+            lbMatNombreTema.Text = "NombreTema";
+            // 
+            // lbMatBandaTema
+            // 
+            lbMatBandaTema.AutoSize = true;
+            lbMatBandaTema.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lbMatBandaTema.Location = new Point(357, 217);
+            lbMatBandaTema.Name = "lbMatBandaTema";
+            lbMatBandaTema.Size = new Size(40, 15);
+            lbMatBandaTema.TabIndex = 5;
+            lbMatBandaTema.Text = "Banda";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(690, 450);
-            this.Controls.Add(this.butAgregarPerfil);
-            this.Controls.Add(this.lbViendo);
-            this.Controls.Add(this.butPublicarTema);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.butMati);
-            this.Controls.Add(this.butPablo);
-            this.Controls.Add(this.butGabi);
-            this.Controls.Add(this.gbPerfil);
-            this.Name = "Form1";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
-            this.gbPerfil.ResumeLayout(false);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(690, 450);
+            Controls.Add(lbMatBandaTema);
+            Controls.Add(lbPabBandaTema);
+            Controls.Add(lbGabBandaTema);
+            Controls.Add(lbMatNombreTema);
+            Controls.Add(lbPabNombreTema);
+            Controls.Add(lbGabNombreTema);
+            Controls.Add(lbMatTemaActual);
+            Controls.Add(lbPabTemaActual);
+            Controls.Add(lbGabTemActual);
+            Controls.Add(butAgregarPerfil);
+            Controls.Add(lbViendo);
+            Controls.Add(butPublicarTema);
+            Controls.Add(label1);
+            Controls.Add(butMati);
+            Controls.Add(butPablo);
+            Controls.Add(butGabi);
+            Controls.Add(gbPerfil);
+            Name = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Form1";
+            Load += Form1_Load;
+            gbPerfil.ResumeLayout(false);
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -171,5 +278,14 @@
         private Button butPublicarTema;
         private ComboBox cboxPerfiles;
         private Button butAgregarPerfil;
+        private Label lbGabTemActual;
+        private Label lbGabNombreTema;
+        private Label lbGabBandaTema;
+        private Label lbPabTemaActual;
+        private Label lbPabNombreTema;
+        private Label lbPabBandaTema;
+        private Label lbMatTemaActual;
+        private Label lbMatNombreTema;
+        private Label lbMatBandaTema;
     }
 }
