@@ -38,7 +38,7 @@ namespace Track_Tracker
             CArtista Sonata = new CArtista("Sonata Arctica", 1996, new CPaís("Finlandia"), new CEstilo("Power Metal"));
 
             //Gabi por defecto, ac� habr�a que hacer lo del archivo para que recuerde la setting local.
-            // CPerfil.perfilUsuario = lCPerfiles[0];
+            CPerfil.perfilUsuario = lCPerfiles[0];
 
             Actualizar();
 
@@ -50,7 +50,7 @@ namespace Track_Tracker
         {
             fAgregarTema.ShowDialog();
             Actualizar();
-            MostrarTemaActual();
+           
         }
 
 
