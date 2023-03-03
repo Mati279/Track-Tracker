@@ -46,7 +46,20 @@
             lbMatTemaActual = new Label();
             lbMatNombreTema = new Label();
             lbMatBandaTema = new Label();
+            button1 = new Button();
+            panel1 = new Panel();
+            cbMatMat = new CheckBox();
+            cbPabMat = new CheckBox();
+            cbGabMat = new CheckBox();
+            cbMatPab = new CheckBox();
+            cbPabPab = new CheckBox();
+            cbGabPab = new CheckBox();
+            cbMatGab = new CheckBox();
+            cbPabGab = new CheckBox();
+            cbGabGab = new CheckBox();
+            btGabPuntuar = new Button();
             gbPerfil.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // gbPerfil
@@ -170,11 +183,12 @@
             // 
             lbGabBandaTema.AutoSize = true;
             lbGabBandaTema.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            lbGabBandaTema.Location = new Point(357, 106);
+            lbGabBandaTema.Location = new Point(215, 9);
             lbGabBandaTema.Name = "lbGabBandaTema";
             lbGabBandaTema.Size = new Size(40, 15);
             lbGabBandaTema.TabIndex = 5;
             lbGabBandaTema.Text = "Banda";
+         
             // 
             // lbPabTemaActual
             // 
@@ -200,11 +214,12 @@
             // 
             lbPabBandaTema.AutoSize = true;
             lbPabBandaTema.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            lbPabBandaTema.Location = new Point(357, 162);
+            lbPabBandaTema.Location = new Point(215, 65);
             lbPabBandaTema.Name = "lbPabBandaTema";
             lbPabBandaTema.Size = new Size(40, 15);
             lbPabBandaTema.TabIndex = 5;
             lbPabBandaTema.Text = "Banda";
+           
             // 
             // lbMatTemaActual
             // 
@@ -230,20 +245,181 @@
             // 
             lbMatBandaTema.AutoSize = true;
             lbMatBandaTema.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            lbMatBandaTema.Location = new Point(357, 217);
+            lbMatBandaTema.Location = new Point(215, 120);
             lbMatBandaTema.Name = "lbMatBandaTema";
             lbMatBandaTema.Size = new Size(40, 15);
             lbMatBandaTema.TabIndex = 5;
             lbMatBandaTema.Text = "Banda";
+           
+            // 
+            // button1
+            // 
+            button1.Location = new Point(563, 34);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 6;
+            button1.Text = "GOOGLE";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(cbMatMat);
+            panel1.Controls.Add(cbPabMat);
+            panel1.Controls.Add(cbGabMat);
+            panel1.Controls.Add(cbMatPab);
+            panel1.Controls.Add(cbPabPab);
+            panel1.Controls.Add(cbGabPab);
+            panel1.Controls.Add(cbMatGab);
+            panel1.Controls.Add(cbPabGab);
+            panel1.Controls.Add(cbGabGab);
+            panel1.Controls.Add(lbMatBandaTema);
+            panel1.Controls.Add(lbGabBandaTema);
+            panel1.Controls.Add(lbPabBandaTema);
+            panel1.Location = new Point(141, 97);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(462, 142);
+            panel1.TabIndex = 7;
+            // 
+            // cbMatMat
+            // 
+            cbMatMat.AutoCheck = false;
+            cbMatMat.AutoSize = true;
+            cbMatMat.ForeColor = Color.FromArgb(0, 64, 0);
+            cbMatMat.Location = new Point(420, 116);
+            cbMatMat.Name = "cbMatMat";
+            cbMatMat.Size = new Size(37, 19);
+            cbMatMat.TabIndex = 6;
+            cbMatMat.TabStop = false;
+            cbMatMat.Text = "M";
+            cbMatMat.UseVisualStyleBackColor = true;
+           
+            // 
+            // cbPabMat
+            // 
+            cbPabMat.AutoCheck = false;
+            cbPabMat.AutoSize = true;
+            cbPabMat.ForeColor = Color.FromArgb(0, 64, 0);
+            cbPabMat.Location = new Point(420, 61);
+            cbPabMat.Name = "cbPabMat";
+            cbPabMat.Size = new Size(37, 19);
+            cbPabMat.TabIndex = 6;
+            cbPabMat.TabStop = false;
+            cbPabMat.Text = "M";
+            cbPabMat.UseVisualStyleBackColor = true;
+          
+            // 
+            // cbGabMat
+            // 
+            cbGabMat.AutoCheck = false;
+            cbGabMat.AutoSize = true;
+            cbGabMat.ForeColor = Color.FromArgb(0, 64, 0);
+            cbGabMat.Location = new Point(420, 9);
+            cbGabMat.Name = "cbGabMat";
+            cbGabMat.Size = new Size(37, 19);
+            cbGabMat.TabIndex = 6;
+            cbGabMat.TabStop = false;
+            cbGabMat.Text = "M";
+            cbGabMat.UseVisualStyleBackColor = true;
+          
+            // 
+            // cbMatPab
+            // 
+            cbMatPab.AutoCheck = false;
+            cbMatPab.AutoSize = true;
+            cbMatPab.ForeColor = Color.FromArgb(0, 64, 0);
+            cbMatPab.Location = new Point(381, 116);
+            cbMatPab.Name = "cbMatPab";
+            cbMatPab.Size = new Size(33, 19);
+            cbMatPab.TabIndex = 6;
+            cbMatPab.TabStop = false;
+            cbMatPab.Text = "P";
+            cbMatPab.TextAlign = ContentAlignment.MiddleRight;
+            cbMatPab.UseVisualStyleBackColor = true;
+            // 
+            // cbPabPab
+            // 
+            cbPabPab.AutoCheck = false;
+            cbPabPab.AutoSize = true;
+            cbPabPab.ForeColor = Color.FromArgb(0, 64, 0);
+            cbPabPab.Location = new Point(381, 61);
+            cbPabPab.Name = "cbPabPab";
+            cbPabPab.Size = new Size(33, 19);
+            cbPabPab.TabIndex = 6;
+            cbPabPab.TabStop = false;
+            cbPabPab.Text = "P";
+            cbPabPab.TextAlign = ContentAlignment.MiddleRight;
+            cbPabPab.UseVisualStyleBackColor = true;
+            // 
+            // cbGabPab
+            // 
+            cbGabPab.AutoCheck = false;
+            cbGabPab.AutoSize = true;
+            cbGabPab.ForeColor = Color.FromArgb(0, 64, 0);
+            cbGabPab.Location = new Point(381, 9);
+            cbGabPab.Name = "cbGabPab";
+            cbGabPab.Size = new Size(33, 19);
+            cbGabPab.TabIndex = 6;
+            cbGabPab.TabStop = false;
+            cbGabPab.Text = "P";
+            cbGabPab.TextAlign = ContentAlignment.MiddleRight;
+            cbGabPab.UseVisualStyleBackColor = true;
+            // 
+            // cbMatGab
+            // 
+            cbMatGab.AutoCheck = false;
+            cbMatGab.AutoSize = true;
+            cbMatGab.ForeColor = Color.FromArgb(0, 64, 0);
+            cbMatGab.Location = new Point(341, 116);
+            cbMatGab.Name = "cbMatGab";
+            cbMatGab.Size = new Size(34, 19);
+            cbMatGab.TabIndex = 6;
+            cbMatGab.TabStop = false;
+            cbMatGab.Text = "G";
+            cbMatGab.UseVisualStyleBackColor = true;
+            // 
+            // cbPabGab
+            // 
+            cbPabGab.AutoCheck = false;
+            cbPabGab.AutoSize = true;
+            cbPabGab.ForeColor = Color.FromArgb(0, 64, 0);
+            cbPabGab.Location = new Point(341, 61);
+            cbPabGab.Name = "cbPabGab";
+            cbPabGab.Size = new Size(34, 19);
+            cbPabGab.TabIndex = 6;
+            cbPabGab.TabStop = false;
+            cbPabGab.Text = "G";
+            cbPabGab.UseVisualStyleBackColor = true;
+            // 
+            // cbGabGab
+            // 
+            cbGabGab.AutoCheck = false;
+            cbGabGab.AutoSize = true;
+            cbGabGab.ForeColor = Color.FromArgb(0, 64, 0);
+            cbGabGab.Location = new Point(341, 9);
+            cbGabGab.Name = "cbGabGab";
+            cbGabGab.Size = new Size(34, 19);
+            cbGabGab.TabIndex = 6;
+            cbGabGab.TabStop = false;
+            cbGabGab.Text = "G";
+            cbGabGab.UseVisualStyleBackColor = true;
+            // 
+            // btGabPuntuar
+            // 
+            btGabPuntuar.Location = new Point(604, 104);
+            btGabPuntuar.Name = "btGabPuntuar";
+            btGabPuntuar.Size = new Size(61, 23);
+            btGabPuntuar.TabIndex = 8;
+            btGabPuntuar.Text = "Puntuar";
+            btGabPuntuar.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(690, 450);
-            Controls.Add(lbMatBandaTema);
-            Controls.Add(lbPabBandaTema);
-            Controls.Add(lbGabBandaTema);
+            Controls.Add(btGabPuntuar);
+            Controls.Add(button1);
             Controls.Add(lbMatNombreTema);
             Controls.Add(lbPabNombreTema);
             Controls.Add(lbGabNombreTema);
@@ -258,11 +434,14 @@
             Controls.Add(butPablo);
             Controls.Add(butGabi);
             Controls.Add(gbPerfil);
+            Controls.Add(panel1);
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             Load += Form1_Load;
             gbPerfil.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -287,5 +466,17 @@
         private Label lbMatTemaActual;
         private Label lbMatNombreTema;
         private Label lbMatBandaTema;
+        private Button button1;
+        private Panel panel1;
+        private CheckBox cbGabGab;
+        private CheckBox cbGabMat;
+        private CheckBox cbGabPab;
+        private CheckBox cbMatMat;
+        private CheckBox cbPabMat;
+        private CheckBox cbMatPab;
+        private CheckBox cbPabPab;
+        private CheckBox cbMatGab;
+        private CheckBox cbPabGab;
+        private Button btGabPuntuar;
     }
 }

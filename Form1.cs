@@ -50,7 +50,7 @@ namespace Track_Tracker
         {
             fAgregarTema.ShowDialog();
             Actualizar();
-           
+
         }
 
 
@@ -79,6 +79,8 @@ namespace Track_Tracker
 
             //Etiqueta para probar.
             lbViendo.Text = CPerfil.perfilUsuario.Nombre;
+
+            ActualizarFondo();
         }
         #endregion
 
@@ -88,8 +90,21 @@ namespace Track_Tracker
             cboxPerfiles.DataSource = lCPerfiles;
             cboxPerfiles.DisplayMember = "Nombre";
 
+            ActualizarFondo();
+
             MostrarTemaActual();
             //dgArtista.Columns[1].Disp;
+
+        }
+        private void ActualizarFondo()
+        {
+            switch (CPerfil.perfilUsuario.Nombre)
+            {
+                case "Gabi": butPublicarTema.ForeColor = Color.FromArgb(0, 0, 155); break;
+                case "Pablo": butPublicarTema.ForeColor = Color.FromArgb(155, 0, 0); break;
+                case "Mati": butPublicarTema.ForeColor = Color.FromArgb(0, 155, 0); break;
+
+            }
 
         }
 
@@ -118,12 +133,20 @@ namespace Track_Tracker
 
             if (lCPerfiles[0].temasPerfil.Count > 0) //Gabi
             {
+                cbGabGab.Visible = true;
+                cbGabPab.Visible = true;
+                cbGabMat.Visible = true;
+
                 lbGabTemActual.Text = "TemaActual:";
                 lbGabBandaTema.Text = lCPerfiles[0].temasPerfil.Last().artista.Nombre;
                 lbGabNombreTema.Text = lCPerfiles[0].temasPerfil.Last().nombre;
             }
             else
             {
+                cbGabGab.Visible = false;
+                cbGabPab.Visible = false;
+                cbGabMat.Visible = false;
+
                 lbGabTemActual.Text = "Sin Temas.";
                 lbGabBandaTema.Text = "";
                 lbGabNombreTema.Text = "";
@@ -133,12 +156,20 @@ namespace Track_Tracker
             {
                 if (lCPerfiles[1].temasPerfil.Count > 0) //Pablo
                 {
+                    cbPabGab.Visible = true;
+                    cbPabPab.Visible = true;
+                    cbPabMat.Visible = true;
+
                     lbPabTemaActual.Text = "TemaActual:";
                     lbPabBandaTema.Text = lCPerfiles[1].temasPerfil.Last().artista.Nombre;
                     lbPabNombreTema.Text = lCPerfiles[1].temasPerfil.Last().nombre;
                 }
                 else
                 {
+                    cbPabGab.Visible = false;
+                    cbPabPab.Visible = false;
+                    cbPabMat.Visible = false;
+
                     lbPabTemaActual.Text = "Sin Temas.";
                     lbPabBandaTema.Text = "";
                     lbPabNombreTema.Text = "";
@@ -149,20 +180,35 @@ namespace Track_Tracker
             {
                 if (lCPerfiles[2].temasPerfil.Count > 0) //Mati
                 {
+                    cbMatGab.Visible = true;
+                    cbMatPab.Visible = true;
+                    cbMatMat.Visible = true;
+
                     lbMatTemaActual.Text = "TemaActual:";
-                    lbMatBandaTema.Text = lCPerfiles[1].temasPerfil.Last().artista.Nombre;
-                    lbMatNombreTema.Text = lCPerfiles[1].temasPerfil.Last().nombre;
+                    lbMatBandaTema.Text = lCPerfiles[2].temasPerfil.Last().artista.Nombre;
+                    lbMatNombreTema.Text = lCPerfiles[2].temasPerfil.Last().nombre;
                 }
                 else
                 {
                     lbMatTemaActual.Text = "Sin Temas.";
                     lbMatBandaTema.Text = "";
                     lbMatNombreTema.Text = "";
+
+                    cbMatGab.Visible = false;
+                    cbMatPab.Visible = false;
+                    cbMatMat.Visible = false;
+
                 }
             }
 
 
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Process.Start("http://google.com");
+        }
+
+     
     }
 }
