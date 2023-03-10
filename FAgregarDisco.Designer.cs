@@ -28,109 +28,108 @@
         /// </summary>
         private void InitializeComponent()
         {
-            tbAño = new TextBox();
-            tbNombre = new TextBox();
-            label2 = new Label();
-            label1 = new Label();
-            cbSelEstilo = new ComboBox();
-            label3 = new Label();
-            button1 = new Button();
-            button2 = new Button();
-            SuspendLayout();
+            this.tbAño = new System.Windows.Forms.TextBox();
+            this.tbNombre = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cbSelEstilo = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.SuspendLayout();
             // 
             // tbAño
             // 
-            tbAño.Location = new Point(64, 45);
-            tbAño.Name = "tbAño";
-            tbAño.Size = new Size(120, 23);
-            tbAño.TabIndex = 6;
+            this.tbAño.Location = new System.Drawing.Point(64, 45);
+            this.tbAño.Name = "tbAño";
+            this.tbAño.Size = new System.Drawing.Size(120, 23);
+            this.tbAño.TabIndex = 6;
             // 
             // tbNombre
             // 
-            tbNombre.Location = new Point(64, 16);
-            tbNombre.Name = "tbNombre";
-            tbNombre.Size = new Size(120, 23);
-            tbNombre.TabIndex = 5;
+            this.tbNombre.Location = new System.Drawing.Point(64, 16);
+            this.tbNombre.Name = "tbNombre";
+            this.tbNombre.Size = new System.Drawing.Size(120, 23);
+            this.tbNombre.TabIndex = 5;
             // 
             // label2
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(5, 48);
-            label2.Name = "label2";
-            label2.Size = new Size(29, 15);
-            label2.TabIndex = 3;
-            label2.Text = "Año";
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(5, 48);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(29, 15);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Año";
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(5, 19);
-            label1.Name = "label1";
-            label1.Size = new Size(53, 15);
-            label1.TabIndex = 4;
-            label1.Text = "Nombre";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(5, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(53, 15);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Nombre";
             // 
             // cbSelEstilo
             // 
-            cbSelEstilo.FormattingEnabled = true;
-            cbSelEstilo.Location = new Point(64, 74);
-            cbSelEstilo.Name = "cbSelEstilo";
-            cbSelEstilo.Size = new Size(120, 23);
-            cbSelEstilo.TabIndex = 7;
+            this.cbSelEstilo.FormattingEnabled = true;
+            this.cbSelEstilo.Location = new System.Drawing.Point(64, 74);
+            this.cbSelEstilo.Name = "cbSelEstilo";
+            this.cbSelEstilo.Size = new System.Drawing.Size(120, 23);
+            this.cbSelEstilo.TabIndex = 7;
             // 
             // label3
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(5, 77);
-            label3.Name = "label3";
-            label3.Size = new Size(36, 15);
-            label3.TabIndex = 3;
-            label3.Text = "Estilo";
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(5, 77);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(36, 15);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Estilo";
             // 
             // button1
             // 
-            button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.Location = new Point(76, 121);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 8;
-            button1.Text = "OK";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.button1.Location = new System.Drawing.Point(76, 121);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "OK";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
-            button2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            button2.Location = new Point(190, 74);
-            button2.Name = "button2";
-            button2.Size = new Size(28, 23);
-            button2.TabIndex = 9;
-            button2.Text = "+";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            this.button2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.button2.Location = new System.Drawing.Point(190, 74);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(28, 23);
+            this.button2.TabIndex = 9;
+            this.button2.Text = "+";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // FAgregarDisco
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(223, 171);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(cbSelEstilo);
-            Controls.Add(tbAño);
-            Controls.Add(tbNombre);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Name = "FAgregarDisco";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "FAgregarDisco";
-            Load += FAgregarDisco_Load;
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(223, 171);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.cbSelEstilo);
+            this.Controls.Add(this.tbAño);
+            this.Controls.Add(this.tbNombre);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Name = "FAgregarDisco";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "FAgregarDisco";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion

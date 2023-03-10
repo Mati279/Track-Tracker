@@ -16,7 +16,6 @@ namespace Track_Tracker
         {
             Nombre = _nombre;
             Países.Add(this);
-
         }
         public void ObtenerTemas()
         {

@@ -19,12 +19,11 @@ namespace Track_Tracker
         public CArtista artista = null;
         public CDisco (string _nombre, int _año, CEstilo _estilo, CArtista _artista)
         {
-
             Nombre = _nombre;
             Año = _año;
             estilo = _estilo;
             artista = _artista;
-            
+            Discos.Add(this);
         }
 
         public void ObtenerTemas()

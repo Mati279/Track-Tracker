@@ -15,7 +15,6 @@ namespace Track_Tracker
         {
             Nombre = _estilo;
             Estilos.Add(this);
-
         }
 
         public void ObtenerTemas()

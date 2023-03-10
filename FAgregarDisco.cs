@@ -56,7 +56,6 @@ namespace Track_Tracker
             tbAño.Text = "";
 
             CDisco nuevoDisco = new CDisco(fNombre, fAño, new CEstilo("Power Metal"), fArtista);
-            CDisco.Discos.Add(nuevoDisco);
             fArtista.ObtenerDisco(nuevoDisco);
 
             this.Close();
@@ -90,5 +89,36 @@ namespace Track_Tracker
                 MessageBox.Show("Nombre inválido.");
             }
         }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+
+            if (cbSelEstilo.Text != "")
+            {
+
+
+                bool bRepetido = false;
+                foreach (CEstilo estilo in CEstilo.Estilos)
+                {
+                    if (estilo.Nombre.ToLower() == cbSelEstilo.Text.ToLower()) { bRepetido = true; break; }
+                }
+
+                if (!bRepetido)
+                {
+                    CEstilo oEstilo = new CEstilo(cbSelEstilo.Text);
+                    MessageBox.Show($"{cbSelEstilo.Text} agregado a Estilos.");
+                    int cantidad = CEstilo.Estilos.Count;
+                    Actualizar();
+                    cbSelEstilo.SelectedIndex = cantidad - 1;
+                }
+                else { MessageBox.Show($"Ese estilo ya existe."); cbSelEstilo.Text = ""; }
+
+            }
+            else
+            {
+                MessageBox.Show("Nombre inválido.");
+            }
+        }
+
     }
 }

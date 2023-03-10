@@ -96,8 +96,6 @@ namespace Track_Tracker
         public void AgregarPerfilNuevo(string sNombre)
         {
             CPerfil perfilNuevo = new CPerfil(sNombre);
-
-
             lCPerfiles.Add(perfilNuevo);
             Actualizar();
 
@@ -115,10 +113,9 @@ namespace Track_Tracker
 
         private void MostrarTemaActual()
         {
-
             if (lCPerfiles[0].temasPerfil.Count > 0) //Gabi
             {
-                lbGabTemActual.Text = "TemaActual:";
+                lbGabTemActual.Text = "Tema Actual:";
                 lbGabBandaTema.Text = lCPerfiles[0].temasPerfil.Last().artista.Nombre;
                 lbGabNombreTema.Text = lCPerfiles[0].temasPerfil.Last().nombre;
             }
@@ -160,9 +157,8 @@ namespace Track_Tracker
                     lbMatNombreTema.Text = "";
                 }
             }
-
-
         }
 
+        
     }
 }

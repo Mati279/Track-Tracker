@@ -28,9 +28,9 @@ namespace Track_Tracker
             cbPaíses.DataSource = null;
             cbPaíses.DataSource = CPaís.Países;
             cbPaíses.DisplayMember = "Nombre";
-            cbEstilo.DataSource = null;
-            cbEstilo.DataSource = CEstilo.Estilos;
-            cbEstilo.DisplayMember = "Nombre";
+            cbSelEstilo.DataSource = null;
+            cbSelEstilo.DataSource = CEstilo.Estilos;
+            cbSelEstilo.DisplayMember = "Nombre";
 
         }
 
@@ -44,9 +44,9 @@ namespace Track_Tracker
             }
             if (aActualizar is CEstilo)
             {
-                cbEstilo.DataSource = null;
-                cbEstilo.DataSource = CEstilo.Estilos;
-                cbEstilo.DisplayMember = "Nombre";
+                cbSelEstilo.DataSource = null;
+                cbSelEstilo.DataSource = CEstilo.Estilos;
+                cbSelEstilo.DisplayMember = "Nombre";
             }
         }
 
@@ -55,7 +55,7 @@ namespace Track_Tracker
             fNombre = tbNombre.Text;
             try { fAño = Convert.ToInt16(tbAño.Text); }
             catch { MessageBox.Show("Introduce un año válido."); tbAño.Text = ""; return; }
-            fEstilo = (CEstilo)cbEstilo.SelectedItem;
+            fEstilo = (CEstilo)cbSelEstilo.SelectedItem;
             fPaís = (CPaís)cbPaíses.SelectedItem;
 
             tbNombre.Text = "";
@@ -97,26 +97,26 @@ namespace Track_Tracker
 
         private void butAgrEstilo_Click(object sender, EventArgs e)
         {
-            if (cbEstilo.Text != "")
+            if (cbSelEstilo.Text != "")
             {
                 List<CEstilo> lList = CEstilo.Estilos;
                 bool bRepetido = false;
                 foreach (CEstilo estilo in lList)
                 {
-                    if (estilo.Nombre.ToLower() == cbEstilo.Text.ToLower()) { bRepetido = true; break; }
+                    if (estilo.Nombre.ToLower() == cbSelEstilo.Text.ToLower()) { bRepetido = true; break; }
                 }
 
 
                 if (!bRepetido)
                 {
-                    CEstilo oEstilo = new CEstilo(cbEstilo.Text);
-                    MessageBox.Show($"{cbEstilo.Text} agregado a Estilo.");
+                    CEstilo oEstilo = new CEstilo(cbSelEstilo.Text);
+                    MessageBox.Show($"{cbSelEstilo.Text} agregado a Estilo.");
                     Actualizar(oEstilo);
 
                     int cantidad = CEstilo.Estilos.Count;
-                    cbEstilo.SelectedIndex = cantidad - 1;
+                    cbSelEstilo.SelectedIndex = cantidad - 1;
                 }
-                else { MessageBox.Show($"Ese estilo ya existe."); cbEstilo.Text = ""; }
+                else { MessageBox.Show($"Ese estilo ya existe."); cbSelEstilo.Text = ""; }
             }
             else
             {

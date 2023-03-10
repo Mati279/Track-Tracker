@@ -36,7 +36,7 @@
             this.cbPaíses = new System.Windows.Forms.ComboBox();
             this.butAgrPaís = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.cbEstilo = new System.Windows.Forms.ComboBox();
+            this.cbSelEstilo = new System.Windows.Forms.ComboBox();
             this.butAgrEstilo = new System.Windows.Forms.Button();
             this.butOK = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -114,13 +114,13 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "Estilo";
             // 
-            // cbEstilo
+            // cbSelEstilo
             // 
-            this.cbEstilo.FormattingEnabled = true;
-            this.cbEstilo.Location = new System.Drawing.Point(83, 117);
-            this.cbEstilo.Name = "cbEstilo";
-            this.cbEstilo.Size = new System.Drawing.Size(100, 23);
-            this.cbEstilo.TabIndex = 4;
+            this.cbSelEstilo.FormattingEnabled = true;
+            this.cbSelEstilo.Location = new System.Drawing.Point(83, 117);
+            this.cbSelEstilo.Name = "cbSelEstilo";
+            this.cbSelEstilo.Size = new System.Drawing.Size(100, 23);
+            this.cbSelEstilo.TabIndex = 4;
             // 
             // butAgrEstilo
             // 
@@ -155,7 +155,7 @@
             this.Controls.Add(this.butOK);
             this.Controls.Add(this.butAgrEstilo);
             this.Controls.Add(this.butAgrPaís);
-            this.Controls.Add(this.cbEstilo);
+            this.Controls.Add(this.cbSelEstilo);
             this.Controls.Add(this.cbPaíses);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tbAño);
@@ -183,7 +183,7 @@
         private ComboBox cbPaíses;
         private Button butAgrPaís;
         private Label label4;
-        private ComboBox cbEstilo;
+        private ComboBox cbSelEstilo;
         private Button butAgrEstilo;
         private Button butOK;
     }

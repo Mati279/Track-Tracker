@@ -23,6 +23,7 @@ namespace Track_Tracker
             InitializeComponent();
             ActualizarArtista();
             ActualizarDisco();
+            ActualizarEstilo();
         }
 
         private void FAgregarTema_Load(object sender, EventArgs e)
@@ -31,9 +32,11 @@ namespace Track_Tracker
             nombreUsuario = CPerfil.perfilUsuario.Nombre;
             this.Text = $"Publicar tema como {nombreUsuario}";
 
-
+            ActualizarEstilo();
             ActualizarArtista();
             ActualizarDisco();
+
+          
         }
 
         private void butAgrArtista_Click(object sender, EventArgs e)
@@ -41,6 +44,7 @@ namespace Track_Tracker
             fAgregarArtista.ShowDialog();
             ActualizarArtista();
             ActualizarDisco();
+            ActualizarEstilo();
         }
 
         private void ActualizarArtista()
@@ -57,9 +61,17 @@ namespace Track_Tracker
             cbSelDisco.DisplayMember = "Nombre";
         }
 
+        private void ActualizarEstilo()
+        {
+            cbSelTipo.DataSource = null;
+            cbSelTipo.DataSource = CEstilo.Estilos;
+            cbSelTipo.DisplayMember = "Nombre";
+
+        }
+
         private void btOK_Click(object sender, EventArgs e)
         {
-            new CTema(CPerfil.perfilUsuario, (CArtista)cbSelArtista.SelectedItem, cbSelTipo.Text, tbNombreTema.Text, (CDisco)cbSelDisco.SelectedItem, ((CArtista)cbSelArtista.SelectedItem).País);
+            new CTema(CPerfil.perfilUsuario, (CArtista)cbSelArtista.SelectedItem, (CEstilo)cbSelTipo.SelectedItem, tbNombreTema.Text, (CDisco)cbSelDisco.SelectedItem, ((CArtista)cbSelArtista.SelectedItem).País);
 
 
 
@@ -93,7 +105,31 @@ namespace Track_Tracker
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (cbSelTipo.Text != "")
+            {
+                
+                
+                bool bRepetido = false;
+                foreach (CEstilo estilo in CEstilo.Estilos)  
+                {
+                    if (estilo.Nombre.ToLower() == cbSelTipo.Text.ToLower()) { bRepetido = true; break; }
+                }
 
+                if (!bRepetido)
+                {
+                    CEstilo oEstilo = new CEstilo(cbSelTipo.Text);
+                    MessageBox.Show($"{cbSelTipo.Text} agregado a Estilos.");
+                    int cantidad = CEstilo.Estilos.Count;
+                    ActualizarEstilo();
+                    cbSelTipo.SelectedIndex = cantidad - 1; 
+                }
+                else { MessageBox.Show($"Ese estilo ya existe."); cbSelTipo.Text = ""; }
+
+            }
+            else 
+            {
+                MessageBox.Show("Nombre inválido."); 
+            }
         }
     }
 }

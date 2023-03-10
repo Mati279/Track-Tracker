@@ -17,7 +17,7 @@ namespace Track_Tracker
 
         public CArtista artista { get; set; }
 
-        public string tipo { get; set; }
+        public CEstilo estilo { get; set; }
 
         public string nombre { get; set; }
 
@@ -28,18 +28,17 @@ namespace Track_Tracker
         public double notaTotal { get; set; }
 
 
-        public CTema(CPerfil _publicador, CArtista _artista, string _tipo, string _nombre, CDisco _disco, CPaís _país)
+        public CTema(CPerfil _publicador, CArtista _artista, CEstilo _estilo, string _nombre, CDisco _disco, CPaís _país)
         {
             publicador = _publicador;
             artista = _artista; 
-            tipo = _tipo;
+            estilo = _estilo;
             nombre = _nombre;
             disco = _disco;
             país = _país;
 
             _publicador.temasPerfil.Add(this);
             temasTotales.Add(this);
-
         }
 
     }
