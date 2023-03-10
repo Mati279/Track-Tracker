@@ -113,6 +113,7 @@ namespace Track_Tracker
 
         private void MostrarTemaActual()
         {
+<<<<<<< Updated upstream
             if (lCPerfiles[0].temasPerfil.Count > 0) //Gabi
             {
                 lbGabTemActual.Text = "Tema Actual:";
@@ -126,6 +127,31 @@ namespace Track_Tracker
                 lbGabNombreTema.Text = "";
             }
 
+=======
+            if (lCPerfiles.Count > 0)
+            {
+                if (lCPerfiles[0].temasPerfil.Count > 0) //Gabi
+                {
+                    cbGabGab.Visible = true;
+                    cbGabPab.Visible = true;
+                    cbGabMat.Visible = true;
+
+                    lbGabTemActual.Text = "TemaActual:";
+                    lbGabBandaTema.Text = lCPerfiles[0].temasPerfil.Last().artista.Nombre;
+                    lbGabNombreTema.Text = lCPerfiles[0].temasPerfil.Last().nombre;
+                }
+                else
+                {
+                    cbGabGab.Visible = false;
+                    cbGabPab.Visible = false;
+                    cbGabMat.Visible = false;
+
+                    lbGabTemActual.Text = "Sin Temas.";
+                    lbGabBandaTema.Text = "";
+                    lbGabNombreTema.Text = "";
+                }
+            }
+>>>>>>> Stashed changes
             if (lCPerfiles.Count > 1)
             {
                 if (lCPerfiles[1].temasPerfil.Count > 0) //Pablo
