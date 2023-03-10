@@ -22,12 +22,13 @@ namespace Track_Tracker
         public FAgregarDisco()
         {
             InitializeComponent();
-            //cbSelEstilo.DataSource = CEstilo.Estilos;
+            Actualizar();
         }
 
         private void FAgregarDisco_Load(object sender, EventArgs e)
         {
             this.Text = $"Agregar tema para {fArtista.Nombre}";
+           
             Actualizar();
         }
 
@@ -36,7 +37,6 @@ namespace Track_Tracker
             cbSelEstilo.DataSource = null;
             cbSelEstilo.DataSource = CEstilo.Estilos;
             cbSelEstilo.DisplayMember = "Nombre";
-
         }
         public void ObtenerArtista(CArtista _artista)
         {
@@ -45,20 +45,32 @@ namespace Track_Tracker
 
         private void button1_Click(object sender, EventArgs e)
         {
-
             fNombre = tbNombre.Text;
             try { fAño = Convert.ToInt16(tbAño.Text); }
             catch { MessageBox.Show("Introduce un año válido."); tbAño.Text = ""; return; }
             fEstilo = (CEstilo)cbSelEstilo.SelectedItem;
 
-
             tbNombre.Text = "";
             tbAño.Text = "";
+            if (cbSelEstilo.SelectedItem == null)
+            {
+                MessageBox.Show("Seleccioná un Estilo.");
 
+<<<<<<< Updated upstream
             CDisco nuevoDisco = new CDisco(fNombre, fAño, new CEstilo("Power Metal"), fArtista);
             fArtista.ObtenerDisco(nuevoDisco);
 
             this.Close();
+=======
+            }
+            else
+            {
+                CDisco nuevoDisco = new CDisco(fNombre, fAño, fEstilo, fArtista);
+                CDisco.Discos.Add(nuevoDisco);
+                fArtista.ObtenerDisco(nuevoDisco);
+                this.Close();
+            }
+>>>>>>> Stashed changes
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -90,6 +102,7 @@ namespace Track_Tracker
             }
         }
 
+<<<<<<< Updated upstream
         private void button2_Click_1(object sender, EventArgs e)
         {
 
@@ -120,5 +133,10 @@ namespace Track_Tracker
             }
         }
 
+=======
+      
+
+        
+>>>>>>> Stashed changes
     }
 }
