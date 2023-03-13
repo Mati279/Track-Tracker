@@ -21,34 +21,38 @@ namespace Track_Tracker
         public FAgregarTema()
         {
             InitializeComponent();
-            ActualizarArtista();
-            ActualizarDisco();
+
+            
         }
 
         private void FAgregarTema_Load(object sender, EventArgs e)
         {
+            
             //Para que cambie el título de la ventana.
             nombreUsuario = CPerfil.perfilUsuario.Nombre;
             this.Text = $"Publicar tema como {nombreUsuario}";
 
-
             ActualizarArtista();
             ActualizarDisco();
+            ActualizarEstilo();
         }
 
         private void butAgrArtista_Click(object sender, EventArgs e)
         {
             fAgregarArtista.ShowDialog();
+
             ActualizarArtista();
             ActualizarDisco();
+            ActualizarEstilo();
         }
 
         private void ActualizarArtista()
         {
+
             cbSelArtista.DataSource = null;
             cbSelArtista.DataSource = CArtista.Artistas;
             cbSelArtista.DisplayMember = "Nombre";
-      
+
         }
         private void ActualizarDisco()
         {
@@ -56,10 +60,18 @@ namespace Track_Tracker
             cbSelDisco.DataSource = ((CArtista)cbSelArtista.SelectedItem)?.Discos;
             cbSelDisco.DisplayMember = "Nombre";
         }
+          private void ActualizarEstilo()
+        {
+            cbSelEstilo.DataSource = null;
+            cbSelEstilo.DataSource = CEstilo.Estilos;
+            cbSelEstilo.DisplayMember = "Nombre";
+        }
+
+
 
         private void btOK_Click(object sender, EventArgs e)
         {
-            new CTema(CPerfil.perfilUsuario, (CArtista)cbSelArtista.SelectedItem, cbSelTipo.Text, tbNombreTema.Text, (CDisco)cbSelDisco.SelectedItem, ((CArtista)cbSelArtista.SelectedItem).País);
+            new CTema(CPerfil.perfilUsuario, (CArtista)cbSelArtista.SelectedItem, (CEstilo)cbSelEstilo.SelectedItem, tbNombreTema.Text, (CDisco)cbSelDisco.SelectedItem, ((CArtista)cbSelArtista.SelectedItem).País);
 
 
 
@@ -94,6 +106,35 @@ namespace Track_Tracker
         private void button1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            if (cbSelEstilo.Text != "")
+            {
+
+                bool bRepetido = false;
+                foreach (CEstilo estilo in CEstilo.Estilos)
+                {
+                    if (estilo.Nombre.ToLower() == cbSelEstilo.Text.ToLower()) { bRepetido = true; break; }
+                }
+
+
+                if (!bRepetido)
+                {
+                    CEstilo oEstilo = new CEstilo(cbSelEstilo.Text);
+                    MessageBox.Show($"{cbSelEstilo.Text} agregado a Estilo.");
+                    ActualizarEstilo();
+
+                    int cantidad = CEstilo.Estilos.Count;
+                    cbSelEstilo.SelectedIndex = cantidad - 1;
+                }
+                else { MessageBox.Show($"Ese estilo ya existe."); cbSelEstilo.Text = ""; }
+            }
+            else
+            {
+                MessageBox.Show("Nombre inválido.");
+            }
         }
     }
 }

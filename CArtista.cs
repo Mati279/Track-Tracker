@@ -11,7 +11,7 @@ namespace Track_Tracker
         public string Nombre { get; set; }
         public CPaís País { get; set; }
         public int Año { get; set; }
-        public CEstilo Estilo { get; set; }
+        public CEstilo Estilo = null;
 
         public static List<CArtista> Artistas = new List<CArtista>();
 
@@ -34,7 +34,7 @@ namespace Track_Tracker
         //Obtiene los temas publicados por este Perfil.
         public void ObtenerTemas()
         {
-            
+
         }
 
         public void ObtenerDisco(CDisco _disco)
@@ -63,6 +63,6 @@ namespace Track_Tracker
             return promedio;
         }
 
-     
+
     }
 }

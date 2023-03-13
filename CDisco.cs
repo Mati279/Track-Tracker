@@ -14,22 +14,22 @@ namespace Track_Tracker
 
         public int Año { get; set; }
 
-        public CEstilo estilo = null;
+        public CEstilo Estilo = null;
 
         public CArtista artista = null;
-        public CDisco (string _nombre, int _año, CEstilo _estilo, CArtista _artista)
+        public CDisco(string _nombre, int _año, CEstilo _estilo, CArtista _artista)
         {
 
             Nombre = _nombre;
             Año = _año;
-            estilo = _estilo;
+            Estilo = _estilo;
             artista = _artista;
-            
+
         }
 
         public void ObtenerTemas()
         {
-            
+
         }
     }
 }

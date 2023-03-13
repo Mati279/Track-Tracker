@@ -66,9 +66,9 @@ namespace Track_Tracker
         {
             if (cbSelEstilo.Text != "")
             {
-                List<CEstilo> lList = CEstilo.Estilos;
+                
                 bool bRepetido = false;
-                foreach (CEstilo estilo in lList)
+                foreach (CEstilo estilo in CEstilo.Estilos)
                 {
                     if (estilo.Nombre.ToLower() == cbSelEstilo.Text.ToLower()) { bRepetido = true; break; }
                 }
@@ -90,5 +90,7 @@ namespace Track_Tracker
                 MessageBox.Show("Nombre inválido.");
             }
         }
+
+       
     }
 }

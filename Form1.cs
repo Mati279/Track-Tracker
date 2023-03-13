@@ -19,7 +19,6 @@ namespace Track_Tracker
         public Form1()
         {
             InitializeComponent();
-
         }
 
         //|| Interacciones con la Interfaz - Forms ||
@@ -36,7 +35,7 @@ namespace Track_Tracker
 
             //Crea a Sonata default, para testing. 
             CArtista Sonata = new CArtista("Sonata Arctica", 1996, new CPaís("Finlandia"), new CEstilo("Power Metal"));
-
+            
             //Gabi por defecto, ac� habr�a que hacer lo del archivo para que recuerde la setting local.
             CPerfil.perfilUsuario = lCPerfiles[0];
 
@@ -103,7 +102,7 @@ namespace Track_Tracker
                 case "Gabi": butPublicarTema.ForeColor = Color.FromArgb(0, 0, 155); break;
                 case "Pablo": butPublicarTema.ForeColor = Color.FromArgb(155, 0, 0); break;
                 case "Mati": butPublicarTema.ForeColor = Color.FromArgb(0, 155, 0); break;
-
+                
             }
 
         }
@@ -139,7 +138,7 @@ namespace Track_Tracker
 
                 lbGabTemActual.Text = "TemaActual:";
                 lbGabBandaTema.Text = lCPerfiles[0].temasPerfil.Last().artista.Nombre;
-                lbGabNombreTema.Text = lCPerfiles[0].temasPerfil.Last().nombre;
+                lbGabNombreTema.Text = lCPerfiles[0].temasPerfil.Last().Nombre;
             }
             else
             {
@@ -162,7 +161,7 @@ namespace Track_Tracker
 
                     lbPabTemaActual.Text = "TemaActual:";
                     lbPabBandaTema.Text = lCPerfiles[1].temasPerfil.Last().artista.Nombre;
-                    lbPabNombreTema.Text = lCPerfiles[1].temasPerfil.Last().nombre;
+                    lbPabNombreTema.Text = lCPerfiles[1].temasPerfil.Last().Nombre;
                 }
                 else
                 {
@@ -186,7 +185,7 @@ namespace Track_Tracker
 
                     lbMatTemaActual.Text = "TemaActual:";
                     lbMatBandaTema.Text = lCPerfiles[2].temasPerfil.Last().artista.Nombre;
-                    lbMatNombreTema.Text = lCPerfiles[2].temasPerfil.Last().nombre;
+                    lbMatNombreTema.Text = lCPerfiles[2].temasPerfil.Last().Nombre;
                 }
                 else
                 {
@@ -209,6 +208,6 @@ namespace Track_Tracker
             Process.Start("http://google.com");
         }
 
-     
+
     }
 }

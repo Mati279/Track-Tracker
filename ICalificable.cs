@@ -8,7 +8,7 @@ namespace Track_Tracker
 {
     public interface ICalificable
     {
-        string Nombre { get; set; }      
+        string Nombre { get; set; }
         void ObtenerTemas();
         double ObtenerPromedio()
         {
@@ -16,8 +16,8 @@ namespace Track_Tracker
             return a;
         }
 
-      
-      
+
+
 
     }
 }

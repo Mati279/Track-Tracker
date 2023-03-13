@@ -28,126 +28,125 @@
         /// </summary>
         private void InitializeComponent()
         {
-            butAgrArtista = new Button();
-            cbSelArtista = new ComboBox();
-            lbNombreTema = new Label();
-            btOK = new Button();
-            cbSelDisco = new ComboBox();
-            cbSelTipo = new ComboBox();
-            button1 = new Button();
-            tbNombreTema = new TextBox();
-            butAgregarDisco = new Button();
-            SuspendLayout();
+            this.butAgrArtista = new System.Windows.Forms.Button();
+            this.cbSelArtista = new System.Windows.Forms.ComboBox();
+            this.lbNombreTema = new System.Windows.Forms.Label();
+            this.btOK = new System.Windows.Forms.Button();
+            this.cbSelDisco = new System.Windows.Forms.ComboBox();
+            this.cbSelEstilo = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.tbNombreTema = new System.Windows.Forms.TextBox();
+            this.butAgregarDisco = new System.Windows.Forms.Button();
+            this.SuspendLayout();
             // 
             // butAgrArtista
             // 
-            butAgrArtista.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            butAgrArtista.Location = new Point(139, 68);
-            butAgrArtista.Name = "butAgrArtista";
-            butAgrArtista.Size = new Size(109, 23);
-            butAgrArtista.TabIndex = 0;
-            butAgrArtista.Text = "Agregar Artista";
-            butAgrArtista.UseVisualStyleBackColor = true;
-            butAgrArtista.Click += butAgrArtista_Click;
+            this.butAgrArtista.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.butAgrArtista.Location = new System.Drawing.Point(139, 68);
+            this.butAgrArtista.Name = "butAgrArtista";
+            this.butAgrArtista.Size = new System.Drawing.Size(109, 23);
+            this.butAgrArtista.TabIndex = 0;
+            this.butAgrArtista.Text = "Agregar Artista";
+            this.butAgrArtista.UseVisualStyleBackColor = true;
+            this.butAgrArtista.Click += new System.EventHandler(this.butAgrArtista_Click);
             // 
             // cbSelArtista
             // 
-            cbSelArtista.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            cbSelArtista.FormattingEnabled = true;
-            cbSelArtista.Location = new Point(12, 69);
-            cbSelArtista.Name = "cbSelArtista";
-            cbSelArtista.Size = new Size(121, 23);
-            cbSelArtista.TabIndex = 1;
-            cbSelArtista.SelectedIndexChanged += cbSelArtista_SelectedIndexChanged;
+            this.cbSelArtista.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cbSelArtista.FormattingEnabled = true;
+            this.cbSelArtista.Location = new System.Drawing.Point(12, 69);
+            this.cbSelArtista.Name = "cbSelArtista";
+            this.cbSelArtista.Size = new System.Drawing.Size(121, 23);
+            this.cbSelArtista.TabIndex = 1;
             // 
             // lbNombreTema
             // 
-            lbNombreTema.AutoSize = true;
-            lbNombreTema.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            lbNombreTema.Location = new Point(139, 31);
-            lbNombreTema.Name = "lbNombreTema";
-            lbNombreTema.Size = new Size(53, 15);
-            lbNombreTema.TabIndex = 5;
-            lbNombreTema.Text = "Nombre";
+            this.lbNombreTema.AutoSize = true;
+            this.lbNombreTema.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lbNombreTema.Location = new System.Drawing.Point(139, 31);
+            this.lbNombreTema.Name = "lbNombreTema";
+            this.lbNombreTema.Size = new System.Drawing.Size(53, 15);
+            this.lbNombreTema.TabIndex = 5;
+            this.lbNombreTema.Text = "Nombre";
             // 
             // btOK
             // 
-            btOK.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btOK.Location = new Point(94, 213);
-            btOK.Name = "btOK";
-            btOK.Size = new Size(75, 23);
-            btOK.TabIndex = 6;
-            btOK.Text = "OK";
-            btOK.UseVisualStyleBackColor = true;
-            btOK.Click += btOK_Click;
+            this.btOK.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btOK.Location = new System.Drawing.Point(94, 213);
+            this.btOK.Name = "btOK";
+            this.btOK.Size = new System.Drawing.Size(75, 23);
+            this.btOK.TabIndex = 6;
+            this.btOK.Text = "OK";
+            this.btOK.UseVisualStyleBackColor = true;
             // 
             // cbSelDisco
             // 
-            cbSelDisco.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            cbSelDisco.FormattingEnabled = true;
-            cbSelDisco.Location = new Point(12, 113);
-            cbSelDisco.Name = "cbSelDisco";
-            cbSelDisco.Size = new Size(121, 23);
-            cbSelDisco.TabIndex = 1;
+            this.cbSelDisco.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cbSelDisco.FormattingEnabled = true;
+            this.cbSelDisco.Location = new System.Drawing.Point(12, 113);
+            this.cbSelDisco.Name = "cbSelDisco";
+            this.cbSelDisco.Size = new System.Drawing.Size(121, 23);
+            this.cbSelDisco.TabIndex = 1;
             // 
-            // cbSelTipo
+            // cbSelEstilo
             // 
-            cbSelTipo.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            cbSelTipo.FormattingEnabled = true;
-            cbSelTipo.Location = new Point(12, 157);
-            cbSelTipo.Name = "cbSelTipo";
-            cbSelTipo.Size = new Size(121, 23);
-            cbSelTipo.TabIndex = 1;
+            this.cbSelEstilo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cbSelEstilo.FormattingEnabled = true;
+            this.cbSelEstilo.Location = new System.Drawing.Point(12, 157);
+            this.cbSelEstilo.Name = "cbSelEstilo";
+            this.cbSelEstilo.Size = new System.Drawing.Size(121, 23);
+            this.cbSelEstilo.TabIndex = 1;
             // 
             // button1
             // 
-            button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.Location = new Point(139, 157);
-            button1.Name = "button1";
-            button1.Size = new Size(30, 23);
-            button1.TabIndex = 7;
-            button1.Text = "+";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.button1.Location = new System.Drawing.Point(139, 157);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(30, 23);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "+";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // tbNombreTema
             // 
-            tbNombreTema.Location = new Point(12, 28);
-            tbNombreTema.Name = "tbNombreTema";
-            tbNombreTema.Size = new Size(121, 23);
-            tbNombreTema.TabIndex = 8;
+            this.tbNombreTema.Location = new System.Drawing.Point(12, 28);
+            this.tbNombreTema.Name = "tbNombreTema";
+            this.tbNombreTema.Size = new System.Drawing.Size(121, 23);
+            this.tbNombreTema.TabIndex = 8;
             // 
             // butAgregarDisco
             // 
-            butAgregarDisco.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            butAgregarDisco.Location = new Point(139, 113);
-            butAgregarDisco.Name = "butAgregarDisco";
-            butAgregarDisco.Size = new Size(109, 23);
-            butAgregarDisco.TabIndex = 9;
-            butAgregarDisco.Text = "Agregar Disco";
-            butAgregarDisco.UseVisualStyleBackColor = true;
-            butAgregarDisco.Click += butAgregarDisco_Click;
+            this.butAgregarDisco.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.butAgregarDisco.Location = new System.Drawing.Point(139, 113);
+            this.butAgregarDisco.Name = "butAgregarDisco";
+            this.butAgregarDisco.Size = new System.Drawing.Size(109, 23);
+            this.butAgregarDisco.TabIndex = 9;
+            this.butAgregarDisco.Text = "Agregar Disco";
+            this.butAgregarDisco.UseVisualStyleBackColor = true;
+            this.butAgregarDisco.Click += new System.EventHandler(this.butAgregarDisco_Click);
             // 
             // FAgregarTema
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(262, 254);
-            Controls.Add(butAgregarDisco);
-            Controls.Add(tbNombreTema);
-            Controls.Add(button1);
-            Controls.Add(btOK);
-            Controls.Add(lbNombreTema);
-            Controls.Add(cbSelTipo);
-            Controls.Add(cbSelDisco);
-            Controls.Add(cbSelArtista);
-            Controls.Add(butAgrArtista);
-            Name = "FAgregarTema";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "FAgregarTema";
-            Load += FAgregarTema_Load;
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(262, 254);
+            this.Controls.Add(this.butAgregarDisco);
+            this.Controls.Add(this.tbNombreTema);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btOK);
+            this.Controls.Add(this.lbNombreTema);
+            this.Controls.Add(this.cbSelEstilo);
+            this.Controls.Add(this.cbSelDisco);
+            this.Controls.Add(this.cbSelArtista);
+            this.Controls.Add(this.butAgrArtista);
+            this.Name = "FAgregarTema";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "FAgregarTema";
+            this.Load += new System.EventHandler(this.FAgregarTema_Load);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
@@ -157,7 +156,7 @@
         private Label lbNombreTema;
         private Button btOK;
         private ComboBox cbSelDisco;
-        private ComboBox cbSelTipo;
+        private ComboBox cbSelEstilo;
         private Button button1;
         private TextBox tbNombreTema;
         private Button butAgregarDisco;

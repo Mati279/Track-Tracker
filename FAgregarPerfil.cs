@@ -23,7 +23,7 @@ namespace Track_Tracker
             oForm1 = SingletonData.Instance.sForm1;
         }
 
-       
+
         private void butAgregarPerfil_Click(object sender, EventArgs e)
         {
             if (textboxNombrePerfil.Text != "")
@@ -32,7 +32,7 @@ namespace Track_Tracker
                 textboxNombrePerfil.Text = "";
                 this.Close();
             }
-            else 
+            else
             {
                 MessageBox.Show("Nombre Inválido");
             }

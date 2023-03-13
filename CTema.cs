@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Track_Tracker
 {
-   
-    public class CTema 
+
+    public class CTema
     {
         //Lista estática con todos los temas.
         public static List<CTema> temasTotales = new List<CTema> { };
@@ -17,9 +17,9 @@ namespace Track_Tracker
 
         public CArtista artista { get; set; }
 
-        public string tipo { get; set; }
+        public CEstilo estilo = null;
 
-        public string nombre { get; set; }
+        public string Nombre { get; set; }
 
         public CDisco disco { get; set; }
 
@@ -28,12 +28,12 @@ namespace Track_Tracker
         public double notaTotal { get; set; }
 
 
-        public CTema(CPerfil _publicador, CArtista _artista, string _tipo, string _nombre, CDisco _disco, CPaís _país)
+        public CTema(CPerfil _publicador, CArtista _artista, CEstilo _estilo, string _nombre, CDisco _disco, CPaís _país)
         {
             publicador = _publicador;
-            artista = _artista; 
-            tipo = _tipo;
-            nombre = _nombre;
+            artista = _artista;
+            estilo = _estilo;
+            Nombre = _nombre;
             disco = _disco;
             país = _país;
 

@@ -14,7 +14,7 @@ namespace Track_Tracker
         public CTema ultimoTema;
 
         //Nombre del Perfil.
-        public string Nombre { get; set; } 
+        public string Nombre { get; set; }
 
         //Temas subidos por este Perfil.
         public List<CTema> temasPerfil = new List<CTema>();
@@ -50,13 +50,13 @@ namespace Track_Tracker
 
             foreach (CTema tema in temasPerfil)
             {
-                    contador++;
-                    notas += tema.notaTotal;
+                contador++;
+                notas += tema.notaTotal;
             }
             promedio = notas / contador;
             return promedio;
         }
 
-      
+
     }
 }
