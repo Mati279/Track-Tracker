@@ -129,13 +129,15 @@ namespace Track_Tracker
 
         private void MostrarTemaActual()
         {
-
-            if (lCPerfiles[0].temasPerfil.Count > 0) //Gabi
+            if (lCPerfiles.Count > 0)
             {
-                cbGabGab.Visible = true;
-                cbGabPab.Visible = true;
-                cbGabMat.Visible = true;
+                if (lCPerfiles[0].temasPerfil.Count > 0) //Gabi
+                {
+                    cbGabGab.Visible = true;
+                    cbGabPab.Visible = true;
+                    cbGabMat.Visible = true;
 
+<<<<<<< HEAD
                 lbGabTemActual.Text = "TemaActual:";
                 lbGabBandaTema.Text = lCPerfiles[0].temasPerfil.Last().artista.Nombre;
                 lbGabNombreTema.Text = lCPerfiles[0].temasPerfil.Last().Nombre;
@@ -145,10 +147,22 @@ namespace Track_Tracker
                 cbGabGab.Visible = false;
                 cbGabPab.Visible = false;
                 cbGabMat.Visible = false;
+=======
+                    lbGabTemActual.Text = "TemaActual:";
+                    lbGabBandaTema.Text = lCPerfiles[0].temasPerfil.Last().artista.Nombre;
+                    lbGabNombreTema.Text = lCPerfiles[0].temasPerfil.Last().nombre;
+                }
+                else
+                {
+                    cbGabGab.Visible = false;
+                    cbGabPab.Visible = false;
+                    cbGabMat.Visible = false;
+>>>>>>> 31044fce5eaf255c8eb237fb16337d60affd669b
 
-                lbGabTemActual.Text = "Sin Temas.";
-                lbGabBandaTema.Text = "";
-                lbGabNombreTema.Text = "";
+                    lbGabTemActual.Text = "Sin Temas.";
+                    lbGabBandaTema.Text = "";
+                    lbGabNombreTema.Text = "";
+                }
             }
 
             if (lCPerfiles.Count > 1)
