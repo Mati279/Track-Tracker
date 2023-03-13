@@ -33,18 +33,11 @@
             this.lbNombreTema = new System.Windows.Forms.Label();
             this.btOK = new System.Windows.Forms.Button();
             this.cbSelDisco = new System.Windows.Forms.ComboBox();
-<<<<<<< Updated upstream
             this.cbSelTipo = new System.Windows.Forms.ComboBox();
             this.butAgregarEstilo = new System.Windows.Forms.Button();
             this.tbNombreTema = new System.Windows.Forms.TextBox();
             this.butAgregarDisco = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-=======
-            this.cbSelEstilo = new System.Windows.Forms.ComboBox();
-            this.butSelEstilo = new System.Windows.Forms.Button();
-            this.tbNombreTema = new System.Windows.Forms.TextBox();
-            this.butAgregarDisco = new System.Windows.Forms.Button();
->>>>>>> Stashed changes
             this.SuspendLayout();
             // 
             // butAgrArtista
@@ -86,10 +79,6 @@
             this.btOK.TabIndex = 6;
             this.btOK.Text = "OK";
             this.btOK.UseVisualStyleBackColor = true;
-<<<<<<< Updated upstream
-=======
-            this.btOK.Click += new System.EventHandler(this.btOK_Click);
->>>>>>> Stashed changes
             // 
             // cbSelDisco
             // 
@@ -100,9 +89,8 @@
             this.cbSelDisco.Size = new System.Drawing.Size(121, 23);
             this.cbSelDisco.TabIndex = 1;
             // 
-            // cbSelEstilo
+            // cbSelTipo
             // 
-<<<<<<< Updated upstream
             this.cbSelTipo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cbSelTipo.FormattingEnabled = true;
             this.cbSelTipo.Location = new System.Drawing.Point(12, 157);
@@ -120,25 +108,6 @@
             this.butAgregarEstilo.Text = "+";
             this.butAgregarEstilo.UseVisualStyleBackColor = true;
             this.butAgregarEstilo.Click += new System.EventHandler(this.button1_Click);
-=======
-            this.cbSelEstilo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbSelEstilo.FormattingEnabled = true;
-            this.cbSelEstilo.Location = new System.Drawing.Point(12, 157);
-            this.cbSelEstilo.Name = "cbSelEstilo";
-            this.cbSelEstilo.Size = new System.Drawing.Size(121, 23);
-            this.cbSelEstilo.TabIndex = 1;
-            // 
-            // butSelEstilo
-            // 
-            this.butSelEstilo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.butSelEstilo.Location = new System.Drawing.Point(139, 157);
-            this.butSelEstilo.Name = "butSelEstilo";
-            this.butSelEstilo.Size = new System.Drawing.Size(30, 23);
-            this.butSelEstilo.TabIndex = 7;
-            this.butSelEstilo.Text = "+";
-            this.butSelEstilo.UseVisualStyleBackColor = true;
-            this.butSelEstilo.Click += new System.EventHandler(this.butSelEstilo_Click);
->>>>>>> Stashed changes
             // 
             // tbNombreTema
             // 
@@ -157,7 +126,6 @@
             this.butAgregarDisco.Text = "Agregar Disco";
             this.butAgregarDisco.UseVisualStyleBackColor = true;
             this.butAgregarDisco.Click += new System.EventHandler(this.butAgregarDisco_Click);
-<<<<<<< Updated upstream
             // 
             // label1
             // 
@@ -168,8 +136,6 @@
             this.label1.Size = new System.Drawing.Size(36, 15);
             this.label1.TabIndex = 5;
             this.label1.Text = "Estilo";
-=======
->>>>>>> Stashed changes
             // 
             // FAgregarTema
             // 
@@ -178,18 +144,11 @@
             this.ClientSize = new System.Drawing.Size(262, 254);
             this.Controls.Add(this.butAgregarDisco);
             this.Controls.Add(this.tbNombreTema);
-<<<<<<< Updated upstream
             this.Controls.Add(this.butAgregarEstilo);
             this.Controls.Add(this.btOK);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lbNombreTema);
             this.Controls.Add(this.cbSelTipo);
-=======
-            this.Controls.Add(this.butSelEstilo);
-            this.Controls.Add(this.btOK);
-            this.Controls.Add(this.lbNombreTema);
-            this.Controls.Add(this.cbSelEstilo);
->>>>>>> Stashed changes
             this.Controls.Add(this.cbSelDisco);
             this.Controls.Add(this.cbSelArtista);
             this.Controls.Add(this.butAgrArtista);
@@ -208,13 +167,8 @@
         private Label lbNombreTema;
         private Button btOK;
         private ComboBox cbSelDisco;
-<<<<<<< Updated upstream
         private ComboBox cbSelTipo;
         private Button butAgregarEstilo;
-=======
-        private ComboBox cbSelEstilo;
-        private Button butSelEstilo;
->>>>>>> Stashed changes
         private TextBox tbNombreTema;
         private Button butAgregarDisco;
         private Label label1;

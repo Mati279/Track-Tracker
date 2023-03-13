@@ -35,12 +35,8 @@ namespace Track_Tracker
             ActualizarEstilo();
             ActualizarArtista();
             ActualizarDisco();
-<<<<<<< Updated upstream
 
           
-=======
-            ActualizarEstilo();
->>>>>>> Stashed changes
         }
 
         private void butAgrArtista_Click(object sender, EventArgs e)
@@ -56,6 +52,7 @@ namespace Track_Tracker
             cbSelArtista.DataSource = null;
             cbSelArtista.DataSource = CArtista.Artistas;
             cbSelArtista.DisplayMember = "Nombre";
+      
         }
         private void ActualizarDisco()
         {
@@ -66,7 +63,6 @@ namespace Track_Tracker
 
         private void ActualizarEstilo()
         {
-<<<<<<< Updated upstream
             cbSelTipo.DataSource = null;
             cbSelTipo.DataSource = CEstilo.Estilos;
             cbSelTipo.DisplayMember = "Nombre";
@@ -76,17 +72,6 @@ namespace Track_Tracker
         private void btOK_Click(object sender, EventArgs e)
         {
             new CTema(CPerfil.perfilUsuario, (CArtista)cbSelArtista.SelectedItem, (CEstilo)cbSelTipo.SelectedItem, tbNombreTema.Text, (CDisco)cbSelDisco.SelectedItem, ((CArtista)cbSelArtista.SelectedItem).País);
-=======
-            cbSelEstilo.DataSource = null;
-            cbSelEstilo.DataSource = CEstilo.Estilos;
-            cbSelEstilo.DisplayMember = "Nombre";
-        }
-
-
-        private void btOK_Click(object sender, EventArgs e)
-        {
-            new CTema(CPerfil.perfilUsuario, (CArtista)cbSelArtista.SelectedItem, cbSelEstilo.Text, tbNombreTema.Text, (CDisco)cbSelDisco.SelectedItem, ((CArtista)cbSelArtista.SelectedItem).País);
->>>>>>> Stashed changes
 
 
 
@@ -118,9 +103,8 @@ namespace Track_Tracker
             }
         }
 
-        private void butSelEstilo_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-<<<<<<< Updated upstream
             if (cbSelTipo.Text != "")
             {
                 
@@ -145,32 +129,6 @@ namespace Track_Tracker
             else 
             {
                 MessageBox.Show("Nombre inválido."); 
-=======
-            if (cbSelEstilo.Text != "")
-            {
-
-
-                bool bRepetido = false;
-                foreach (CEstilo estilo in CEstilo.Estilos)
-                {
-                    if (estilo.Nombre.ToLower() == cbSelEstilo.Text.ToLower()) { bRepetido = true; break; }
-                }
-
-                if (!bRepetido)
-                {
-                    CEstilo oEstilo = new CEstilo(cbSelEstilo.Text);
-                    MessageBox.Show($"{cbSelEstilo.Text} agregado a Estilos.");
-                    int cantidad = CEstilo.Estilos.Count;
-                    ActualizarEstilo();
-                    cbSelEstilo.SelectedIndex = cantidad - 1;
-                }
-                else { MessageBox.Show($"Ese estilo ya existe."); cbSelEstilo.Text = ""; }
-
-            }
-            else
-            {
-                MessageBox.Show("Nombre inválido.");
->>>>>>> Stashed changes
             }
         }
     }
