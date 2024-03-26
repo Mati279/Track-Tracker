@@ -12,6 +12,8 @@ namespace ASPTrackTracker.Pages.TrackHolders
 
         [BindProperty]
         public GenreModel Genre { get; set; }
+        [BindProperty]
+        public string lastUrl { get; set; }
         public CreateGenreModel(IGenreData _GenreData)
         {
             GenreData = _GenreData;
@@ -20,6 +22,10 @@ namespace ASPTrackTracker.Pages.TrackHolders
 
         public void OnGet()
         {
+            var fullUrl = Request.Headers["Referer"].ToString();
+
+            Uri uri = new Uri(fullUrl);
+            lastUrl = uri.PathAndQuery;
 
         }
 
@@ -27,7 +33,7 @@ namespace ASPTrackTracker.Pages.TrackHolders
         {
             await GenreData.Create(Genre);
 
-            return RedirectToPage("../Tracks/PublishTrack");
+            return Redirect(lastUrl);
         }
     }
 }

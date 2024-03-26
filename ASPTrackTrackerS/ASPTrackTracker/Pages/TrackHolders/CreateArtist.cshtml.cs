@@ -32,7 +32,6 @@ namespace ASPTrackTracker.Pages.TrackHolders
             List<GenreModel> genres = await genreData.GetAll<GenreModel>();
 
 
-            //Ver esto! Hay error volviendo a EditTrack.asd
             var fullUrl = Request.Headers["Referer"].ToString();
 
             Uri uri = new Uri(fullUrl);
@@ -46,7 +45,7 @@ namespace ASPTrackTracker.Pages.TrackHolders
         {
             await artistData.Create(Artist);
 
-            return RedirectToPage(lastUrl);
+            return Redirect(lastUrl);
         }
 
         private async Task FillSelect<T>(List<SelectListItem> selectList, List<T> lista) where T : ITrackHolderModel

@@ -12,6 +12,8 @@ namespace ASPTrackTracker.Pages.TrackHolders
 
         [BindProperty]
         public StyleModel Style { get; set; }
+        [BindProperty]
+        public string lastUrl { get; set; }
 
         public CreateStyleModel(IStyleData _StyleData)
         {
@@ -21,6 +23,10 @@ namespace ASPTrackTracker.Pages.TrackHolders
 
         public void OnGet()
         {
+            var fullUrl = Request.Headers["Referer"].ToString();
+
+            Uri uri = new Uri(fullUrl);
+            lastUrl = uri.PathAndQuery;
 
         }
 
@@ -29,7 +35,7 @@ namespace ASPTrackTracker.Pages.TrackHolders
             await StyleData.Create(Style);
 
 
-            return RedirectToPage("../Tracks/PublishTrack");
+            return Redirect(lastUrl);
         }
     }
 }
