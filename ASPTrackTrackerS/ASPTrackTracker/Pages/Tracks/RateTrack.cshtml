@@ -1,0 +1,21 @@
+﻿@page
+@model ASPTrackTracker.Pages.Tracks.RateTrackModel
+@{
+    ViewData["Title"] = "Rate Track";
+}
+
+<h1>Rate Track</h1>
+
+<h3>Rating @Model.Track.Name from @Model.artistName</h3>
+<form method="post">
+    <table>
+        <tbody>
+            <tr>
+                <td><label>Affinity</label></td>
+                <td><input asp-for="valueAffinity" class="form-control" type="number" step="0.1" min="0" max="10" /></td>
+            </tr>
+        </tbody>
+    </table>
+        <input type="submit" class="btn" />
+</form>
+<button onclick="window.history.back()" class="btn btn-primary">Cancel</button>

@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[Styles]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
+	[Name] NVARCHAR(50),
+)

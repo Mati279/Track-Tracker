@@ -1,0 +1,54 @@
+﻿@page
+@model ASPTrackTracker.Pages.Tracks.DisplayTrackModel
+@{
+    ViewData["Title"] = "Published Track";
+}
+<head>
+
+
+</head>
+<h1>Published Track</h1>
+<table class="table">
+    <tbody>
+        <div class="form-row">
+            <tr>
+                <td><strong>Track Name</strong></td>
+                <td>@Model.Track.Name</td>
+            </tr>
+        </div>
+        <div class="form-row">
+            <tr>
+                <td><strong>Track Link</strong></td>
+                <td>@Model.Track.Link</td>
+            </tr>
+        </div>
+        <div class="form-row">
+            <tr>
+                <td><strong>Track Artist</strong></td>
+                <td>@Model.Artist.Name</td>
+        </tr>
+        </div>
+        <div class ="form-row">
+            <tr>
+                <td><strong>Track Genre</strong></td>
+                <td>@Model.Genre.Name</td>
+            </tr>
+        </div>
+        <div class="form-row">
+            <tr>
+                <td><strong>Track Style</strong></td>
+                <td>@Model.Style.Name</td>
+            </tr>
+        </div>
+        <div class="form-row">
+            <tr>
+            <td>
+                <a asp-page="EditTrack" asp-route-id="@Model.Track.Id" class="btn btn-danger">Edit Track</a>
+                <a asp-page="RateTrack" asp-route-id="@Model.Track.Id" class="btn btn-danger">Rate Track</a>
+            </td>
+            </tr>
+        </div>
+    </tbody>
+</table>
+
+             

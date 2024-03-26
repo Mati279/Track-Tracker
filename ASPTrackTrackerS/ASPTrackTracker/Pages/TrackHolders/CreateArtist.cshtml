@@ -1,0 +1,25 @@
+﻿@page
+@model ASPTrackTracker.Pages.TrackHolders.CreateArtistModel
+@{
+    ViewData["Title"] = "Create Artist";
+}
+<h1>Create Artist</h1>
+
+<form method="post">
+    <input type="hidden" asp-for="lastUrl" />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="@Model.Artist.Name" class="control-label"></label>
+        <input asp-for="@Model.Artist.Name"  class="form-control">
+        <span asp-validation-for="@Model.Artist.Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label class="control-label">Genre</label>
+        <select asp-for="Artist.GenreId" asp-items="Model.GenreItems" class="form-control"></select>
+        <span asp-validation-for="Artist.GenreId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
+<button onclick="window.history.back()" class="btn btn-primary">Cancel</button>

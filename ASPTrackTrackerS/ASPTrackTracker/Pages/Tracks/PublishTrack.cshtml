@@ -1,0 +1,42 @@
+﻿@page
+@model ASPTrackTracker.Pages.Tracks.PublishTrackModel
+@{
+    ViewData["Title"] = "Publish Track";
+}
+<h1>Publish Track</h1>
+<form method="post" class="publish-form">
+    @*Crea un formulario HTML con POST como el método de envío del formulario.*@
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div> @*Validación de toda la sección <div>.*@
+    <input asp-for="Track.UserId" value="1" type="hidden" /> @*UserId siempre siendo 1 ---- HARDCODEADO.*@
+    <div class="form-group">
+        <label  class="control-label">Name</label>
+        <input asp-for="Track.Name" class="form-control">
+        <span asp-validation-for="Track.Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Track.Link" class="control-label">Link</label>
+        <input asp-for="Track.Link" class="form-control">
+        <span asp-validation-for="Track.Link" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label  class="control-label">Artist</label>
+        <select asp-for="Track.ArtistId" asp-items="Model.ArtistItems" class="form-control"></select> 
+        <span asp-validation-for="Track.Id" class="text-danger"></span> 
+        <a href="../TrackHolders/CreateArtist"  class="btn btn-primary">Create new</a>
+    </div>
+    <div class="form-group">
+        <label  class="control-label">Style</label>
+        <select asp-for="Track.StyleId" asp-items="Model.StyleItems" class="form-control"></select> 
+        <span asp-validation-for="Track.Id" class="text-danger"></span>
+        <a href="../TrackHolders/CreateStyle" class="btn btn-primary">Create new</a>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Publish" class="btn btn-primary" />
+    </div>
+</form>
+<button onclick="window.history.back()" class="btn btn-primary">Cancel</button>
+@section scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

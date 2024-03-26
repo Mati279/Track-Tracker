@@ -1,0 +1,25 @@
+﻿@page
+@model ASPTrackTracker.Pages.Tracks.DeleteTrackModel
+@{
+    ViewData["Title"] = "Delete Track";
+}
+<h1>Delete Track</h1>
+
+@if (Model.Track is null)
+{
+    <h4>The requested Track was not found.</h4>
+}
+else
+{
+    <div class="h4">
+        Are you sure you want to delete ?
+    </div>
+    <form method="post">
+        <input asp-for="Id" value="@Model.Id" type="hidden" />
+        <div class="form-group">
+            <input type="submit" value="Delete Order" class="btn btn-danger" />
+        </div>
+    </form>
+    <button onclick="window.history.back()" class="btn btn-primary">Cancel</button>
+
+}
