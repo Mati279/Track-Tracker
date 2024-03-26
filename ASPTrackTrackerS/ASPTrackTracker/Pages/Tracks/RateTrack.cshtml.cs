@@ -25,13 +25,29 @@ namespace ASPTrackTracker.Pages.Tracks
 
         [BindProperty]
         public double valueAffinity { get; set; }
+        [BindProperty]
+        public double valueLyrics { get; set; }
+        [BindProperty]
+        public double valueCreativity { get; set; }
+        [BindProperty]
+        public double valueComplexity { get; set; }
+        [BindProperty]
+        public double valueVoices { get; set; }
+        [BindProperty]
+        public double valueInstrumental { get; set; }
         
         public RateTrackModel(IScoreData _scoreData, ITrackData _trackData, IArtistData _artistData)
         {
             scoreData = _scoreData;
             trackData = _trackData;
             artistData = _artistData;
+
             valueAffinity = 7;
+            valueLyrics = 7;
+            valueCreativity = 7;
+            valueComplexity = 7;
+            valueVoices = 7;
+            valueInstrumental = 7;
         }
         public async Task OnGet()
         {
@@ -48,6 +64,26 @@ namespace ASPTrackTracker.Pages.Tracks
 
             Score.Value = valueAffinity;
             Score.Stat = "Affinity";
+            scoreId = await scoreData.Create(Score);
+
+            Score.Value = valueLyrics;
+            Score.Stat = "Lyrics";
+            scoreId = await scoreData.Create(Score);
+
+            Score.Value = valueCreativity;
+            Score.Stat = "Creativity";
+            scoreId = await scoreData.Create(Score);
+
+            Score.Value = valueVoices;
+            Score.Stat = "Voices";
+            scoreId = await scoreData.Create(Score);
+
+            Score.Value = valueComplexity;
+            Score.Stat = "Complexity";
+            scoreId = await scoreData.Create(Score);
+
+            Score.Value = valueInstrumental;
+            Score.Stat = "Instrumental";
             scoreId = await scoreData.Create(Score);
 
         }
