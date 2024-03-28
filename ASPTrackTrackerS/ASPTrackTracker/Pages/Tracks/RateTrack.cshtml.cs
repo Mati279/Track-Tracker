@@ -2,6 +2,7 @@ using DataLibrary.Data;
 using DataLibrary.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace ASPTrackTracker.Pages.Tracks
 {
@@ -11,8 +12,12 @@ namespace ASPTrackTracker.Pages.Tracks
         private readonly IArtistData artistData;
 
         public ITrackData trackData { get; }
+        public IStyleData StyleData { get; }
+        public string artistName { get; set; }
+        public StyleModel Style { get; set; }
+        public bool Instrumental  { get; set; }
+        public bool Choral  { get; set; }
 
-        public bool Instrumental { get; set; }
 
         [BindProperty(SupportsGet = true)]
         public int Id { get; set; }
@@ -22,8 +27,6 @@ namespace ASPTrackTracker.Pages.Tracks
 
         [BindProperty]
         public ScoreModel Score { get; set; }
-        public int scoreId { get; set; }
-        public string artistName { get; set; }
 
         [BindProperty]
         public double valueAffinity { get; set; }
@@ -38,11 +41,12 @@ namespace ASPTrackTracker.Pages.Tracks
         [BindProperty]
         public double valueInstrumental { get; set; }
         
-        public RateTrackModel(IScoreData _scoreData, ITrackData _trackData, IArtistData _artistData)
+        public RateTrackModel(IScoreData _scoreData, ITrackData _trackData, IArtistData _artistData, IStyleData _styleData)
         {
             scoreData = _scoreData;
             trackData = _trackData;
             artistData = _artistData;
+            StyleData = _styleData;
 
             valueAffinity = 7;
             valueLyrics = 7;
@@ -54,40 +58,65 @@ namespace ASPTrackTracker.Pages.Tracks
         public async Task OnGet()
         {
             Track = await trackData.GetById<TrackModel>(Id);
+
             var Artist = await artistData.GetById<ArtistModel>(Track.ArtistId);
             artistName = Artist.Name;
+
+            Style = await StyleData.GetById<StyleModel>(Track.StyleId);
+
+            CheckIstrumentalOrChoral(Style);
+
         }
 
         //@Value, @StatId, @UserId, @TrackId
-        public async Task OnPost()
+        public async Task<IActionResult> OnPost()
         {
             Score.UserId = 1; //Hardcoded.
             Score.TrackId = Track.Id;
 
-            Score.Value = valueAffinity;
-            Score.Stat = "Affinity";
-            scoreId = await scoreData.Create(Score);
+            Track = await trackData.GetById<TrackModel>(Id);
 
-            Score.Value = valueLyrics;
-            Score.Stat = "Lyrics";
-            scoreId = await scoreData.Create(Score);
+            Style = await StyleData.GetById<StyleModel>(Track.StyleId);
 
-            Score.Value = valueCreativity;
-            Score.Stat = "Creativity";
-            scoreId = await scoreData.Create(Score);
+            CheckIstrumentalOrChoral(Style);
 
-            Score.Value = valueVoices;
-            Score.Stat = "Voices";
-            scoreId = await scoreData.Create(Score);
+            await CreateScore(valueAffinity, "Affinity");
 
-            Score.Value = valueComplexity;
-            Score.Stat = "Complexity";
-            scoreId = await scoreData.Create(Score);
+            await CreateScore(valueCreativity, "Creativity");
 
-            Score.Value = valueInstrumental;
-            Score.Stat = "Instrumental";
-            scoreId = await scoreData.Create(Score);
+            await CreateScore(valueComplexity, "Complexity");
 
+            if (Style.Name == "Choral")
+            {
+                await CreateScore(valueLyrics, "Lyrics");
+
+                await CreateScore(valueVoices, "Voices");
+            }
+
+            if (Style.Name == "Instrumental")
+            {
+                await CreateScore(valueInstrumental, "Instrumental");
+            }
+
+            return RedirectToPage("../Index");
+        }
+
+        private async Task CreateScore(double _value, string _stat)
+        {
+            await Console.Out.WriteLineAsync("Método llamado con " + _stat + ".");
+            Score.Value = _value;
+            Score.Stat = _stat;
+
+            await scoreData.Create(Score);
+        }
+
+        private void CheckIstrumentalOrChoral(StyleModel _style)
+        {
+            if (_style.Name == "Instrumental")
+                Instrumental = true;
+
+            if (_style.Name == "Choral")
+                Choral = true;
         }
     }
 }   

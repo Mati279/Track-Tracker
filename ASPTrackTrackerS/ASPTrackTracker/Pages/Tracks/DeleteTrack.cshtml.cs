@@ -26,7 +26,7 @@ namespace ASPTrackTracker.Pages.Tracks
         {
             await trackData.Delete(Id);
 
-            return RedirectToPage("./PublishTrack");
+            return RedirectToPage("../Index");
         }
     }
 }
