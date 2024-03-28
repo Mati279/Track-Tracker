@@ -12,6 +12,8 @@ namespace ASPTrackTracker.Pages.Tracks
 
         public ITrackData trackData { get; }
 
+        public bool Instrumental { get; set; }
+
         [BindProperty(SupportsGet = true)]
         public int Id { get; set; }
 
