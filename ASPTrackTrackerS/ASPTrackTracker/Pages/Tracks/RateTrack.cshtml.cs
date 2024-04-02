@@ -72,7 +72,7 @@ namespace ASPTrackTracker.Pages.Tracks
         public async Task<IActionResult> OnPost()
         {
             Score.UserId = 1; //Hardcoded.
-            Score.TrackId = Track.Id;
+            Score.TrackId = Id;
 
             Track = await trackData.GetById<TrackModel>(Id);
 
@@ -86,14 +86,14 @@ namespace ASPTrackTracker.Pages.Tracks
 
             await CreateScore(valueComplexity, "Complexity");
 
-            if (Style.Name == "Choral")
+            if (Style.Name != "Instrumental" && Style.Name != "Guitar" && Style.Name != "Piano")
             {
                 await CreateScore(valueLyrics, "Lyrics");
 
                 await CreateScore(valueVoices, "Voices");
             }
 
-            if (Style.Name == "Instrumental")
+            if (Style.Name != "Choral")
             {
                 await CreateScore(valueInstrumental, "Instrumental");
             }
