@@ -2,6 +2,7 @@ using DataLibrary.Data;
 using DataLibrary.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.ComponentModel.DataAnnotations;
 using static System.Formats.Asn1.AsnWriter;
 
 namespace ASPTrackTracker.Pages.Tracks
@@ -29,16 +30,22 @@ namespace ASPTrackTracker.Pages.Tracks
         public ScoreModel Score { get; set; }
 
         [BindProperty]
+        [Range(0, 10)]
         public double valueAffinity { get; set; }
         [BindProperty]
+        [Range(0, 10)]
         public double valueLyrics { get; set; }
         [BindProperty]
+        [Range(0, 10)]
         public double valueCreativity { get; set; }
         [BindProperty]
+        [Range(0, 10)]
         public double valueComplexity { get; set; }
         [BindProperty]
+        [Range(0, 10)]
         public double valueVoices { get; set; }
         [BindProperty]
+        [Range(0, 10)]
         public double valueInstrumental { get; set; }
         
         public RateTrackModel(IScoreData _scoreData, ITrackData _trackData, IArtistData _artistData, IStyleData _styleData)

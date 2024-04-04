@@ -1,0 +1,13 @@
+﻿@page
+@model ASPTrackTracker.Pages.Tracks.TracksDBModel
+@{
+    ViewData["Title"] = "Tracks Data Base";
+}
+
+<h1>Tracks Data Base</h1>
+<form method="post" class="publish-form">
+    <select  asp-items="Model.TrackItems" class="form-control"></select>
+    <select  asp-items="Model.ArtistItems" class="form-control"></select>
+    <select  asp-items="Model.GenreItems" class="form-control"></select>
+    <select  asp-items="Model.StyleItems" class="form-control"></select>
+</form>
