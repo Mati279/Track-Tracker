@@ -45,4 +45,9 @@ body {
 }
 
 
-
+.tableDB {
+    border-collapse: separate;
+    border-spacing: 100px; /* Espacio entre las celdas */
+    width: 100%; /* Ancho de la tabla */
+    padding: 10px; /* Espaciado alrededor del contenido de las celdas */
+}
