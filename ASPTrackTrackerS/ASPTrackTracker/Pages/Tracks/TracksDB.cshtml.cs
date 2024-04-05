@@ -25,11 +25,20 @@ namespace ASPTrackTracker.Pages.Tracks
         public List<TrackModel> allTracks { get; set; }
         public List<TrackModel> filteredTracks { get; set; }
 
-        public int UserID { get; set; }
-        public int ArtistID { get; set; }
-        public int GenreID { get; set; }
-        public int StyleID { get; set; }
-        public int StatID { get; set; }
+        [BindProperty]
+        public int UserId { get; set; }
+
+        [BindProperty]
+        public int ArtistId { get; set; }
+
+        [BindProperty]
+        public int GenreId { get; set; }
+
+        [BindProperty]
+        public int StyleId { get; set; }
+
+        [BindProperty]
+        public int StatId { get; set; }
 
         public TracksDBModel(ITrackData trackData, IArtistData artistData, IGenreData genreData, IStyleData styleData, IUserData userData)
         {
@@ -42,7 +51,6 @@ namespace ASPTrackTracker.Pages.Tracks
         public async Task OnGet()
         {
             allTracks = await trackData.GetAll<TrackModel>();
-            
 
             UserItems = new List<SelectListItem>();
             ArtistItems = new List<SelectListItem>();
@@ -71,8 +79,13 @@ namespace ASPTrackTracker.Pages.Tracks
             StatItems.Insert(4, new SelectListItem { Value = "Lyrics", Text = "Lyrics" });
             StatItems.Insert(5, new SelectListItem { Value = "Voice", Text = "Voice" });
             StatItems.Insert(6, new SelectListItem { Value = "Instrumental", Text = "Instrumental" });
+            GetStatSelected();
         }
 
+        public async Task<IActionResult> OnPost()
+        {
+            return RedirectToPage();
+        }
 
         private async Task FillSelect<T>(List<SelectListItem> selectList, List<T> lista) where T : ITrackHolderModel
         {
@@ -106,6 +119,40 @@ namespace ASPTrackTracker.Pages.Tracks
         {
             var style = await styleData.GetById<StyleModel>(model.StyleId);
             return style.Name;
+        }
+
+        public string GetStatSelected()
+        {
+            string stat;
+            switch (StatId)
+            {
+                case 0:
+                    stat = "All";
+                    break;
+                case 1:
+                    stat = "Affinity";
+                    break;
+                case 2:
+                    stat = "Creativity";
+                    break;
+                case 3:
+                    stat = "Complexity";
+                    break;
+                case 4:
+                    stat = "Lyrics";
+                    break;
+                case 5:
+                    stat = "Voice";
+                    break;
+                case 6:
+                    stat = "Instrumental";
+                    break;
+                default:
+                    stat = "Error";
+                    break;
+            }
+
+            return stat;
         }
 
     }

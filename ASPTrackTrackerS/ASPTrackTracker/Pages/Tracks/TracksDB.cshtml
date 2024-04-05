@@ -30,48 +30,50 @@
         }
     </style>
 </head>
-
-<body>
-    <h1 class="title">Tracks Data Base</h1>
-    <table class="tableDBH">
-        <thead>
-            <tr>
-                <th><h2>Track</h2></th>
-                <th><h2>User</h2></th>
-                <th><h2>Artist</h2></th>
-                <th><h2>Genre</h2></th>
-                <th><h2>Style</h2></th>
-                <th><h2>Stat</h2></th>
-            </tr>
-        </thead>
-        <thead>
-            <tr>
-                <th><h3>Name</h3></th>
-                <th><h3><select asp-for="UserID" asp-items="Model.UserItems" class="form-control"></select></h3></th>
-                <th><h3><select asp-for="ArtistID" asp-items="Model.ArtistItems" class="form-control"></select></h3></th>
-                <th><h3><select asp-for="GenreID" asp-items="Model.GenreItems" class="form-control"></select></h3></th>
-                <th><h3><select asp-for="StyleID" asp-items="Model.StyleItems" class="form-control"></select></h3></th>
-                <th><h3><select asp-for="StatID" asp-items="Model.StatItems" class="form-control"></select></h3></th>
-            </tr>
-        </thead>
-        <tbody class="tableDBB">
-            @foreach(var track in Model.allTracks)
-            {
+<form method="post">
+    <body>
+        <h1 class="title">Tracks Data Base</h1>
+        <h3>@Model.StatId</h3>
+        <table class="tableDBH">
+            <thead>
                 <tr>
-                    <td>@track.Name</td>
-                    <td>@await Model.GetTrackUser(track)</td>
-                    <td>@await Model.GetTrackArtist(track)</td>
-                    <td>@await Model.GetTrackGenre(track)</td>
-                    <td>@await Model.GetTrackStyle(track)</td>
-                    <td>@track.Name</td>
+                    <th><h2>Track</h2></th>
+                    <th><h2>User</h2></th>
+                    <th><h2>Artist</h2></th>
+                    <th><h2>Genre</h2></th>
+                    <th><h2>Style</h2></th>
+                    <th><h2>Stat</h2></th>
                 </tr>
-            }
+            </thead>
+            <thead>
+                <tr>
+                    <th><button type="submit">Filter</button></th>
+                    <th><h3><select asp-for="UserId" asp-items="Model.UserItems" class="form-control"></select></h3></th>
+                    <th><h3><select asp-for="ArtistId" asp-items="Model.ArtistItems" class="form-control"></select></h3></th>
+                    <th><h3><select asp-for="GenreId" asp-items="Model.GenreItems" class="form-control"></select></h3></th>
+                    <th><h3><select asp-for="StyleId" asp-items="Model.StyleItems" class="form-control"></select></h3></th>
+                    <th><h3><select asp-for="StatId" asp-items="Model.StatItems" class="form-control"></select></h3></th>
+                </tr>
+            </thead>
+            <tbody class="tableDBB">
+                @foreach (var track in Model.allTracks)
+                {
+                    <tr>
+                        <td>@track.Name</td>
+                        <td>@await Model.GetTrackUser(track)</td>
+                        <td>@await Model.GetTrackArtist(track)</td>
+                        <td>@await Model.GetTrackGenre(track)</td>
+                        <td>@await Model.GetTrackStyle(track)</td>
+                        <td>@Model.GetStatSelected()</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </body>
+</form>
 
 
 
-        </tbody>
-    </table>
-</body>
 
 
 
@@ -92,14 +94,4 @@
 
 
 
-
-
-
-
-
-
-
-    @*<select  asp-items="Model.TrackItems" class="form-control"></select>
-    <select  asp-items="Model.ArtistItems" class="form-control"></select>
-    <select  asp-items="Model.GenreItems" class="form-control"></select>
-    <select  asp-items="Model.StyleItems" class="form-control"></select>*@
+    
