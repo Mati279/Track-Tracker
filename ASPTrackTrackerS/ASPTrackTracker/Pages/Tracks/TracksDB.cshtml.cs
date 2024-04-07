@@ -5,6 +5,7 @@ using DataLibrary.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Identity.Client;
 using System.Reflection.Metadata.Ecma335;
 
 namespace ASPTrackTracker.Pages.Tracks
@@ -25,32 +26,37 @@ namespace ASPTrackTracker.Pages.Tracks
         public List<TrackModel> allTracks { get; set; }
         public List<TrackModel> filteredTracks { get; set; }
 
-        [BindProperty]
+        [BindProperty(SupportsGet = true)]
         public int UserId { get; set; }
 
-        [BindProperty]
+        [BindProperty(SupportsGet = true)]
         public int ArtistId { get; set; }
 
-        [BindProperty]
+        [BindProperty(SupportsGet = true)]
         public int GenreId { get; set; }
 
-        [BindProperty]
+        [BindProperty(SupportsGet = true)]
         public int StyleId { get; set; }
 
-        [BindProperty]
-        public int StatId { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public string StatSelected{ get; set; }
 
         public TracksDBModel(ITrackData trackData, IArtistData artistData, IGenreData genreData, IStyleData styleData, IUserData userData)
         {
             this.trackData = trackData;
+            this.userData = userData;
             this.artistData = artistData;
             this.genreData = genreData;
             this.styleData = styleData;
-            this.userData = userData;
         }
         public async Task OnGet()
         {
             allTracks = await trackData.GetAll<TrackModel>();
+
+            List<UserModel> users = await userData.GetAll<UserModel>();
+            List<ArtistModel> artists = await artistData.GetAll<ArtistModel>();
+            List<GenreModel> genres = await genreData.GetAll<GenreModel>();
+            List<StyleModel> styles = await styleData.GetAll<StyleModel>();
 
             UserItems = new List<SelectListItem>();
             ArtistItems = new List<SelectListItem>();
@@ -58,20 +64,37 @@ namespace ASPTrackTracker.Pages.Tracks
             StyleItems = new List<SelectListItem>();
             StatItems = new List<SelectListItem>();
 
-
-            List<UserModel> users = await userData.GetAll<UserModel>();
-            List<ArtistModel> artists = await artistData.GetAll<ArtistModel>();
-            List<GenreModel> genres = await genreData.GetAll<GenreModel>();
-            List<StyleModel> styles = await styleData.GetAll<StyleModel>();
+            await FillSelectTrackHolder(UserItems, users);
+            await FillSelectTrackHolder(ArtistItems, artists);
+            await FillSelectTrackHolder(GenreItems, genres);
+            await FillSelectTrackHolder(StyleItems, styles);
+            FillSelectStats(StatItems);
+            FilterTracks();
 
            
+            //GetStatSelected();
 
-            await FillSelect(UserItems, users);
-            await FillSelect(ArtistItems, artists);
-            await FillSelect(GenreItems, genres);
-            await FillSelect(StyleItems, styles);
+            
+        }
 
+        public async Task<IActionResult> OnPost()
+        {
 
+            return RedirectToPage(new {UserId, StatSelected, StyleId, GenreId, ArtistId });
+        }
+
+        private async Task FillSelectTrackHolder<T>(List<SelectListItem> selectList, List<T> lista) where T : ITrackHolderModel
+        {
+            selectList.Insert(0, new SelectListItem { Value = "All", Text = "All" });
+            foreach (var i in lista)
+            {
+                var item = new SelectListItem { Value = i.Id.ToString(), Text = i.Name };
+                selectList.Add(item);
+            }
+        }
+
+        private void FillSelectStats(List<SelectListItem> selectList)
+        {
             StatItems.Insert(0, new SelectListItem { Value = "All", Text = "All" });
             StatItems.Insert(1, new SelectListItem { Value = "Affinity", Text = "Affinity" });
             StatItems.Insert(2, new SelectListItem { Value = "Creativity", Text = "Creativity" });
@@ -79,25 +102,7 @@ namespace ASPTrackTracker.Pages.Tracks
             StatItems.Insert(4, new SelectListItem { Value = "Lyrics", Text = "Lyrics" });
             StatItems.Insert(5, new SelectListItem { Value = "Voice", Text = "Voice" });
             StatItems.Insert(6, new SelectListItem { Value = "Instrumental", Text = "Instrumental" });
-            GetStatSelected();
         }
-
-        public async Task<IActionResult> OnPost()
-        {
-            return RedirectToPage();
-        }
-
-        private async Task FillSelect<T>(List<SelectListItem> selectList, List<T> lista) where T : ITrackHolderModel
-        {
-                selectList.Insert(0, new SelectListItem { Value = "All", Text = "All" });
-            foreach (var i in lista)
-            {
-                var item = new SelectListItem { Value = i.Id.ToString(), Text = i.Name };
-                selectList.Add(item);
-                await Console.Out.WriteLineAsync(item.Text + " agregada.");
-            }
-        }
-
         public async Task<string> GetTrackUser(TrackModel model)
         {
             var user = await userData.GetById<UserModel>(model.UserId);
@@ -121,38 +126,55 @@ namespace ASPTrackTracker.Pages.Tracks
             return style.Name;
         }
 
-        public string GetStatSelected()
+        private async Task FilterTracks()
         {
-            string stat;
-            switch (StatId)
+            allTracks = await trackData.GetAll<TrackModel>();
+
+            bool filtered;
+            filteredTracks = new List<TrackModel>();
+
+            foreach (TrackModel track in allTracks)
             {
-                case 0:
-                    stat = "All";
-                    break;
-                case 1:
-                    stat = "Affinity";
-                    break;
-                case 2:
-                    stat = "Creativity";
-                    break;
-                case 3:
-                    stat = "Complexity";
-                    break;
-                case 4:
-                    stat = "Lyrics";
-                    break;
-                case 5:
-                    stat = "Voice";
-                    break;
-                case 6:
-                    stat = "Instrumental";
-                    break;
-                default:
-                    stat = "Error";
-                    break;
+                if (UserId != 0 && UserId != track.UserId)
+                {
+                    filtered = false;
+                    continue;
+                }
+                else if (ArtistId != 0 && ArtistId != track.ArtistId)
+                {
+                    filtered = false;
+                    continue;
+                }
+                else if (GenreId != 0 && GenreId != track.GenreId)
+                {
+                    filtered = false;
+                    continue;
+                }
+                else if (StyleId != 0 && StyleId != track.StyleId)
+                {
+                    filtered = false;
+                    continue;
+                }
+                else
+                {
+                    filtered = true;
+                }
+
+                if(filtered == true)
+                {
+                    filteredTracks.Add(track);
+                }
             }
 
-            return stat;
+        }
+
+        public void OnPostResetFilters() //Viendo esto!
+        {
+            UserId = 0;
+            ArtistId = 0;
+            GenreId = 0;
+            StyleId = 0;
+            StatSelected = "All";
         }
 
     }

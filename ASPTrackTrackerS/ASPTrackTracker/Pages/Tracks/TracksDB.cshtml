@@ -33,7 +33,11 @@
 <form method="post">
     <body>
         <h1 class="title">Tracks Data Base</h1>
-        <h3>@Model.StatId</h3>
+        <h3></h3>
+        <h3>@Model.StyleId.ToString();</h3>
+        <h3>@Model.GenreId</h3>
+        <h3>@Model.ArtistId</h3>
+        <h3>@Model.UserId</h3>
         <table class="tableDBH">
             <thead>
                 <tr>
@@ -48,15 +52,16 @@
             <thead>
                 <tr>
                     <th><button type="submit">Filter</button></th>
+                    <th><button type="submit" asp-page-handler="ResetFilters">Reset Filters</button></th>
                     <th><h3><select asp-for="UserId" asp-items="Model.UserItems" class="form-control"></select></h3></th>
                     <th><h3><select asp-for="ArtistId" asp-items="Model.ArtistItems" class="form-control"></select></h3></th>
                     <th><h3><select asp-for="GenreId" asp-items="Model.GenreItems" class="form-control"></select></h3></th>
                     <th><h3><select asp-for="StyleId" asp-items="Model.StyleItems" class="form-control"></select></h3></th>
-                    <th><h3><select asp-for="StatId" asp-items="Model.StatItems" class="form-control"></select></h3></th>
+                    <th><h3><select asp-for="StatSelected" asp-items="Model.StatItems" class="form-control"></select></h3></th>
                 </tr>
             </thead>
             <tbody class="tableDBB">
-                @foreach (var track in Model.allTracks)
+                @foreach (var track in Model.filteredTracks)
                 {
                     <tr>
                         <td>@track.Name</td>
@@ -64,7 +69,7 @@
                         <td>@await Model.GetTrackArtist(track)</td>
                         <td>@await Model.GetTrackGenre(track)</td>
                         <td>@await Model.GetTrackStyle(track)</td>
-                        <td>@Model.GetStatSelected()</td>
+                        <td></td>
                     </tr>
                 }
             </tbody>
