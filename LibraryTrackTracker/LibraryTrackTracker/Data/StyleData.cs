@@ -9,10 +9,11 @@ namespace DataLibrary.Data
 {
     public class StyleData : DataManager, IStyleData
     {
-        protected override string spAll_Name => "spStyles_All";
-        protected override string spGetById_Name => "spStyles_GetById";
-        protected override string spInsert_Name => "spStyles_Insert";
-        protected override string spDelete_Name => "spStyles_Delete";
+        protected override string spAll_Name { get; set; } = "spStyles_All";
+        protected override string spGetById_Name { get; set; } = "spStyles_GetById";
+        protected override string spInsert_Name { get; set; } = "spStyles_Insert";
+        protected override string spDelete_Name { get; set; } = "spStyles_Delete";
+        protected override string spUpdateName_Name { get; set; } = "spStyles_UpdateName";
 
         private readonly IDataAccess _dataAccess;
         public ConnectionStringData _connectionString { get; }

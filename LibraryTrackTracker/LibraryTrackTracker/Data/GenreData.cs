@@ -9,10 +9,12 @@ namespace DataLibrary.Data
 {
     public class GenreData : DataManager, IGenreData
     {
-        protected override string spAll_Name => "spGenres_All";
-        protected override string spGetById_Name => "spGenres_GetById";
-        protected override string spInsert_Name => "spGenres_Insert";
-        protected override string spDelete_Name => "spGenres_Delete";
+        protected override string spAll_Name { get; set; } = "spGenres_All";
+        protected override string spGetById_Name { get; set; } = "spGenres_GetById";
+        protected override string spInsert_Name { get; set; } = "spGenres_Insert";
+        protected override string spDelete_Name { get; set; } = "spGenres_Delete";
+        protected override string spUpdateName_Name { get; set; } = "spGenres_UpdateName";
+
 
         private readonly IDataAccess _dataAccess;
         public ConnectionStringData _connectionString { get; }

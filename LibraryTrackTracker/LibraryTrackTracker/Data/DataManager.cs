@@ -11,13 +11,13 @@ using System.Threading.Tasks;
 
 namespace DataLibrary.Data
 {
-    public class DataManager : IDataManager
+    public abstract class DataManager : IDataManager
     {
-        protected virtual string spAll_Name => "";
-        protected virtual string spGetById_Name => "";
-        protected virtual string spInsert_Name => "";
-        protected virtual string spDelete_Name => "";
-        protected virtual string spUpdateName_Name => "";
+        protected abstract string spAll_Name { get; set; }
+        protected abstract string spGetById_Name { get; set; }
+        protected abstract string spInsert_Name { get; set; }
+        protected abstract string spDelete_Name { get; set; }
+        protected abstract string spUpdateName_Name { get; set; }
 
         private readonly IDataAccess _dataAccess;
         private readonly ConnectionStringData _connectionString;

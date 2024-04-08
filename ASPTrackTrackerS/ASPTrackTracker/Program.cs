@@ -17,14 +17,13 @@ namespace ASPTrackTracker
                 sqlConnectionName = "Default"
             });
             builder.Services.AddSingleton<IDataAccess, SqlDb>();
-            builder.Services.AddSingleton<IDataManager, DataManager>();
+            //builder.Services.AddSingleton<IDataManager, DataManager>();
             builder.Services.AddSingleton<ITrackData, TrackData>();
             builder.Services.AddSingleton<IUserData, UserData>();
             builder.Services.AddSingleton<IScoreData, ScoreData>();
             builder.Services.AddSingleton<IArtistData, ArtistData>();
             builder.Services.AddSingleton<IGenreData, GenreData>();
             builder.Services.AddSingleton<IStyleData, StyleData>();
-            //Falta la BL.
 
             var app = builder.Build();
 

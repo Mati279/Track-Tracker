@@ -9,10 +9,11 @@ namespace DataLibrary.Data
 {
     public class ScoreData : DataManager, IScoreData
     {
-        protected override string spAll_Name => "spScores_All";
-        protected override string spGetById_Name => "spScores_GetById";
-        protected override string spInsert_Name => "spScores_Insert";
-        protected override string spDelete_Name => "spScores_Delete";
+        protected override string spAll_Name  { get; set; } =  "spScores_All";
+        protected override string spGetById_Name { get; set; } = "spScores_GetById";
+        protected override string spInsert_Name { get; set; } = "spScores_Insert";
+        protected override string spDelete_Name { get; set; } = "spScores_Delete";
+        protected override string spUpdateName_Name { get; set; } = "spScores_UpdateName";
 
         private readonly IDataAccess _dataAccess;
         public ConnectionStringData _connectionString { get; }

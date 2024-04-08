@@ -9,10 +9,11 @@ namespace DataLibrary.Data
 {
     public class ArtistData : DataManager, IArtistData
     {
-        protected override string spAll_Name => "spArtists_All";
-        protected override string spGetById_Name => "spArtists_GetById";
-        protected override string spInsert_Name => "spArtists_Insert";
-        protected override string spDelete_Name => "spArtists_Delete";
+        protected override string spAll_Name { get; set; } = "spArtists_All";
+        protected override string spGetById_Name { get; set; } = "spArtists_GetById";
+        protected override string spInsert_Name { get; set; } = "spArtists_Insert";
+        protected override string spDelete_Name { get; set; } = "spArtists_Delete";
+        protected override string spUpdateName_Name { get; set; } = "spTracks_UpdateName";
 
         private readonly IDataAccess _dataAccess;
         public ConnectionStringData _connectionString { get; }

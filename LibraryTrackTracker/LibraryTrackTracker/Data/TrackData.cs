@@ -13,11 +13,11 @@ namespace DataLibrary.Data
 {
     public class TrackData : DataManager, ITrackData
     {
-        protected override string spAll_Name => "spTracks_All";
-        protected override string spGetById_Name => "spTracks_GetById";
-        protected override string spInsert_Name => "spTracks_Insert";
-        protected override string spDelete_Name => "spTracks_Delete";
-        protected override string spUpdateName_Name => "spTracks_UpdateName";
+        protected override string spAll_Name { get; set; } = "spTracks_All";
+        protected override string spGetById_Name { get; set; } = "spTracks_GetById";
+        protected override string spInsert_Name { get; set; } = "spTracks_Insert";
+        protected override string spDelete_Name { get; set; } = "spTracks_Delete";
+        protected override string spUpdateName_Name { get; set; } = "spTracks_UpdateName";
 
         private readonly IDataAccess _dataAccess;
         public ConnectionStringData _connectionString { get; }

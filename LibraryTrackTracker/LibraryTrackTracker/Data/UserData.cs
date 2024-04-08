@@ -12,11 +12,11 @@ namespace DataLibrary.Data
 {
     public class UserData : DataManager, IUserData
     {
-        protected override string spAll_Name => "spUsers_All";
-        protected override string spGetById_Name => "spUsers_GetById";
-        protected override string spInsert_Name => "spUsers_Insert";
-        protected override string spDelete_Name => "spUsers_Delete";
-        protected override string spUpdateName_Name => "spUsers_UpdateName";
+        protected override string spAll_Name { get; set; } = "spUsers_All";
+        protected override string spGetById_Name { get; set; } = "spUsers_GetById";
+        protected override string spInsert_Name { get; set; } = "spUsers_Insert";
+        protected override string spDelete_Name { get; set; } = "spUsers_Delete";
+        protected override string spUpdateName_Name { get; set; } = "spUsers_UpdateName";
 
         private readonly IDataAccess _dataAccess;
 
