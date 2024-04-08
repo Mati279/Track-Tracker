@@ -9,7 +9,7 @@
 AS
 BEGIN 
 		set nocount on;
-		insert into [dbo].[Scores]([Value], [Stat], [User],[Track] )
+		insert into [dbo].[Scores]([Value], [Stat], [User],[TrackId] )
 		values(@Value, @Stat, @UserId, @TrackId)
 
 		SET @Id = SCOPE_IDENTITY();

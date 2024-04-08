@@ -46,7 +46,7 @@
             </thead>
             <thead>
                 <tr>
-                    <th><button type="submit">Filter</button></th>
+                    <th><button type="submit">Filter and Sort</button></th>
                     <th><h3><select asp-for="UserId" asp-items="Model.UserItems" class="form-control"></select></h3></th>
                     <th><h3><select asp-for="ArtistId" asp-items="Model.ArtistItems" class="form-control"></select></h3></th>
                     <th><h3><select asp-for="GenreId" asp-items="Model.GenreItems" class="form-control"></select></h3></th>
@@ -64,7 +64,9 @@
                         <td>@await Model.GetTrackArtist(track)</td>
                         <td>@await Model.GetTrackGenre(track)</td>
                         <td>@await Model.GetTrackStyle(track)</td>
-                        <td></td>
+                        <td>@await Model.GetTrackScoreByStat(track, Model.StatSelected)</td>
+                        <td><input type="button" value="View"/></td>
+                        
                     </tr>
                 }
                 @if (Model.filteredTracks.Count < 1)
@@ -81,6 +83,12 @@
 <form method="postReset">
     <th><button type="submit">Reset Filters</button></th>
 </form>
+
+<form method="post" asp-page-handler="RateAll">
+    <th><button type="submit">Rate All</button></th>
+</form>
+
+
 
 
 

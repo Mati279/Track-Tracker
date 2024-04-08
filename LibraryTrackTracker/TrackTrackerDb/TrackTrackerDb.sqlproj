@@ -119,4 +119,7 @@
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="TrackTrackerDb.refactorlog" />
+  </ItemGroup>
 </Project>

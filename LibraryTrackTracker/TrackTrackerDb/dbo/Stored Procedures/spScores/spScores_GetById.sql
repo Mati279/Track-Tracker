@@ -6,7 +6,7 @@ Begin
 
 	set nocount on; 
 
-	Select [Id], [Value], [Stat], [User], [Track]
+	Select [Id], [Value], [Stat], [User], [TrackId]
 	from [dbo].[Scores]
 	where Id = @Id;
 END

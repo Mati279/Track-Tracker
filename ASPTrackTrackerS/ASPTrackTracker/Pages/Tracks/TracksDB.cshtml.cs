@@ -5,7 +5,9 @@ using DataLibrary.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Routing.Constraints;
 using Microsoft.Identity.Client;
+using Microsoft.IdentityModel.Tokens;
 using System.Reflection.Metadata.Ecma335;
 
 namespace ASPTrackTracker.Pages.Tracks
@@ -17,6 +19,7 @@ namespace ASPTrackTracker.Pages.Tracks
         private readonly IArtistData artistData;
         private readonly IGenreData genreData;
         private readonly IStyleData styleData;
+        private readonly IScoreData ScoreData;
         public List<SelectListItem> UserItems { get; set; }
         public List<SelectListItem> ArtistItems { get; set; }
         public List<SelectListItem> StyleItems { get; set; }
@@ -41,13 +44,13 @@ namespace ASPTrackTracker.Pages.Tracks
         public int StyleId { get; set; }
 
         [BindProperty(SupportsGet = true)]
-        public string StatSelected{ get; set; }
+        public string StatSelected { get; set; } = "Average";
 
-
-        public TracksDBModel(ITrackData trackData, IArtistData artistData, IGenreData genreData, IStyleData styleData, IUserData userData)
+        public TracksDBModel(ITrackData trackData, IArtistData artistData, IGenreData genreData, IStyleData styleData, IUserData userData, IScoreData scoreData)
         {
             this.trackData = trackData;
             this.userData = userData;
+            ScoreData = scoreData;
             this.artistData = artistData;
             this.genreData = genreData;
             this.styleData = styleData;
@@ -71,11 +74,10 @@ namespace ASPTrackTracker.Pages.Tracks
             await FillSelectTrackHolder(ArtistItems, artists);
             await FillSelectTrackHolder(GenreItems, genres);
             await FillSelectTrackHolder(StyleItems, styles);
-            FillSelectStats(StatItems);
 
+            FillSelectStats(StatItems);
             await FilterTracks();
 
-           
         }
 
         public async Task<IActionResult> OnPost()
@@ -88,7 +90,7 @@ namespace ASPTrackTracker.Pages.Tracks
         public async Task<IActionResult> OnPostReset()
         {
 
-            var selects = new { UserId = 0, StatSelected = 0, StyleId = 0, GenreId = 0, ArtistId = 0 };
+            var selects = new { UserId = 0, StatSelected = "Average", StyleId = 0, GenreId = 0, ArtistId = 0 };
 
             return RedirectToPage(selects);
         }
@@ -105,12 +107,12 @@ namespace ASPTrackTracker.Pages.Tracks
 
         private void FillSelectStats(List<SelectListItem> selectList)
         {
-            StatItems.Insert(0, new SelectListItem { Value = "All", Text = "All" });
+            StatItems.Insert(0, new SelectListItem { Value = "Average", Text = "Average" });
             StatItems.Insert(1, new SelectListItem { Value = "Affinity", Text = "Affinity" });
             StatItems.Insert(2, new SelectListItem { Value = "Creativity", Text = "Creativity" });
             StatItems.Insert(3, new SelectListItem { Value = "Complexity", Text = "Complexity" });
             StatItems.Insert(4, new SelectListItem { Value = "Lyrics", Text = "Lyrics" });
-            StatItems.Insert(5, new SelectListItem { Value = "Voice", Text = "Voice" });
+            StatItems.Insert(5, new SelectListItem { Value = "Voices", Text = "Voices" });
             StatItems.Insert(6, new SelectListItem { Value = "Instrumental", Text = "Instrumental" });
         }
         public async Task<string> GetTrackUser(TrackModel model)
@@ -175,7 +177,139 @@ namespace ASPTrackTracker.Pages.Tracks
                     filteredTracks.Add(track);
                 }
             }
-
         }
+
+        public async Task<List<ScoreModel>> GetTrackScores(TrackModel track)
+        {
+            List<ScoreModel> allScores = await ScoreData.GetAll<ScoreModel>();
+
+            List<ScoreModel> trackScores = new List<ScoreModel>();
+
+            foreach(ScoreModel score in allScores)
+            {
+                if(score.TrackId == track.Id )
+                {
+                    trackScores.Add(score);
+                }
+            }
+
+            return trackScores;
+        }
+
+        public async Task<string> GetTrackScoreByStat(TrackModel track, string stat)
+        {
+            var trackScores = await GetTrackScores(track);
+
+            if(stat == "Average")
+            {
+                double value = 0;
+                int count = 0;
+                foreach(ScoreModel score in trackScores)
+                {
+                    value += score.Value;
+                    count++;
+                }
+
+                double average = value / count;
+                if(trackScores.Count > 0)
+                {
+                    return Math.Round(average, 1).ToString();
+                }
+                else { return "Not Rated"; }
+            }
+            else
+            {
+                foreach(ScoreModel score in trackScores)
+                {
+                    if (score.Stat == stat)
+                        return score.Value.ToString();
+                }
+            }
+            return "0";
+        }
+
+        public async Task<bool> AlreadyVoted(int User, TrackModel track) //Hardcoded User Id. 
+        {
+            bool voted = false;
+            var trackScores = await GetTrackScores(track);
+            
+            voted = !(trackScores.IsNullOrEmpty());
+
+            return voted;
+        }
+
+        public async Task GetScores(TrackModel track)
+        {
+            var affinity = new ScoreModel();
+            affinity.Stat = "Affinity";
+            affinity.UserId = 1;
+            affinity.Value = RndmScore();
+            affinity.TrackId = track.Id;
+
+            await ScoreData.Create(affinity);
+
+            var Voices = new ScoreModel();
+            Voices.Stat = "Voices";
+            Voices.UserId = 1;
+            Voices.Value = RndmScore();
+            Voices.TrackId = track.Id;
+
+            await ScoreData.Create(Voices);
+
+            var Complexity = new ScoreModel();
+            Complexity.Stat = "Complexity";
+            Complexity.UserId = 1;
+            Complexity.Value = RndmScore();
+            Complexity.TrackId = track.Id;
+
+            await ScoreData.Create(Complexity);
+
+            var Creativity = new ScoreModel();
+            Creativity.Stat = "Creativity";
+            Creativity.UserId = 1;
+            Creativity.Value = RndmScore();
+            Creativity.TrackId = track.Id;
+
+            await ScoreData.Create(Creativity);
+
+            var Instrumental = new ScoreModel();
+            Instrumental.Stat = "Instrumental";
+            Instrumental.UserId = 1;
+            Instrumental.Value = RndmScore();
+            Instrumental.TrackId = track.Id;
+
+            await ScoreData.Create(Instrumental);
+
+            var Lyrics = new ScoreModel();
+            Lyrics.Stat = "Lyrics";
+            Lyrics.UserId = 1;
+            Lyrics.Value = RndmScore();
+            Lyrics.TrackId = track.Id;
+
+            await ScoreData.Create(Lyrics);
+
+            double RndmScore()
+            {
+                Random rnd = new Random();
+                var rnd2 = rnd.Next(1, 5);
+
+                return 5 + rnd2;
+            }
+        }
+        public async Task OnPostRateAll()
+        {
+            var allTracks = await trackData.GetAll<TrackModel>();
+            foreach(var track in allTracks)
+            {
+                bool voted = await AlreadyVoted(1, track);
+                if (!voted)
+                {
+                    await GetScores(track);
+                }
+
+            }
+
+        } 
+
     }
 }
