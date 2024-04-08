@@ -24,6 +24,8 @@ namespace ASPTrackTracker.Pages.Tracks
         public List<SelectListItem> StatItems { get; set; }
 
         public List<TrackModel> allTracks { get; set; }
+
+        [BindProperty]
         public List<TrackModel> filteredTracks { get; set; }
 
         [BindProperty(SupportsGet = true)]
@@ -40,6 +42,7 @@ namespace ASPTrackTracker.Pages.Tracks
 
         [BindProperty(SupportsGet = true)]
         public string StatSelected{ get; set; }
+
 
         public TracksDBModel(ITrackData trackData, IArtistData artistData, IGenreData genreData, IStyleData styleData, IUserData userData)
         {
@@ -69,18 +72,25 @@ namespace ASPTrackTracker.Pages.Tracks
             await FillSelectTrackHolder(GenreItems, genres);
             await FillSelectTrackHolder(StyleItems, styles);
             FillSelectStats(StatItems);
-            FilterTracks();
+
+            await FilterTracks();
 
            
-            //GetStatSelected();
-
-            
         }
 
         public async Task<IActionResult> OnPost()
         {
 
-            return RedirectToPage(new {UserId, StatSelected, StyleId, GenreId, ArtistId });
+            var selects = new { UserId, StatSelected, StyleId, GenreId, ArtistId  };
+
+            return RedirectToPage(selects);
+        }
+        public async Task<IActionResult> OnPostReset()
+        {
+
+            var selects = new { UserId = 0, StatSelected = 0, StyleId = 0, GenreId = 0, ArtistId = 0 };
+
+            return RedirectToPage(selects);
         }
 
         private async Task FillSelectTrackHolder<T>(List<SelectListItem> selectList, List<T> lista) where T : ITrackHolderModel
@@ -167,15 +177,5 @@ namespace ASPTrackTracker.Pages.Tracks
             }
 
         }
-
-        public void OnPostResetFilters() //Viendo esto!
-        {
-            UserId = 0;
-            ArtistId = 0;
-            GenreId = 0;
-            StyleId = 0;
-            StatSelected = "All";
-        }
-
     }
 }
