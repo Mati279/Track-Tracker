@@ -7,6 +7,10 @@
 
 <head>
     <style>
+        .select :hover {
+            cursor: pointer;
+        }
+
         .title {
             text-align: center;
         }
@@ -47,23 +51,23 @@
             <thead>
                 <tr>
                     <th><button type="submit">Filter and Sort</button></th>
-                    <th><h3><select asp-for="UserId" asp-items="Model.UserItems" class="form-control"></select></h3></th>
-                    <th><h3><select asp-for="ArtistId" asp-items="Model.ArtistItems" class="form-control"></select></h3></th>
-                    <th><h3><select asp-for="GenreId" asp-items="Model.GenreItems" class="form-control"></select></h3></th>
-                    <th><h3><select asp-for="StyleId" asp-items="Model.StyleItems" class="form-control"></select></h3></th>
-                    <th><h3><select asp-for="StatSelected" asp-items="Model.StatItems" class="form-control"></select></h3></th>
+                    <th><h3><select asp-for="UserId" asp-items="Model.UserItems" class="form-control select"></select></h3></th>
+                    <th><h3><select asp-for="ArtistId" asp-items="Model.ArtistItems" class="form-control select"></select></h3></th>
+                    <th><h3><select asp-for="GenreId" asp-items="Model.GenreItems" class="form-control select"></select></h3></th>
+                    <th><h3><select asp-for="StyleId" asp-items="Model.StyleItems" class="form-control select"></select></h3></th>
+                    <th><h3><select asp-for="SelectedStat" asp-items="Model.StatItems" class="form-control select"></select></h3></th>
                 </tr>
             </thead>
             <tbody class="tableDBB">
-                @foreach (var track in Model.filteredTracks)
+                @foreach (var track in Model.trackComparables)
                 {
                     <tr>
                         <td>@track.Name</td>
-                        <td>@await Model.GetTrackUser(track)</td>
-                        <td>@await Model.GetTrackArtist(track)</td>
-                        <td>@await Model.GetTrackGenre(track)</td>
-                        <td>@await Model.GetTrackStyle(track)</td>
-                        <td>@await Model.GetTrackScoreByStat(track, Model.StatSelected)</td>
+                        <td>@track.UserName</td>
+                        <td>@track.ArtistName</td>
+                        <td>@track.GenreName</td>
+                        <td>@track.StyleName</td>
+                        <td>@Html.Raw(@Model.GetTrackComparableScoreByStat(track, Model.SelectedStat))</td>
                         <td><input type="button" value="View"/></td>
                         
                     </tr>

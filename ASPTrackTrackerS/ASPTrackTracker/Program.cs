@@ -17,7 +17,6 @@ namespace ASPTrackTracker
                 sqlConnectionName = "Default"
             });
             builder.Services.AddSingleton<IDataAccess, SqlDb>();
-            //builder.Services.AddSingleton<IDataManager, DataManager>();
             builder.Services.AddSingleton<ITrackData, TrackData>();
             builder.Services.AddSingleton<IUserData, UserData>();
             builder.Services.AddSingleton<IScoreData, ScoreData>();
