@@ -298,32 +298,25 @@ namespace ASPTrackTracker.Pages.Tracks
             switch (stat)
             {
                 case "Average":
-                    AverageComparer averageComparer = new AverageComparer();
-                    trackComparables.Sort(averageComparer);
+                    trackComparables.Sort(new AverageComparer());
                     break;
                 case "Affinity":
-                    AffinityComparer affinityComparer = new AffinityComparer();
-                    trackComparables.Sort(affinityComparer);
+                    trackComparables.Sort(new AffinityComparer());
                     break;
                 case "Creativity":
-                    CreativityComparer creativityComparer = new CreativityComparer();
-                    trackComparables.Sort(creativityComparer);
+                    trackComparables.Sort(new CreativityComparer());
                     break;
                 case "Complexity":
-                    ComplexityComparer complexityComparer = new ComplexityComparer();
-                    trackComparables.Sort(complexityComparer);
+                    trackComparables.Sort(new ComplexityComparer());
                     break;
                 case "Voices":
-                    VoicesComparer voicesComparer = new VoicesComparer();
-                    trackComparables.Sort(voicesComparer);
+                    trackComparables.Sort(new VoicesComparer());
                     break;
                 case "Lyrics":
-                    LyricsComparer lyricsComparer = new LyricsComparer();
-                    trackComparables.Sort(lyricsComparer);
+                    trackComparables.Sort(new LyricsComparer());
                     break;
                 case "Instrumental":
-                    InstrumentalComparer instrumentalComparer = new InstrumentalComparer();
-                    trackComparables.Sort(instrumentalComparer);
+                    trackComparables.Sort(new InstrumentalComparer());
                     break;
                 default:
                     throw new InvalidOperationException("Unhandled exception");
