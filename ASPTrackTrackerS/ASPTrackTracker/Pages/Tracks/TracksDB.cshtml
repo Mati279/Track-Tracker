@@ -67,7 +67,7 @@
                         <td>@track.ArtistName</td>
                         <td>@track.GenreName</td>
                         <td>@track.StyleName</td>
-                        <td>@Html.Raw(@Model.GetTrackComparableScoreByStat(track, Model.SelectedStat))</td>
+                        <td>@Html.Raw(track.GetScoreByStat(Model.SelectedStat) + " - - (" + track.Voted+ ")")</td>
                         <td><input type="button" value="View"/></td>
                         
                     </tr>

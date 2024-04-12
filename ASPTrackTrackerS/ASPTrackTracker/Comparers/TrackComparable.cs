@@ -1,4 +1,7 @@
 ﻿using DataLibrary.BL;
+using DataLibrary.Models;
+using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Reflection.Metadata.Ecma335;
 
 namespace ASPTrackTracker.Comparers
@@ -16,6 +19,7 @@ namespace ASPTrackTracker.Comparers
         public string GenreName { get; set; }
 
         public string StyleName { get; set; }
+        public int Voted { get; set; }
 
         public double AverageScore { get; set; }
         public double AffinityScore { get; set; }
@@ -35,35 +39,111 @@ namespace ASPTrackTracker.Comparers
             StyleName = styleName;
         }
 
-        public void GetScores(double affinity, double complexity, double creativity, double voices, double lyrics, double instrumental)
+        public void GetScores(List<ScoreModel> scores)
         {
-            AffinityScore = affinity;
-            ComplexityScore = complexity;
-            CreativityScore = creativity;
-            VoicesScore = voices;
-            LyricsScore = lyrics;
-            InstrumentalScore = instrumental;
+            List<ScoreModel> scoreModels = scores;
 
+            Voted = TimesVoted(scores);
+
+            foreach (ScoreModel score in scores)
+            {
+                switch (score.Stat)
+                {
+                    case "Affinity":
+                        AffinityScore = score.Value;
+                        break;
+                    case "Creativity":
+                        CreativityScore = score.Value;
+                        break;
+                    case "Complexity":
+                        ComplexityScore = score.Value;
+                        break;
+                    case "Voices":
+                        VoicesScore = score.Value;
+                        break;
+                    case "Lyrics":
+                        LyricsScore = score.Value;
+                        break;
+                    case "Instrumental":
+                        InstrumentalScore = score.Value;
+                        break;
+                    default:
+                        throw new InvalidOperationException("Unhandled exception");
+                }
+            }
             
 
-            AverageScore = (affinity + complexity + creativity + voices + lyrics + instrumental) / (6 - GetCount());
+            AverageScore = (AffinityScore + ComplexityScore + CreativityScore + VoicesScore + LyricsScore + InstrumentalScore) / (6 - GetCount());
 
             int GetCount()
             {
                 int zeroCount = 0;
 
-                if (voices == 0)
+       
+                if (VoicesScore == 0)
                     zeroCount++;
 
-                if (lyrics == 0)
+                if (LyricsScore == 0)
                     zeroCount++;
 
-                if (instrumental == 0)
+                if (InstrumentalScore == 0)
                     zeroCount++;
 
                 return zeroCount;
             }
         }
+        public string GetScoreByStat(string stat)
+        {
+            double score = 0;
 
+            switch (stat)
+            {
+                case "Average":
+                    score = this.AverageScore;
+                    break;
+                case "Affinity":
+                    score = this.AffinityScore;
+                    break;
+                case "Creativity":
+                    score = this.CreativityScore;
+                    break;
+                case "Complexity":
+                    score = this.ComplexityScore;
+                    break;
+                case "Voices":
+                    score = this.VoicesScore;
+                    break;
+                case "Lyrics":
+                    score = this.LyricsScore;
+                    break;
+                case "Instrumental":
+                    score = this.InstrumentalScore;
+                    break;
+                default:
+                    throw new InvalidOperationException("Unhandled exception");
+            }
+
+            double roundedScore = Math.Round(score, 1);
+
+            string resultString = roundedScore == 0 ? "- -" : roundedScore.ToString();
+            return resultString;
+        }
+
+        public int TimesVoted(List<ScoreModel> scores)
+        {
+            int voted = 0;
+            List<int> voters = new List<int>();
+            foreach (ScoreModel score in scores)
+            {
+                if (voters.Contains(score.UserId) == false)
+                {
+                    voters.Add(score.UserId);
+                    voted++;
+                }
+                    
+            }
+
+            return voted;
+        }
     }
 }
