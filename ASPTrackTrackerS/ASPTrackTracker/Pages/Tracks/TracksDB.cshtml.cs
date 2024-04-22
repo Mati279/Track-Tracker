@@ -19,12 +19,13 @@ namespace ASPTrackTracker.Pages.Tracks
 {
     public class TracksDBModel : PageModel
     {
+        private readonly SelectListsConfig selectListConfig;
         private readonly IUserData userData;
         private readonly ITrackData trackData;
         private readonly IArtistData artistData;
         private readonly IGenreData genreData;
         private readonly IStyleData styleData;
-        private readonly IScoreData ScoreData;
+        private readonly IScoreData scoreData;
         public List<SelectListItem> UserItems { get; set; }
         public List<SelectListItem> ArtistItems { get; set; }
         public List<SelectListItem> StyleItems { get; set; }
@@ -55,11 +56,12 @@ namespace ASPTrackTracker.Pages.Tracks
         [BindProperty(SupportsGet = true)]
         public string SelectedStat { get; set; } = "Average";
 
-        public TracksDBModel(ITrackData trackData, IArtistData artistData, IGenreData genreData, IStyleData styleData, IUserData userData, IScoreData scoreData)
+        public TracksDBModel(SelectListsConfig selectListConfig, ITrackData trackData, IArtistData artistData, IGenreData genreData, IStyleData styleData, IUserData userData, IScoreData scoreData)
         {
+            this.selectListConfig = selectListConfig;
             this.trackData = trackData;
             this.userData = userData;
-            ScoreData = scoreData;
+            this.scoreData = scoreData;
             this.artistData = artistData;
             this.genreData = genreData;
             this.styleData = styleData;
@@ -77,12 +79,12 @@ namespace ASPTrackTracker.Pages.Tracks
             StyleItems = new List<SelectListItem>();
             StatItems = new List<SelectListItem>();
 
-            FillSelectTrackHolder(UserItems, users);
-            FillSelectTrackHolder(ArtistItems, artists);
-            FillSelectTrackHolder(GenreItems, genres);
-            FillSelectTrackHolder(StyleItems, styles);
+            selectListConfig.FillSelectTrackHolder(UserItems, users);
+            selectListConfig.FillSelectTrackHolder(ArtistItems, artists);
+            selectListConfig.FillSelectTrackHolder(GenreItems, genres);
+            selectListConfig.FillSelectTrackHolder(StyleItems, styles);
 
-            FillSelectStats(StatItems);
+            selectListConfig.FillSelectStats(StatItems);
 
             await FilterTracks();
             await CreateComparables(filteredTracks);
@@ -103,27 +105,6 @@ namespace ASPTrackTracker.Pages.Tracks
             return RedirectToPage(selects);
         }
 
-        private void FillSelectTrackHolder<T>(List<SelectListItem> selectList, List<T> lista) where T : ITrackHolderModel
-        {
-            selectList.Insert(0, new SelectListItem { Value = "All", Text = "All" });
-            foreach (var i in lista)
-            {
-                var item = new SelectListItem { Value = i.Id.ToString(), Text = i.Name };
-                selectList.Add(item);
-            }
-        }
-
-        private void FillSelectStats(List<SelectListItem> selectList)
-        {
-            StatItems.Insert(0, new SelectListItem { Value = "Average", Text = "Average" });
-            StatItems.Insert(1, new SelectListItem { Value = "Affinity", Text = "Affinity" });
-            StatItems.Insert(2, new SelectListItem { Value = "Creativity", Text = "Creativity" });
-            StatItems.Insert(3, new SelectListItem { Value = "Complexity", Text = "Complexity" });
-            StatItems.Insert(4, new SelectListItem { Value = "Lyrics", Text = "Lyrics" });
-            StatItems.Insert(5, new SelectListItem { Value = "Voices", Text = "Voices" });
-            StatItems.Insert(6, new SelectListItem { Value = "Instrumental", Text = "Instrumental" });
-        }
-        
         private async Task FilterTracks()
         {
             allTracks = await trackData.GetAll<TrackModel>();
@@ -176,7 +157,7 @@ namespace ASPTrackTracker.Pages.Tracks
                 var artist = await artistData.GetById<ArtistModel>(track.ArtistId);
                 var genre = await genreData.GetById<GenreModel>(track.GenreId);
                 var style = await styleData.GetById<StyleModel>(track.StyleId);
-                var scores = await ScoreData.GetAll<ScoreModel>();
+                var scores = await scoreData.GetAll<ScoreModel>();
                 var trackScores = await GetTrackScores(track);
 
                 string name = track.Name;
@@ -228,7 +209,7 @@ namespace ASPTrackTracker.Pages.Tracks
 
         public async Task<List<ScoreModel>> GetTrackScores(TrackModel track)
         {
-            List<ScoreModel> allScores = await ScoreData.GetAll<ScoreModel>();
+            List<ScoreModel> allScores = await scoreData.GetAll<ScoreModel>();
 
             List<ScoreModel> trackScores = new List<ScoreModel>();
 

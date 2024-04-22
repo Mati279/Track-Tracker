@@ -1,0 +1,58 @@
+﻿@page
+@model ASPTrackTracker.Pages.TrackHolders.ArtistsDBModel
+@{
+    ViewData["Title"] = "Artists DB";
+}
+<h1>Artists DB</h1>
+<head>
+    <style>
+        .select :hover {
+            cursor: pointer;
+        }
+
+        .title {
+            text-align: center;
+        }
+
+        .tableDBH {
+            border-collapse: separate;
+            border-spacing: 10px; /* Espacio entre las celdas */
+            width: 100%; /* Ancho de la tabla */
+            padding: 10px; /* Espaciado alrededor del contenido de las celdas */
+            background-color: darkslategray;
+            text-decoration: bold;
+        }
+
+        .tableDBB {
+            border-collapse: separate;
+            border-spacing: 10px; /* Espacio entre las celdas */
+            width: 100%; /* Ancho de la tabla */
+            padding: 9px; /* Espaciado alrededor del contenido de las celdas */
+            background-color: lightsteelblue;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<form method="post">
+    <body>
+        <h1 class="title">Artists Data Base</h1>
+        <table class="tableDBH">
+            <thead>
+                <tr>
+                    <th><h2>Artist</h2></th>
+                    <th><h2><select asp-for="GenreId" asp-items="Model.GenreItems" class="form-control select"></select></h2></th>
+                    <th><h2><select asp-for="StyleId" asp-items="Model.StyleItems" class="form-control select"></select></h2></th>
+                    <th><h2><select asp-for="SelectedStat" asp-items="Model.StatItems" class="form-control select"></select></h2></th>
+                </tr>
+            </thead>
+            <thead>
+                <tr>
+                  
+                </tr>
+            </thead>
+            <tbody class="tableDBB">
+                
+            </tbody>
+        </table>
+    </body>
+</form>

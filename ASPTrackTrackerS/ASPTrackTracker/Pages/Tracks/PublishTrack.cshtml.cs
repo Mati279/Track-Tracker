@@ -30,7 +30,6 @@ namespace ASPTrackTracker.Pages.Tracks
             ArtistItems = new List<SelectListItem>();
             StyleItems = new List<SelectListItem>();
 
-
             List<ArtistModel> artists = await artistData.GetAll<ArtistModel>();
             List<StyleModel> styles = await styleData.GetAll<StyleModel>();
 

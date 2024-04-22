@@ -1,3 +1,4 @@
+using ASPTrackTracker.Pages;
 using DataLibrary;
 using DataLibrary.Data;
 using DataLibrary.Db;
@@ -23,6 +24,7 @@ namespace ASPTrackTracker
             builder.Services.AddSingleton<IArtistData, ArtistData>();
             builder.Services.AddSingleton<IGenreData, GenreData>();
             builder.Services.AddSingleton<IStyleData, StyleData>();
+            builder.Services.AddSingleton<SelectListsConfig, SelectListsConfig>();
 
             var app = builder.Build();
 
