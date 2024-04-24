@@ -3,9 +3,9 @@ using DataLibrary.Data;
 using DataLibrary.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace ASPTrackTracker.Pages
+namespace ASPTrackTracker.FillersAndFilters
 {
-    public class SelectListsConfig //Acá
+    public class SelectListsFiller
     {
         private readonly ITrackData trackData;
         private readonly IArtistData artistData;
@@ -14,7 +14,7 @@ namespace ASPTrackTracker.Pages
         private readonly IUserData userData;
         private readonly IScoreData scoreData;
 
-        public SelectListsConfig(ITrackData trackData, IArtistData artistData, IGenreData genreData, IStyleData styleData, IUserData userData, IScoreData scoreData)
+        public SelectListsFiller(ITrackData trackData, IArtistData artistData, IGenreData genreData, IStyleData styleData, IUserData userData, IScoreData scoreData)
         {
             this.trackData = trackData;
             this.artistData = artistData;

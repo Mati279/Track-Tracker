@@ -6,7 +6,7 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace ASPTrackTracker.Comparers
 {
-    public class TrackComparable
+    public class ComparableTrack
     {
         public string Name { get; set; }
 
@@ -29,7 +29,7 @@ namespace ASPTrackTracker.Comparers
         public double LyricsScore { get; set; }
         public double InstrumentalScore { get; set; }
 
-        public TrackComparable(string name, string link, string userName, string artistName, string genreName, string styleName)
+        public ComparableTrack(string name, string link, string userName, string artistName, string genreName, string styleName)
         {
             Name = name;
             Link = link;
@@ -39,9 +39,8 @@ namespace ASPTrackTracker.Comparers
             StyleName = styleName;
         }
 
-        public void GetScores(List<ScoreModel> scores)
+        public void GetComparableTrackScores(List<ScoreModel> scores)
         {
-            List<ScoreModel> scoreModels = scores;
 
             Voted = TimesVoted(scores);
 

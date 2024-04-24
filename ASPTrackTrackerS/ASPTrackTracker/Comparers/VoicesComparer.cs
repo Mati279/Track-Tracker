@@ -1,9 +1,9 @@
 ﻿namespace ASPTrackTracker.Comparers
 {
-    internal class VoicesComparer : IComparer<TrackComparable>
+    internal class VoicesComparer : IComparer<ComparableTrack>
     {
 
-        public int Compare(TrackComparable? x, TrackComparable? y)
+        public int Compare(ComparableTrack? x, ComparableTrack? y)
         {
 
             return y.VoicesScore.CompareTo(x.VoicesScore);

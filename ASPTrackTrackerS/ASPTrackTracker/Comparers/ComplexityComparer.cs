@@ -1,9 +1,9 @@
 ﻿namespace ASPTrackTracker.Comparers
 {
-    internal class ComplexityComparer : IComparer<TrackComparable>
+    internal class ComplexityComparer : IComparer<ComparableTrack>
     {
 
-        public int Compare(TrackComparable? x, TrackComparable? y)
+        public int Compare(ComparableTrack? x, ComparableTrack? y)
         {
 
             return y.ComplexityScore.CompareTo(x.ComplexityScore);

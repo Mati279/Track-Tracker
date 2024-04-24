@@ -1,4 +1,5 @@
 using ASPTrackTracker.Comparers;
+using ASPTrackTracker.FillersAndFilters;
 using DataLibrary.BL;
 using DataLibrary.Data;
 using DataLibrary.Db;
@@ -19,9 +20,10 @@ namespace ASPTrackTracker.Pages.Tracks
 {
     public class TracksDBModel : PageModel
     {
-        private readonly SelectListsConfig selectListConfig;
+        private readonly TracksFilter tracksFilter;
+        private readonly SelectListsFiller selectListConfig;
+        private readonly ComparableTrackCreator comparableTrackCreator;
         private readonly IUserData userData;
-        private readonly ITrackData trackData;
         private readonly IArtistData artistData;
         private readonly IGenreData genreData;
         private readonly IStyleData styleData;
@@ -38,7 +40,7 @@ namespace ASPTrackTracker.Pages.Tracks
         public List<TrackModel> filteredTracks { get; set; }
 
         [BindProperty]
-        public List<TrackComparable> trackComparables { get; set; }
+        public List<ComparableTrack> comparableTracks { get; set; }
 
 
         [BindProperty(SupportsGet = true)]
@@ -56,10 +58,12 @@ namespace ASPTrackTracker.Pages.Tracks
         [BindProperty(SupportsGet = true)]
         public string SelectedStat { get; set; } = "Average";
 
-        public TracksDBModel(SelectListsConfig selectListConfig, ITrackData trackData, IArtistData artistData, IGenreData genreData, IStyleData styleData, IUserData userData, IScoreData scoreData)
+        public TracksDBModel(TracksFilter tracksFilter, SelectListsFiller selectListConfig, ComparableTrackCreator comparableTrackCreator,
+                            IArtistData artistData, IGenreData genreData, IStyleData styleData, IUserData userData, IScoreData scoreData)
         {
+            this.tracksFilter = tracksFilter;
             this.selectListConfig = selectListConfig;
-            this.trackData = trackData;
+            this.comparableTrackCreator = comparableTrackCreator;
             this.userData = userData;
             this.scoreData = scoreData;
             this.artistData = artistData;
@@ -86,8 +90,8 @@ namespace ASPTrackTracker.Pages.Tracks
 
             selectListConfig.FillSelectStats(StatItems);
 
-            await FilterTracks();
-            await CreateComparables(filteredTracks);
+            filteredTracks = await tracksFilter.FilterTracks(UserId, ArtistId, GenreId, StyleId);
+            comparableTracks = await comparableTrackCreator.CreateComparableTracks(filteredTracks);
         }
 
         public async Task<IActionResult> OnPost()
@@ -105,102 +109,30 @@ namespace ASPTrackTracker.Pages.Tracks
             return RedirectToPage(selects);
         }
 
-        private async Task FilterTracks()
-        {
-            allTracks = await trackData.GetAll<TrackModel>();
-
-            bool filtered;
-            filteredTracks = new List<TrackModel>();
-
-            foreach (TrackModel track in allTracks)
-            {
-                if (UserId != 0 && UserId != track.UserId)
-                {
-                    filtered = false;
-                    continue;
-                }
-                else if (ArtistId != 0 && ArtistId != track.ArtistId)
-                {
-                    filtered = false;
-                    continue;
-                }
-                else if (GenreId != 0 && GenreId != track.GenreId)
-                {
-                    filtered = false;
-                    continue;
-                }
-                else if (StyleId != 0 && StyleId != track.StyleId)
-                {
-                    filtered = false;
-                    continue;
-                }
-                else
-                {
-                    filtered = true;
-                }
-
-                if(filtered == true)
-                {
-                    filteredTracks.Add(track);
-                }
-            }
-        }
-
-        private async Task CreateComparables(List<TrackModel> filteredTracks)
-        {
-            trackComparables = new List<TrackComparable>();
-
-            foreach(var track in filteredTracks)
-            {
-
-                var user = await userData.GetById<UserModel>(track.UserId);
-                var artist = await artistData.GetById<ArtistModel>(track.ArtistId);
-                var genre = await genreData.GetById<GenreModel>(track.GenreId);
-                var style = await styleData.GetById<StyleModel>(track.StyleId);
-                var scores = await scoreData.GetAll<ScoreModel>();
-                var trackScores = await GetTrackScores(track);
-
-                string name = track.Name;
-                string link = track.Link;
-                string userName = user.Name;
-                string artistName = artist.Name;
-                string genreName = genre.Name;
-                string styleName = style.Name;
-
-                var trackComparable = new TrackComparable(name, link, userName, artistName, genreName, styleName);
-
-                trackComparable.GetScores(trackScores);
-
-                trackComparables.Add(trackComparable);
-
-            }
-                OrderTracks(SelectedStat);
-        }
-
         public void OrderTracks(string stat)
         {
             switch (stat)
             {
                 case "Average":
-                    trackComparables.Sort(new AverageComparer());
+                    comparableTracks.Sort(new AverageComparer());
                     break;
                 case "Affinity":
-                    trackComparables.Sort(new AffinityComparer());
+                    comparableTracks.Sort(new AffinityComparer());
                     break;
                 case "Creativity":
-                    trackComparables.Sort(new CreativityComparer());
+                    comparableTracks.Sort(new CreativityComparer());
                     break;
                 case "Complexity":
-                    trackComparables.Sort(new ComplexityComparer());
+                    comparableTracks.Sort(new ComplexityComparer());
                     break;
                 case "Voices":
-                    trackComparables.Sort(new VoicesComparer());
+                    comparableTracks.Sort(new VoicesComparer());
                     break;
                 case "Lyrics":
-                    trackComparables.Sort(new LyricsComparer());
+                    comparableTracks.Sort(new LyricsComparer());
                     break;
                 case "Instrumental":
-                    trackComparables.Sort(new InstrumentalComparer());
+                    comparableTracks.Sort(new InstrumentalComparer());
                     break;
                 default:
                     throw new InvalidOperationException("Unhandled exception");
@@ -213,9 +145,9 @@ namespace ASPTrackTracker.Pages.Tracks
 
             List<ScoreModel> trackScores = new List<ScoreModel>();
 
-            foreach(ScoreModel score in allScores)
+            foreach (ScoreModel score in allScores)
             {
-                if(score.TrackId == track.Id )
+                if (score.TrackId == track.Id)
                 {
                     trackScores.Add(score);
                 }

@@ -1,4 +1,6 @@
-using ASPTrackTracker.Pages;
+using ASPTrackTracker.Comparers;
+using ASPTrackTracker.FillersAndFilters;
+using ASPTrackTracker.ScoreHelpers;
 using DataLibrary;
 using DataLibrary.Data;
 using DataLibrary.Db;
@@ -24,7 +26,12 @@ namespace ASPTrackTracker
             builder.Services.AddSingleton<IArtistData, ArtistData>();
             builder.Services.AddSingleton<IGenreData, GenreData>();
             builder.Services.AddSingleton<IStyleData, StyleData>();
-            builder.Services.AddSingleton<SelectListsConfig, SelectListsConfig>();
+
+
+            builder.Services.AddSingleton<SelectListsFiller, SelectListsFiller>();
+            builder.Services.AddSingleton<TracksFilter, TracksFilter>();
+            builder.Services.AddSingleton<ComparableTrackCreator, ComparableTrackCreator>();
+            builder.Services.AddSingleton<TrackScoresGetter, TrackScoresGetter>();
 
             var app = builder.Build();
 

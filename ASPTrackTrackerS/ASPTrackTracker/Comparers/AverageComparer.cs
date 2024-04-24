@@ -2,10 +2,10 @@
 
 namespace ASPTrackTracker.Comparers
 {
-    internal class AverageComparer : IComparer<TrackComparable>
+    internal class AverageComparer : IComparer<ComparableTrack>
     {
         
-        public int Compare(TrackComparable? x, TrackComparable? y)
+        public int Compare(ComparableTrack? x, ComparableTrack? y)
         {
 
             return y.AverageScore.CompareTo(x.AverageScore);
