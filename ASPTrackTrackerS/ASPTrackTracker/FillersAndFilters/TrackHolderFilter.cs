@@ -1,32 +1,36 @@
-﻿using DataLibrary.BL;
-using DataLibrary.Data;
+﻿using DataLibrary.Data;
 using DataLibrary.Models;
 
 namespace ASPTrackTracker.FillersAndFilters
 {
-    public class TracksFilter
+    public class TrackHolderFilter
     {
-        private readonly ITrackData trackData;
+        private readonly IArtistData artistData;
 
-        public TracksFilter(ITrackData trackData)
+        public TrackHolderFilter(IArtistData artistData)
         {
-            this.trackData = trackData;
+            this.artistData = artistData;
         }
 
-        public async Task<List<TrackModel>> FilterTracks(int UserId, int ArtistId, int GenreId, int StyleId)
+
+
+        public async Task<List<TrackModel>> FilterArtists(int UserId, int StyleId)
         {
-            List<TrackModel> allTracks = new List<TrackModel>();
-            allTracks = await trackData.GetAll<TrackModel>();
+            List<ArtistModel> allArtists = new List<ArtistModel>();
+            allArtists = await artistData.GetAll<ArtistModel>();
 
 
-            List<TrackModel> filteredTracks = new List<TrackModel>();
+            List<ArtistModel> filteredArtists = new List<ArtistModel>();
 
             bool filtered;
-            filteredTracks = new List<TrackModel>();
+            filteredArtists = new List<ArtistModel>();
 
-            foreach (TrackModel track in allTracks)
+            foreach (ArtistModel artist in allArtists)
             {
-                if (UserId != 0 && UserId != track.UserId)
+                //Acá.
+
+
+                if (UserId != 0 && UserId != artist.UserId)
                 {
                     filtered = false;
                     continue;
@@ -56,11 +60,7 @@ namespace ASPTrackTracker.FillersAndFilters
                     filteredTracks.Add(track);
                 }
             }
-
             return filteredTracks;
         }
-
-
-
     }
 }
