@@ -11,10 +11,16 @@ namespace ASPTrackTracker.Pages.TrackHolders
     public class ArtistsDBModel : PageModel
     {
         private readonly SelectListsFiller selectListFiller;
+        private readonly TrackHolderFilter trackHolderFilter;
         private readonly ITrackData trackData;
         private readonly IArtistData artistData;
         private readonly IGenreData genreData;
         private readonly IStyleData styleData;
+
+        public List<ArtistModel> allArtists { get; set; }
+
+        [BindProperty]
+        public List<ArtistModel> filteredArtists { get; set; }
 
         public List<SelectListItem> StyleItems { get; set; }
         public List<SelectListItem> GenreItems { get; set; }
@@ -29,10 +35,11 @@ namespace ASPTrackTracker.Pages.TrackHolders
         [BindProperty(SupportsGet = true)]
         public string SelectedStat { get; set; } = "Average";
 
-        public ArtistsDBModel(SelectListsFiller selectListFiller, 
+        public ArtistsDBModel(SelectListsFiller selectListFiller, TrackHolderFilter trackHolderFilter, 
                               ITrackData trackData, IArtistData artistData, IGenreData genreData, IStyleData styleData)
         {
             this.selectListFiller = selectListFiller;
+            this.trackHolderFilter = trackHolderFilter;
             this.trackData = trackData;
             this.artistData = artistData;
             this.genreData = genreData;
@@ -51,18 +58,21 @@ namespace ASPTrackTracker.Pages.TrackHolders
             selectListFiller.FillSelectTrackHolder(GenreItems, genres);
             selectListFiller.FillSelectTrackHolder(StyleItems, styles);
             selectListFiller.FillSelectStats(StatItems);
+
+
+            filteredArtists = await trackHolderFilter.FilterArtists(GenreId, StyleId);
         }
 
         public async Task<IActionResult> OnPost()
         {
-            var select = new {  };
+            var select = new {GenreId, StyleId, SelectedStat};
 
             return RedirectToPage(select);
         }
 
         public async Task<IActionResult> OnPostReset()
         {
-            var selects = new { UserId = 0, StatSelected = "Average", StyleId = 0, GenreId = 0, ArtistId = 0 };
+            var selects = new {GenreId = 0, StyleId = 0, StatSelected = "Average" };
 
             return RedirectToPage(selects);
         }

@@ -33,6 +33,7 @@ namespace ASPTrackTracker
             builder.Services.AddSingleton<ComparableTrackCreator, ComparableTrackCreator>();
             builder.Services.AddSingleton<TrackScoresGetter, TrackScoresGetter>();
             builder.Services.AddSingleton<ScoreSorter, ScoreSorter>();
+            builder.Services.AddSingleton<TrackHolderFilter, TrackHolderFilter>();
 
             var app = builder.Build();
 

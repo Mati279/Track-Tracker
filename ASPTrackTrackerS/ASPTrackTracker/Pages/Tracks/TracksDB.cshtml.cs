@@ -21,7 +21,6 @@ namespace ASPTrackTracker.Pages.Tracks
         private readonly IStyleData styleData;
         private readonly IScoreData scoreData;
 
-
         public List<SelectListItem> UserItems { get; set; }
         public List<SelectListItem> ArtistItems { get; set; }
         public List<SelectListItem> StyleItems { get; set; }
@@ -50,11 +49,11 @@ namespace ASPTrackTracker.Pages.Tracks
         [BindProperty(SupportsGet = true)]
         public string SelectedStat { get; set; } = "Average";
 
-        public TracksDBModel(TrackFilter tracksFilter, SelectListsFiller selectListFiller, ComparableTrackCreator comparableTrackCreator, ScoreSorter scoreSorter,
+        public TracksDBModel(TrackFilter tracksFilter, SelectListsFiller selectListConfig, ComparableTrackCreator comparableTrackCreator, ScoreSorter scoreSorter,
                             IArtistData artistData, IGenreData genreData, IStyleData styleData, IUserData userData, IScoreData scoreData)
         {
             this.tracksFilter = tracksFilter;
-            this.selectListConfig = selectListFiller;
+            this.selectListConfig = selectListConfig;
             this.comparableTrackCreator = comparableTrackCreator;
             this.scoreSorter = scoreSorter;
             this.userData = userData;
@@ -83,7 +82,7 @@ namespace ASPTrackTracker.Pages.Tracks
 
             selectListConfig.FillSelectStats(StatItems);
 
-            filteredTracks = await tracksFilter.FilterTrack(UserId, ArtistId, GenreId, StyleId);
+            filteredTracks = await tracksFilter.FilterTracks(UserId, ArtistId, GenreId, StyleId);
             comparableTracks = await comparableTrackCreator.CreateComparableTracks(filteredTracks);
 
             scoreSorter.SortTracks(comparableTracks, SelectedStat);
@@ -103,8 +102,6 @@ namespace ASPTrackTracker.Pages.Tracks
 
             return RedirectToPage(selects);
         }
-
-        
 
         //public async Task GetRandomScores(TrackModel track)
         //{

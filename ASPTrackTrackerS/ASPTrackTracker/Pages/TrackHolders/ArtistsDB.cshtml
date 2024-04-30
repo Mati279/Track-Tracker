@@ -40,19 +40,43 @@
             <thead>
                 <tr>
                     <th><h2>Artist</h2></th>
-                    <th><h2><select asp-for="GenreId" asp-items="Model.GenreItems" class="form-control select"></select></h2></th>
-                    <th><h2><select asp-for="StyleId" asp-items="Model.StyleItems" class="form-control select"></select></h2></th>
-                    <th><h2><select asp-for="SelectedStat" asp-items="Model.StatItems" class="form-control select"></select></h2></th>
+                    <th><h2>Genre</h2></th>
+                    <th><h2>Style</h2></th>
+                    <th><h2>Stat</h2></th>
                 </tr>
             </thead>
             <thead>
                 <tr>
-                  
-                </tr>
+                    <th><button type="submit">Filter</button></th>
+                    <th><h2><select asp-for="GenreId" asp-items="Model.GenreItems" class="form-control select"></select></h2></th>
+                    <th><h2><select asp-for="StyleId" asp-items="Model.StyleItems" class="form-control select"></select></h2></th>
+                    <th><h2><select asp-for="SelectedStat" asp-items="Model.StatItems" class="form-control select"></select></h2></th>
+                  </tr>
             </thead>
             <tbody class="tableDBB">
-                
+                @foreach (var artist in Model.filteredArtists)
+                {
+                    <tr>
+                        <td>@artist.Name</td>
+                        @* <td>@track.UserName</td>
+                        <td>@track.ArtistName</td>
+                        <td>@artist.GenreName</td>
+                        <td>@track.StyleName</td>
+                        <td title="@track.Voted votes.">@Html.Raw(track.GetScoreByStat(Model.SelectedStat))</td>
+                        <td><input type="button" value="View" /></td> *@
+
+                    </tr>
+                }
+                @if (Model.filteredArtists.Count < 1)
+                {
+                    <tr>
+                        <td>No tracks match current criteria.</td>
+                    </tr>
+                }
             </tbody>
         </table>
     </body>
+</form>
+<form method="postReset">
+    <th><button type="submit">Reset Filters</button></th>
 </form>

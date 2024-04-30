@@ -12,7 +12,7 @@ namespace ASPTrackTracker.FillersAndFilters
             this.trackData = trackData;
         }
 
-        public async Task<List<TrackModel>> FilterTrack(int UserId, int ArtistId, int GenreId, int StyleId)
+        public async Task<List<TrackModel>> FilterTracks(int UserId, int ArtistId, int GenreId, int StyleId)
         {
             List<TrackModel> allTracks = new List<TrackModel>();
             allTracks = await trackData.GetAll<TrackModel>();
