@@ -4,7 +4,7 @@ using DataLibrary.Models;
 
 namespace ASPTrackTracker.Comparers
 {
-    public class ComparableTrackCreator
+    public class ComparablesCreator
     {
         private readonly TrackScoresGetter tracksScoresGetter;
         private readonly IUserData userData;
@@ -12,7 +12,7 @@ namespace ASPTrackTracker.Comparers
         private readonly IGenreData genreData;
         private readonly IStyleData styleData;
 
-        public ComparableTrackCreator(TrackScoresGetter trackScoresGetter, IUserData userData, IArtistData artistData, IGenreData genreData, IStyleData styleData)
+        public ComparablesCreator(TrackScoresGetter trackScoresGetter, IUserData userData, IArtistData artistData, IGenreData genreData, IStyleData styleData)
         {
             this.tracksScoresGetter = trackScoresGetter;
             this.userData = userData;
@@ -42,6 +42,33 @@ namespace ASPTrackTracker.Comparers
                 string styleName = style.Name;
 
                 ComparableTrack comparableTrack = new ComparableTrack(name, link, userName, artistName, genreName, styleName);
+
+                comparableTrack.GetComparableTrackScores(trackScores);
+
+                comparableTracks.Add(comparableTrack);
+            }
+            //OrderTracks(SelectedStat);
+            return comparableTracks;
+        }
+
+        public async Task<List<ComparableTrackHolder>> CreateComparableTrackHolder(List<ITrackHolderModel> filteredTrackHolders)
+        {
+            List<ITrackHolderModel> comparableTrackHolders = new List<ITrackHolderModel>();
+
+            foreach (var trackHolder in filteredTrackHolders)
+            {
+
+                var artist = await artistData.GetById<ArtistModel>(trackHolder.ArtistId);
+                var genre = await genreData.GetById<GenreModel>(trackHolder.GenreId);
+                var style = await styleData.GetById<StyleModel>(trackHolder.StyleId);
+                var trackScores = await tracksScoresGetter.GetTrackScores(trackHolder);
+
+                string name = trackHolder.Name;
+                string artistName = trackHolder.Artist;
+                string genreName = genre.Name;
+                string styleName = style.Name;
+
+                ComparableTrackHolder comparableTrack = new ComparableTrackHolder(name, artistName, genreName, styleName);
 
                 comparableTrack.GetComparableTrackScores(trackScores);
 

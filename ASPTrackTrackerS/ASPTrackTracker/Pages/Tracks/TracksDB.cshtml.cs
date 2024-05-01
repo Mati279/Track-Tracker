@@ -13,7 +13,7 @@ namespace ASPTrackTracker.Pages.Tracks
     {
         private readonly TrackFilter tracksFilter;
         private readonly SelectListsFiller selectListConfig;
-        private readonly ComparableTrackCreator comparableTrackCreator;
+        private readonly ComparablesCreator comparableTrackCreator;
         private readonly ScoreSorter scoreSorter;
         private readonly IUserData userData;
         private readonly IArtistData artistData;
@@ -49,7 +49,7 @@ namespace ASPTrackTracker.Pages.Tracks
         [BindProperty(SupportsGet = true)]
         public string SelectedStat { get; set; } = "Average";
 
-        public TracksDBModel(TrackFilter tracksFilter, SelectListsFiller selectListConfig, ComparableTrackCreator comparableTrackCreator, ScoreSorter scoreSorter,
+        public TracksDBModel(TrackFilter tracksFilter, SelectListsFiller selectListConfig, ComparablesCreator comparableTrackCreator, ScoreSorter scoreSorter,
                             IArtistData artistData, IGenreData genreData, IStyleData styleData, IUserData userData, IScoreData scoreData)
         {
             this.tracksFilter = tracksFilter;

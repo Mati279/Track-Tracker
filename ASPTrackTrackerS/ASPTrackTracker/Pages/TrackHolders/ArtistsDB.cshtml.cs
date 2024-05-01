@@ -21,7 +21,6 @@ namespace ASPTrackTracker.Pages.TrackHolders
 
         [BindProperty]
         public List<ArtistModel> filteredArtists { get; set; }
-
         public List<SelectListItem> StyleItems { get; set; }
         public List<SelectListItem> GenreItems { get; set; }
         public List<SelectListItem> StatItems { get; set; }
@@ -56,7 +55,6 @@ namespace ASPTrackTracker.Pages.TrackHolders
             List<StyleModel> styles = await styleData.GetAll<StyleModel>();
 
             selectListFiller.FillSelectTrackHolder(GenreItems, genres);
-            selectListFiller.FillSelectTrackHolder(StyleItems, styles);
             selectListFiller.FillSelectStats(StatItems);
 
 

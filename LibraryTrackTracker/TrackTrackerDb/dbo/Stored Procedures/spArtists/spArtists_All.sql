@@ -4,7 +4,7 @@ Begin
 
 	set nocount on; 
 
-	Select [Id], [Name]  
+	Select [Id], [Name], [GenreId]  
 	from [dbo].[Artists]
 END
 

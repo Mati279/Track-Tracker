@@ -1,7 +1,7 @@
 ﻿@page
 @model ASPTrackTracker.Pages.TrackHolders.ArtistsDBModel
 @{
-    ViewData["Title"] = "Artists DB";
+    ViewData["Title"] = "Artists Rating";
 }
 <h1>Artists DB</h1>
 <head>
@@ -35,7 +35,7 @@
 </head>
 <form method="post">
     <body>
-        <h1 class="title">Artists Data Base</h1>
+        <h1 class="title">Artists Rating</h1>
         <table class="tableDBH">
             <thead>
                 <tr>
@@ -57,20 +57,20 @@
                 @foreach (var artist in Model.filteredArtists)
                 {
                     <tr>
-                        <td>@artist.Name</td>
-                        @* <td>@track.UserName</td>
+                        <td><strong>@Html.Raw(@Model.filteredArtists.IndexOf(artist)+1)</strong> - @artist.Name</td>
+                        <td>@await </td>
                         <td>@track.ArtistName</td>
                         <td>@artist.GenreName</td>
                         <td>@track.StyleName</td>
                         <td title="@track.Voted votes.">@Html.Raw(track.GetScoreByStat(Model.SelectedStat))</td>
-                        <td><input type="button" value="View" /></td> *@
+                        <td><input type="button" value="View" /></td>
 
                     </tr>
                 }
                 @if (Model.filteredArtists.Count < 1)
                 {
                     <tr>
-                        <td>No tracks match current criteria.</td>
+                        <td>No artists match current criteria.</td>
                     </tr>
                 }
             </tbody>

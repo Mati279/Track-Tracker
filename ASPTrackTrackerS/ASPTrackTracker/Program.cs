@@ -30,7 +30,7 @@ namespace ASPTrackTracker
 
             builder.Services.AddSingleton<SelectListsFiller, SelectListsFiller>();
             builder.Services.AddSingleton<TrackFilter, TrackFilter>();
-            builder.Services.AddSingleton<ComparableTrackCreator, ComparableTrackCreator>();
+            builder.Services.AddSingleton<ComparablesCreator, ComparablesCreator>();
             builder.Services.AddSingleton<TrackScoresGetter, TrackScoresGetter>();
             builder.Services.AddSingleton<ScoreSorter, ScoreSorter>();
             builder.Services.AddSingleton<TrackHolderFilter, TrackHolderFilter>();
