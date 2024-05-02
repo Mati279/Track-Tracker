@@ -2,6 +2,7 @@
 using ASPTrackTracker.FillersAndFilters;
 using DataLibrary.Data;
 using DataLibrary.Models;
+using System.Reflection.Metadata.Ecma335;
 
 namespace ASPTrackTracker.ScoreHelpers
 {
@@ -49,7 +50,6 @@ namespace ASPTrackTracker.ScoreHelpers
                     artistScores.Add(score);
                 }
             }
-
             return artistScores;
         }
 
@@ -83,7 +83,6 @@ namespace ASPTrackTracker.ScoreHelpers
                         throw new InvalidOperationException("Unhandled exception");
                 }
             }
-
 
             comparableTrack.AverageScore = (comparableTrack.AffinityScore + comparableTrack.ComplexityScore + comparableTrack.CreativityScore + comparableTrack.VoicesScore + comparableTrack.LyricsScore + comparableTrack.InstrumentalScore) / (6 - GetCount());
 
@@ -123,32 +122,62 @@ namespace ASPTrackTracker.ScoreHelpers
 
         public void SetComparableArtistScores(ComparableArtist comparableArtist, List<ScoreModel> artistScores)
         {
+            int affinityCount = 0;
+            int creativityCount = 0;
+            int complexityCount = 0;
+            int voicesCount = 0;
+            int lyricsCount = 0;
+            int instrumentalCount = 0;
+
+           
             foreach (ScoreModel score in artistScores)
             {
-                switch (score.Stat)
+                if (score.Value != 0)
                 {
-                    case "Affinity":
-                        comparableArtist.AffinityScore += score.Value;
-                        break;
-                    case "Creativity":
-                        comparableArtist.CreativityScore += score.Value;
-                        break;
-                    case "Complexity":
-                        comparableArtist.ComplexityScore += score.Value;
-                        break;
-                    case "Voices":
-                        comparableArtist.VoicesScore += score.Value;
-                        break;
-                    case "Lyrics":
-                        comparableArtist.LyricsScore += score.Value;
-                        break;
-                    case "Instrumental":
-                        comparableArtist.InstrumentalScore += score.Value;
-                        break;
-                    default:
-                        throw new InvalidOperationException("Unhandled exception");
+                    switch (score.Stat)
+                    {
+                        case "Affinity":
+                            affinityCount++;
+                            comparableArtist.AffinityScore += score.Value;
+                            break;
+                        case "Creativity":
+                            creativityCount++;
+                            comparableArtist.CreativityScore += score.Value;
+                            break;
+                        case "Complexity":
+                            complexityCount++;
+                            comparableArtist.ComplexityScore += score.Value;
+                            break;
+                        case "Voices":
+                            voicesCount++;
+                            comparableArtist.VoicesScore += score.Value;
+                            break;
+                        case "Lyrics":
+                            lyricsCount++;
+                            comparableArtist.LyricsScore += score.Value;
+                            break;
+                        case "Instrumental":
+                            instrumentalCount++;
+                            comparableArtist.InstrumentalScore += score.Value;
+                            break;
+                        default:
+                            throw new InvalidOperationException("Unhandled exception");
+                    }
                 }
             }
+
+            comparableArtist.AffinityScore /= affinityCount;
+            comparableArtist.CreativityScore /= creativityCount;
+            comparableArtist.ComplexityScore /= complexityCount;
+
+            if(voicesCount != 0)
+                comparableArtist.VoicesScore /= voicesCount;
+
+            if(lyricsCount != 0)
+                comparableArtist.LyricsScore /= lyricsCount;
+
+            if(instrumentalCount != 0)
+                comparableArtist.InstrumentalScore /= instrumentalCount;
 
             comparableArtist.AverageScore = (comparableArtist.AffinityScore + comparableArtist.ComplexityScore + comparableArtist.CreativityScore + comparableArtist.VoicesScore + comparableArtist.LyricsScore + comparableArtist.InstrumentalScore) / (6 - GetCount());
 
