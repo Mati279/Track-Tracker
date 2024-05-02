@@ -2,7 +2,7 @@
 
 namespace ASPTrackTracker.ScoreHelpers
 {
-    public class ScoreSorter
+    public class ScoresSorter
     {
 
         public void SortTracks(List<ComparableTrack> comparableTracks, string stat)

@@ -40,8 +40,8 @@
             <thead>
                 <tr>
                     <th><h2>Artist</h2></th>
-                    <th><h2>Genre</h2></th>
-                    <th><h2>Style</h2></th>
+                    <th><h2>Artist Genre</h2></th>
+                    <th><h2>Tracks Style</h2></th>
                     <th><h2>Stat</h2></th>
                 </tr>
             </thead>
@@ -54,23 +54,20 @@
                   </tr>
             </thead>
             <tbody class="tableDBB">
-                @foreach (var artist in Model.filteredArtists)
+                @foreach (var artist in Model.comparableArtists)
                 {
                     <tr>
-                        <td><strong>@Html.Raw(@Model.filteredArtists.IndexOf(artist)+1)</strong> - @artist.Name</td>
-                        <td>@await </td>
-                        <td>@track.ArtistName</td>
-                        <td>@artist.GenreName</td>
-                        <td>@track.StyleName</td>
-                        <td title="@track.Voted votes.">@Html.Raw(track.GetScoreByStat(Model.SelectedStat))</td>
+                        <td><strong>@Html.Raw(@Model.comparableArtists.IndexOf(artist) + 1)</strong> - @artist.Name</td>
+                        <td>@artist.Genre</td>
+                        <td>Filtering by @Model.StyleId</td>
+                        <td>@Html.Raw(artist.GetScoreByStat(Model.SelectedStat))</td>
                         <td><input type="button" value="View" /></td>
-
                     </tr>
                 }
                 @if (Model.filteredArtists.Count < 1)
                 {
                     <tr>
-                        <td>No artists match current criteria.</td>
+                        <td>No matches with the current criteria.</td>
                     </tr>
                 }
             </tbody>

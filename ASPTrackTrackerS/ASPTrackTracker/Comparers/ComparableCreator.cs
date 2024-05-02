@@ -1,4 +1,5 @@
 ﻿using ASPTrackTracker.ScoreHelpers;
+using DataLibrary.BL;
 using DataLibrary.Data;
 using DataLibrary.Models;
 
@@ -6,15 +7,15 @@ namespace ASPTrackTracker.Comparers
 {
     public class ComparablesCreator
     {
-        private readonly TrackScoresGetter tracksScoresGetter;
+        private readonly ScoresManager scoresManager;
         private readonly IUserData userData;
         private readonly IArtistData artistData;
         private readonly IGenreData genreData;
         private readonly IStyleData styleData;
 
-        public ComparablesCreator(TrackScoresGetter trackScoresGetter, IUserData userData, IArtistData artistData, IGenreData genreData, IStyleData styleData)
+        public ComparablesCreator(ScoresManager scoresManager, IUserData userData, IArtistData artistData, IGenreData genreData, IStyleData styleData)
         {
-            this.tracksScoresGetter = trackScoresGetter;
+            this.scoresManager = scoresManager;
             this.userData = userData;
             this.artistData = artistData;
             this.genreData = genreData;
@@ -32,7 +33,8 @@ namespace ASPTrackTracker.Comparers
                 var artist = await artistData.GetById<ArtistModel>(track.ArtistId);
                 var genre = await genreData.GetById<GenreModel>(track.GenreId);
                 var style = await styleData.GetById<StyleModel>(track.StyleId);
-                var trackScores = await tracksScoresGetter.GetTrackScores(track);
+
+                var trackScores = await scoresManager.GetTrackScores(track);
 
                 string name = track.Name;
                 string link = track.Link;
@@ -43,7 +45,7 @@ namespace ASPTrackTracker.Comparers
 
                 ComparableTrack comparableTrack = new ComparableTrack(name, link, userName, artistName, genreName, styleName);
 
-                comparableTrack.GetComparableTrackScores(trackScores);
+                scoresManager.SetComparableTrackScores(comparableTrack, trackScores);
 
                 comparableTracks.Add(comparableTrack);
             }
@@ -51,32 +53,29 @@ namespace ASPTrackTracker.Comparers
             return comparableTracks;
         }
 
-        public async Task<List<ComparableTrackHolder>> CreateComparableTrackHolder(List<ITrackHolderModel> filteredTrackHolders)
+        public async Task<List<ComparableArtist>> CreateComparableArtists(List<ArtistModel> filteredArtists)
         {
-            List<ITrackHolderModel> comparableTrackHolders = new List<ITrackHolderModel>();
+            List<ComparableArtist> comparableArtists = new List<ComparableArtist>();
 
-            foreach (var trackHolder in filteredTrackHolders)
+            foreach (var artist in filteredArtists)
             {
+                var genre = await genreData.GetById<GenreModel>(artist.GenreId);
 
-                var artist = await artistData.GetById<ArtistModel>(trackHolder.ArtistId);
-                var genre = await genreData.GetById<GenreModel>(trackHolder.GenreId);
-                var style = await styleData.GetById<StyleModel>(trackHolder.StyleId);
-                var trackScores = await tracksScoresGetter.GetTrackScores(trackHolder);
-
-                string name = trackHolder.Name;
-                string artistName = trackHolder.Artist;
+                string name = artist.Name;
                 string genreName = genre.Name;
-                string styleName = style.Name;
 
-                ComparableTrackHolder comparableTrack = new ComparableTrackHolder(name, artistName, genreName, styleName);
+                var artistScores = await scoresManager.GetArtistScores(artist);
 
-                comparableTrack.GetComparableTrackScores(trackScores);
 
-                comparableTracks.Add(comparableTrack);
+                ComparableArtist comparableArtist = new ComparableArtist(name, genreName);
+
+                scoresManager.SetComparableArtistScores(comparableArtist, artistScores);
+
+                comparableArtists.Add(comparableArtist);
 
             }
             //OrderTracks(SelectedStat);
-            return comparableTracks;
+            return comparableArtists;
         }
 
     }

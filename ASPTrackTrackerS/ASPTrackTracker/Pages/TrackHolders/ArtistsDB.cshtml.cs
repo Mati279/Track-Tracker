@@ -1,4 +1,6 @@
+using ASPTrackTracker.Comparers;
 using ASPTrackTracker.FillersAndFilters;
+using ASPTrackTracker.ScoreHelpers;
 using DataLibrary.BL;
 using DataLibrary.Data;
 using DataLibrary.Models;
@@ -11,7 +13,8 @@ namespace ASPTrackTracker.Pages.TrackHolders
     public class ArtistsDBModel : PageModel
     {
         private readonly SelectListsFiller selectListFiller;
-        private readonly TrackHolderFilter trackHolderFilter;
+        private readonly ArtistsFilter trackHolderFilter;
+        private readonly ComparablesCreator comparablesCreator;
         private readonly ITrackData trackData;
         private readonly IArtistData artistData;
         private readonly IGenreData genreData;
@@ -21,6 +24,8 @@ namespace ASPTrackTracker.Pages.TrackHolders
 
         [BindProperty]
         public List<ArtistModel> filteredArtists { get; set; }
+        [BindProperty]
+        public List<ComparableArtist> comparableArtists { get; set; }
         public List<SelectListItem> StyleItems { get; set; }
         public List<SelectListItem> GenreItems { get; set; }
         public List<SelectListItem> StatItems { get; set; }
@@ -34,11 +39,12 @@ namespace ASPTrackTracker.Pages.TrackHolders
         [BindProperty(SupportsGet = true)]
         public string SelectedStat { get; set; } = "Average";
 
-        public ArtistsDBModel(SelectListsFiller selectListFiller, TrackHolderFilter trackHolderFilter, 
+        public ArtistsDBModel(SelectListsFiller selectListFiller, ArtistsFilter artistsFilter, ComparablesCreator comparablesCreator,
                               ITrackData trackData, IArtistData artistData, IGenreData genreData, IStyleData styleData)
         {
             this.selectListFiller = selectListFiller;
-            this.trackHolderFilter = trackHolderFilter;
+            this.trackHolderFilter = artistsFilter;
+            this.comparablesCreator = comparablesCreator;
             this.trackData = trackData;
             this.artistData = artistData;
             this.genreData = genreData;
@@ -55,10 +61,14 @@ namespace ASPTrackTracker.Pages.TrackHolders
             List<StyleModel> styles = await styleData.GetAll<StyleModel>();
 
             selectListFiller.FillSelectTrackHolder(GenreItems, genres);
+            selectListFiller.FillSelectTrackHolder(StyleItems, styles);
             selectListFiller.FillSelectStats(StatItems);
 
-
             filteredArtists = await trackHolderFilter.FilterArtists(GenreId, StyleId);
+
+            comparableArtists = await comparablesCreator.CreateComparableArtists(filteredArtists);
+
+            //scoreSorter.SortTracks(comparableArtists, SelectedStat);
         }
 
         public async Task<IActionResult> OnPost()

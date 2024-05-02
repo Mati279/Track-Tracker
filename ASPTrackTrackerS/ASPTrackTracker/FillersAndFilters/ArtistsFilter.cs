@@ -4,13 +4,13 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace ASPTrackTracker.FillersAndFilters
 {
-    public class TrackHolderFilter
+    public class ArtistsFilter
     {
         private readonly IArtistData artistData;
         private readonly TrackFilter trackFilter;
         private List<TrackModel> filteredTracks;
 
-        public TrackHolderFilter(IArtistData artistData, TrackFilter trackFilter)
+        public ArtistsFilter(IArtistData artistData, TrackFilter trackFilter)
         {
             this.artistData = artistData;
             this.trackFilter = trackFilter;
@@ -33,7 +33,7 @@ namespace ASPTrackTracker.FillersAndFilters
                     filtered = false;
                     continue;
                 }
-                else if (StyleId != 0 && await CheckIfArtistHasStyle(artist.Id, StyleId))
+                else if (StyleId != 0 && !await CheckIfArtistHasStyle(artist.Id, StyleId))
                 {
                     filtered = false;
                     continue;
@@ -55,7 +55,7 @@ namespace ASPTrackTracker.FillersAndFilters
         {
             var artist = await artistData.GetById<ArtistModel>(ArtistId);
 
-            List<TrackModel> artistTracks = await trackFilter.FilterTracks(0, ArtistId, 0, 0); 
+            List<TrackModel> artistTracks = await trackFilter.FilterTracks(0, ArtistId, 0, StyleId); 
 
             if(artistTracks.Count > 0)
             {
