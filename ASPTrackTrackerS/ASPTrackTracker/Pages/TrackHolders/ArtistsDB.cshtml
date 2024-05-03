@@ -44,6 +44,7 @@
                     <th><h2>Tracks Style</h2></th>
                     <th><h2>Stat</h2></th>
                 </tr>
+                <tr>@Model.FilterPrompt</tr>
             </thead>
             <thead>
                 <tr>
@@ -60,7 +61,7 @@
                         <td><strong>@Html.Raw(@Model.comparableArtists.IndexOf(artist) + 1)</strong> - @artist.Name</td>
                         <td>@artist.Genre</td>
                         <td>Filtering by @Model.StyleId</td>
-                        <td>@Html.Raw(artist.GetScoreByStat(Model.SelectedStat))</td>
+                        <td title="@await Model.artistsFilter.CheckAmmountArtistStyleTracks(artist, @Model.StyleId) tracks.">@Html.Raw(artist.GetScoreByStat(Model.SelectedStat))</td>
                         <td><input type="button" value="View" /></td>
                     </tr>
                 }

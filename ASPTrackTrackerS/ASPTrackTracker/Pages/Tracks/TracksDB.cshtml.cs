@@ -49,6 +49,11 @@ namespace ASPTrackTracker.Pages.Tracks
         [BindProperty(SupportsGet = true)]
         public string SelectedStat { get; set; } = "Average";
 
+        [BindProperty(SupportsGet = true)]
+        public string FilterPrompt { get; set; }
+
+
+
         public TracksDBModel(TrackFilter tracksFilter, SelectListsFiller selectListConfig, ComparablesCreator comparableTrackCreator, ScoresSorter scoreSorter,
                             IArtistData artistData, IGenreData genreData, IStyleData styleData, IUserData userData, IScoreData scoreData)
         {
@@ -86,6 +91,8 @@ namespace ASPTrackTracker.Pages.Tracks
             comparableTracks = await comparableTrackCreator.CreateComparableTracks(filteredTracks);
 
             scoreSorter.SortComparable(comparableTracks, SelectedStat);
+
+            FormatFilterPrompt();
         }
 
         public async Task<IActionResult> OnPost()
@@ -101,6 +108,11 @@ namespace ASPTrackTracker.Pages.Tracks
             var selects = new { UserId = 0, StatSelected = "Average", StyleId = 0, GenreId = 0, ArtistId = 0 };
 
             return RedirectToPage(selects);
+        }
+
+        private void FormatFilterPrompt()
+        {
+            FilterPrompt = "Rating based on " + SelectedStat + " scores.";
         }
 
         //public async Task GetRandomScores(TrackModel track)

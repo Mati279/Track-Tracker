@@ -63,11 +63,12 @@ namespace ASPTrackTracker.Comparers
 
                 string name = artist.Name;
                 string genreName = genre.Name;
+                int modelId = artist.Id;
 
                 var artistScores = await scoresManager.GetArtistScores(artist);
 
 
-                ComparableArtist comparableArtist = new ComparableArtist(name, genreName);
+                ComparableArtist comparableArtist = new ComparableArtist(name, genreName, modelId);
 
                 scoresManager.SetComparableArtistScores(comparableArtist, artistScores);
 

@@ -1,4 +1,5 @@
-﻿using DataLibrary.Data;
+﻿using ASPTrackTracker.Comparers;
+using DataLibrary.Data;
 using DataLibrary.Models;
 using Microsoft.IdentityModel.Tokens;
 
@@ -62,6 +63,25 @@ namespace ASPTrackTracker.FillersAndFilters
                 return true;
             }
             return false;
+        }
+
+        public async Task<string> CheckAmmountArtistStyleTracks(ComparableArtist comparableArtist, int StyleId)
+        {
+            List<ArtistModel> allArtists = await artistData.GetAll<ArtistModel>();
+            ArtistModel originalArtist = null;
+
+            foreach(ArtistModel artist in allArtists)
+            {
+                if(artist.Id == comparableArtist.ModelId)
+                {
+                    originalArtist = artist;
+                    break;
+                }
+            }
+
+            List<TrackModel> artistTracks = await trackFilter.FilterTracks(0, originalArtist.Id, 0, StyleId);
+
+            return artistTracks.Count.ToString();
         }
     }
 }

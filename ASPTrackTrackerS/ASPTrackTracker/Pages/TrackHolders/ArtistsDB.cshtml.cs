@@ -13,13 +13,13 @@ namespace ASPTrackTracker.Pages.TrackHolders
     public class ArtistsDBModel : PageModel
     {
         private readonly SelectListsFiller selectListFiller;
-        private readonly ArtistsFilter trackHolderFilter;
         private readonly ComparablesCreator comparablesCreator;
         private readonly ScoresSorter scoreSorter;
         private readonly ITrackData trackData;
         private readonly IArtistData artistData;
         private readonly IGenreData genreData;
         private readonly IStyleData styleData;
+        public ArtistsFilter artistsFilter { get; set; }
 
         public List<ArtistModel> allArtists { get; set; }
 
@@ -40,11 +40,14 @@ namespace ASPTrackTracker.Pages.TrackHolders
         [BindProperty(SupportsGet = true)]
         public string SelectedStat { get; set; } = "Average";
 
+        [BindProperty(SupportsGet = true)]
+        public string FilterPrompt { get; set; }
+
         public ArtistsDBModel(SelectListsFiller selectListFiller, ArtistsFilter artistsFilter, ComparablesCreator comparablesCreator, ScoresSorter scoreSorter,
                               ITrackData trackData, IArtistData artistData, IGenreData genreData, IStyleData styleData)
         {
             this.selectListFiller = selectListFiller;
-            this.trackHolderFilter = artistsFilter;
+            this.artistsFilter = artistsFilter;
             this.comparablesCreator = comparablesCreator;
             this.scoreSorter = scoreSorter;
             this.trackData = trackData;
@@ -66,11 +69,13 @@ namespace ASPTrackTracker.Pages.TrackHolders
             selectListFiller.FillSelectTrackHolder(StyleItems, styles);
             selectListFiller.FillSelectStats(StatItems);
 
-            filteredArtists = await trackHolderFilter.FilterArtists(GenreId, StyleId);
+            filteredArtists = await artistsFilter.FilterArtists(GenreId, StyleId);
 
             comparableArtists = await comparablesCreator.CreateComparableArtists(filteredArtists);
 
             scoreSorter.SortComparable(comparableArtists, SelectedStat);
+
+            await FormatFilterPrompt();
         }
 
         public async Task<IActionResult> OnPost()
@@ -85,6 +90,40 @@ namespace ASPTrackTracker.Pages.TrackHolders
             var selects = new {GenreId = 0, StyleId = 0, StatSelected = "Average" };
 
             return RedirectToPage(selects);
+        }
+        
+        private async Task FormatFilterPrompt()
+        {
+            var genre = await genreData.GetById<GenreModel>(GenreId);
+            var style = await styleData.GetById<StyleModel>(StyleId);
+
+            string genrePrompt;
+            string stylePrompt;
+            string finalDot = ".";
+
+            if (GenreId == 0 && StyleId == 0)
+            {
+                genrePrompt = "";
+                finalDot = "";
+            }
+            else if (GenreId == 0)
+            {
+                genrePrompt = "Filtering artists ";
+            }
+            else
+            {
+                genrePrompt = "Filtering artists of " + genre.Name + " genre";
+            }
+
+            if (StyleId == 0)
+            {
+                stylePrompt = "";
+            }
+            else
+            {
+                stylePrompt = " who have tracks of " + style.Name + " style";
+            }
+            FilterPrompt = genrePrompt + stylePrompt + finalDot + " Rating based on " + SelectedStat + " scores.";
         }
     }
 }
