@@ -1,9 +1,9 @@
 ﻿namespace ASPTrackTracker.Comparers
 {
-    internal class InstrumentalComparer : IComparer<ComparableTrack>
+    internal class InstrumentalComparer : IComparer<ComparableBase>
     {
 
-        public int Compare(ComparableTrack? x, ComparableTrack? y)
+        public int Compare(ComparableBase? x, ComparableBase? y)
         {
 
             return y.InstrumentalScore.CompareTo(x.InstrumentalScore);

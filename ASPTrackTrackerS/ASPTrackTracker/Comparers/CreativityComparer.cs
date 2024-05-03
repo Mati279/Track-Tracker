@@ -1,9 +1,9 @@
 ﻿namespace ASPTrackTracker.Comparers
 {
-    internal class CreativityComparer : IComparer<ComparableTrack>
+    internal class CreativityComparer : IComparer<ComparableBase>
     {
 
-        public int Compare(ComparableTrack? x, ComparableTrack? y)
+        public int Compare(ComparableBase? x, ComparableBase? y)
         {
 
             return y.CreativityScore.CompareTo(x.CreativityScore);

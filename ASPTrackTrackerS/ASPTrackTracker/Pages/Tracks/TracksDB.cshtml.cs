@@ -85,7 +85,7 @@ namespace ASPTrackTracker.Pages.Tracks
             filteredTracks = await tracksFilter.FilterTracks(UserId, ArtistId, GenreId, StyleId);
             comparableTracks = await comparableTrackCreator.CreateComparableTracks(filteredTracks);
 
-            scoreSorter.SortTracks(comparableTracks, SelectedStat);
+            scoreSorter.SortComparable(comparableTracks, SelectedStat);
         }
 
         public async Task<IActionResult> OnPost()

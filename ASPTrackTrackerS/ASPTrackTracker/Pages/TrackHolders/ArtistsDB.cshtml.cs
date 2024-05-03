@@ -15,6 +15,7 @@ namespace ASPTrackTracker.Pages.TrackHolders
         private readonly SelectListsFiller selectListFiller;
         private readonly ArtistsFilter trackHolderFilter;
         private readonly ComparablesCreator comparablesCreator;
+        private readonly ScoresSorter scoreSorter;
         private readonly ITrackData trackData;
         private readonly IArtistData artistData;
         private readonly IGenreData genreData;
@@ -39,12 +40,13 @@ namespace ASPTrackTracker.Pages.TrackHolders
         [BindProperty(SupportsGet = true)]
         public string SelectedStat { get; set; } = "Average";
 
-        public ArtistsDBModel(SelectListsFiller selectListFiller, ArtistsFilter artistsFilter, ComparablesCreator comparablesCreator,
+        public ArtistsDBModel(SelectListsFiller selectListFiller, ArtistsFilter artistsFilter, ComparablesCreator comparablesCreator, ScoresSorter scoreSorter,
                               ITrackData trackData, IArtistData artistData, IGenreData genreData, IStyleData styleData)
         {
             this.selectListFiller = selectListFiller;
             this.trackHolderFilter = artistsFilter;
             this.comparablesCreator = comparablesCreator;
+            this.scoreSorter = scoreSorter;
             this.trackData = trackData;
             this.artistData = artistData;
             this.genreData = genreData;
@@ -68,7 +70,7 @@ namespace ASPTrackTracker.Pages.TrackHolders
 
             comparableArtists = await comparablesCreator.CreateComparableArtists(filteredArtists);
 
-            //scoreSorter.SortTracks(comparableArtists, SelectedStat);
+            scoreSorter.SortComparable(comparableArtists, SelectedStat);
         }
 
         public async Task<IActionResult> OnPost()

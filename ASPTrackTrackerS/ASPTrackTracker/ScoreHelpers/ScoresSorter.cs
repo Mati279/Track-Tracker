@@ -5,35 +5,37 @@ namespace ASPTrackTracker.ScoreHelpers
     public class ScoresSorter
     {
 
-        public void SortTracks(List<ComparableTrack> comparableTracks, string stat)
+        public void SortComparable<T>(List<T> comparableList, string stat) where T : ComparableBase
         {
             switch (stat)
             {
                 case "Average":
-                    comparableTracks.Sort(new AverageComparer());
+                    comparableList.Sort(new AverageComparer());
                     break;
                 case "Affinity":
-                    comparableTracks.Sort(new AffinityComparer());
+                    comparableList.Sort(new AffinityComparer());
                     break;
                 case "Creativity":
-                    comparableTracks.Sort(new CreativityComparer());
+                    comparableList.Sort(new CreativityComparer());
                     break;
                 case "Complexity":
-                    comparableTracks.Sort(new ComplexityComparer());
+                    comparableList.Sort(new ComplexityComparer());
                     break;
                 case "Voices":
-                    comparableTracks.Sort(new VoicesComparer());
+                    comparableList.Sort(new VoicesComparer());
                     break;
                 case "Lyrics":
-                    comparableTracks.Sort(new LyricsComparer());
+                    comparableList.Sort(new LyricsComparer());
                     break;
                 case "Instrumental":
-                    comparableTracks.Sort(new InstrumentalComparer());
+                    comparableList.Sort(new InstrumentalComparer());
                     break;
                 default:
                     throw new InvalidOperationException("Unhandled exception");
             }
         }
+
+
 
 
     }

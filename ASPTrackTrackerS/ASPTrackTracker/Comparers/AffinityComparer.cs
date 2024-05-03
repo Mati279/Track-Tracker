@@ -1,9 +1,9 @@
 ﻿namespace ASPTrackTracker.Comparers
 {
-    internal class AffinityComparer : IComparer<ComparableTrack>
+    internal class AffinityComparer : IComparer<ComparableBase>
     {
 
-        public int Compare(ComparableTrack? x, ComparableTrack? y)
+        public int Compare(ComparableBase? x, ComparableBase? y)
         {
 
             return y.AffinityScore.CompareTo(x.AffinityScore);
