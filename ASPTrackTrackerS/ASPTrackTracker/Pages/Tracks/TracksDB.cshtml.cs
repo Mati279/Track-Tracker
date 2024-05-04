@@ -20,6 +20,7 @@ namespace ASPTrackTracker.Pages.Tracks
         private readonly IGenreData genreData;
         private readonly IStyleData styleData;
         private readonly IScoreData scoreData;
+        private readonly ITrackData trackData;
 
         public List<SelectListItem> UserItems { get; set; }
         public List<SelectListItem> ArtistItems { get; set; }
@@ -55,7 +56,7 @@ namespace ASPTrackTracker.Pages.Tracks
 
 
         public TracksDBModel(TrackFilter tracksFilter, SelectListsFiller selectListConfig, ComparablesCreator comparableTrackCreator, ScoresSorter scoreSorter,
-                            IArtistData artistData, IGenreData genreData, IStyleData styleData, IUserData userData, IScoreData scoreData)
+                            IArtistData artistData, IGenreData genreData, IStyleData styleData, IUserData userData, IScoreData scoreData, ITrackData trackData)
         {
             this.tracksFilter = tracksFilter;
             this.selectListConfig = selectListConfig;
@@ -63,6 +64,7 @@ namespace ASPTrackTracker.Pages.Tracks
             this.scoreSorter = scoreSorter;
             this.userData = userData;
             this.scoreData = scoreData;
+            this.trackData = trackData;
             this.artistData = artistData;
             this.genreData = genreData;
             this.styleData = styleData;
@@ -97,14 +99,12 @@ namespace ASPTrackTracker.Pages.Tracks
 
         public async Task<IActionResult> OnPost()
         {
-
             var selects = new {UserId, SelectedStat, StyleId, GenreId, ArtistId};
 
             return RedirectToPage(selects);
         }
         public async Task<IActionResult> OnPostReset()
         {
-
             var selects = new { UserId = 0, StatSelected = "Average", StyleId = 0, GenreId = 0, ArtistId = 0 };
 
             return RedirectToPage(selects);
@@ -114,6 +114,19 @@ namespace ASPTrackTracker.Pages.Tracks
         {
             FilterPrompt = "Rating based on " + SelectedStat + " scores.";
         }
+
+        public async Task<int> GetModel(ComparableTrack comparableTrack)
+        {
+            var Track = await trackData.GetById<TrackModel>(comparableTrack.ModelId);
+
+            return Track.Id;
+        }
+
+
+
+
+
+
 
         //public async Task GetRandomScores(TrackModel track)
         //{

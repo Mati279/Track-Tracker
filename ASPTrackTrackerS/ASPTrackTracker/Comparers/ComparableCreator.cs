@@ -36,6 +36,7 @@ namespace ASPTrackTracker.Comparers
 
                 var trackScores = await scoresManager.GetTrackScores(track);
 
+                int modelId = track.Id;
                 string name = track.Name;
                 string link = track.Link;
                 string userName = user.Name;
@@ -43,7 +44,7 @@ namespace ASPTrackTracker.Comparers
                 string genreName = genre.Name;
                 string styleName = style.Name;
 
-                ComparableTrack comparableTrack = new ComparableTrack(name, link, userName, artistName, genreName, styleName);
+                ComparableTrack comparableTrack = new ComparableTrack(name, link, userName, artistName, genreName, styleName, modelId);
 
                 scoresManager.SetComparableTrackScores(comparableTrack, trackScores);
 

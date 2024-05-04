@@ -70,10 +70,10 @@
                         <td>@track.Genre</td>
                         <td>@track.StyleName</td>
                         <td title="@track.Voted votes.">@Html.Raw(track.GetScoreByStat(Model.SelectedStat))</td>
-                        <td><input type="button" value="View"/></td>
-                        
+                        <td><a asp-page="../Views/TrackView" asp-route-id="@track.ModelId" class="btn btn-danger">View</a></td>
                     </tr>
-                }
+                }		
+
                 @if (Model.filteredTracks.Count < 1)
                 {
                     <tr>

@@ -12,11 +12,13 @@
         public double VoicesScore { get; set; }
         public double LyricsScore { get; set; }
         public double InstrumentalScore { get; set; }
+        public int ModelId { get; set; }
 
-        protected ComparableBase(string name, string genre)
+        protected ComparableBase(string name, string genre, int modelId)
         {
             Name = name;
             Genre = genre;
+            ModelId = modelId; 
         }
 
         public string GetScoreByStat(string stat)

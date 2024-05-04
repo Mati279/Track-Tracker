@@ -16,7 +16,7 @@ namespace ASPTrackTracker.Comparers
         public int Voted { get; set; }
 
 
-        public ComparableTrack(string name, string link, string userName, string artistName, string genre, string styleName):base(name, genre)
+        public ComparableTrack(string name, string link, string userName, string artistName, string genre, string styleName, int modelId) :base(name, genre, modelId)
         {
             Name = name;
             Link = link;
@@ -25,7 +25,5 @@ namespace ASPTrackTracker.Comparers
             Genre = genre;
             StyleName = styleName;
         }
-       
-        
     }
 }
