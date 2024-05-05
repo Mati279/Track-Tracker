@@ -2,18 +2,57 @@
 @model ASPTrackTracker.Pages.Views.TrackViewModel
 @{
 }
+
 <table>
     <tr>
-        <td><h2>@Model.Track.Name</h2></td>
+        <td>        </td>
+        <td>        </td>
+        <td><h1>@Model.Track.Name</h1></td>
     </tr>
     <tr>
-        <td><h3>Artist: </h3></td>
-        <td>@Model.Track.</td>
+        <td><strong>Info</strong></td>
+        <td></td>
+        <td></td>
+        <td><strong>Scores (que dependa del select)</strong></td>
     </tr>
-
-
-
-
+    <tr>
+        <td><strong>Uploaded by: </strong></td>
+        <td>@Model.User.Name</td>
+        <td>        </td>
+        <td><strong>Average score: </strong></td>
+        <td>@Model.ReturnScoreOrDashes(@Model.AverageScore)</td>
+        <td>        </td>
+        <td><select /> </td>
+    </tr>
+    <tr>
+        <td><strong>Artist: </strong></td>
+        <td>@Model.Artist.Name</td>
+        <td>        </td>
+        <td><strong>Affinity score: </strong></td>
+        <td>@Model.ReturnScoreOrDashes(@Model.AffinityScore)</td>
+        <td>        </td>
+        <td><strong>Voices score: </strong></td>
+        <td>@Model.ReturnScoreOrDashes(@Model.VoicesScore)</td>
+    </tr>
+    <tr>
+        <td><strong>Genre: </strong></td>
+        <td>@Model.Genre.Name</td>
+        <td>        </td>
+        <td><strong>Creativity score: </strong></td>
+        <td>@Model.ReturnScoreOrDashes(@Model.CreativityScore)</td>
+        <td>        </td>
+        <td><strong>Lyrics score: </strong></td>
+        <td>@Model.ReturnScoreOrDashes(@Model.LyricsScore)</td>
+    </tr>
+    <tr>
+        <td><strong>Style: </strong></td>
+        <td>@Model.Style.Name</td>
+        <td>        </td>
+        <td><strong>Complexity score: </strong></td>
+        <td>@Model.ReturnScoreOrDashes(@Model.ComplexityScore)</td>
+        <td>                            </td>
+        <td><strong>Instrumental score: </strong></td>
+        <td>@Model.ReturnScoreOrDashes(@Model.InstrumentalScore)</td>
+    </tr>
 </table>
-<h2></h2>
-<h3></h3>
+ 
