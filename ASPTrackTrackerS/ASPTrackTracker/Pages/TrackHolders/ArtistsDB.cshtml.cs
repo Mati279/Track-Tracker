@@ -23,9 +23,7 @@ namespace ASPTrackTracker.Pages.TrackHolders
 
         public List<ArtistModel> allArtists { get; set; }
 
-        [BindProperty]
         public List<ArtistModel> filteredArtists { get; set; }
-        [BindProperty]
         public List<ComparableArtist> comparableArtists { get; set; }
         public List<SelectListItem> StyleItems { get; set; }
         public List<SelectListItem> GenreItems { get; set; }
@@ -40,7 +38,6 @@ namespace ASPTrackTracker.Pages.TrackHolders
         [BindProperty(SupportsGet = true)]
         public string SelectedStat { get; set; } = "Average";
 
-        [BindProperty(SupportsGet = true)]
         public string FilterPrompt { get; set; }
 
         public ArtistsDBModel(SelectListsFiller selectListFiller, ArtistsFilter artistsFilter, ComparablesCreator comparablesCreator, ScoresSorter scoreSorter,
@@ -78,20 +75,6 @@ namespace ASPTrackTracker.Pages.TrackHolders
             await FormatFilterPrompt();
         }
 
-        public async Task<IActionResult> OnPost()
-        {
-            var select = new {GenreId, StyleId, SelectedStat};
-
-            return RedirectToPage(select);
-        }
-
-        public async Task<IActionResult> OnPostReset()
-        {
-            var selects = new {GenreId = 0, StyleId = 0, StatSelected = "Average" };
-
-            return RedirectToPage(selects);
-        }
-        
         private async Task FormatFilterPrompt()
         {
             var genre = await genreData.GetById<GenreModel>(GenreId);

@@ -19,7 +19,6 @@ namespace ASPTrackTracker.Pages.Tracks
         private readonly IArtistData artistData;
         private readonly IGenreData genreData;
         private readonly IStyleData styleData;
-        private readonly IScoreData scoreData;
         private readonly ITrackData trackData;
 
         public List<SelectListItem> UserItems { get; set; }
@@ -29,10 +28,8 @@ namespace ASPTrackTracker.Pages.Tracks
         public List<SelectListItem> StatItems { get; set; }
         public List<TrackModel> allTracks { get; set; }
 
-        [BindProperty]
         public List<TrackModel> filteredTracks { get; set; }
 
-        [BindProperty]
         public List<ComparableTrack> comparableTracks { get; set; }
 
         [BindProperty(SupportsGet = true)]
@@ -50,20 +47,19 @@ namespace ASPTrackTracker.Pages.Tracks
         [BindProperty(SupportsGet = true)]
         public string SelectedStat { get; set; } = "Average";
 
-        [BindProperty(SupportsGet = true)]
+        [BindProperty]
         public string FilterPrompt { get; set; }
 
 
 
         public TracksDBModel(TrackFilter tracksFilter, SelectListsFiller selectListConfig, ComparablesCreator comparableTrackCreator, ScoresSorter scoreSorter,
-                            IArtistData artistData, IGenreData genreData, IStyleData styleData, IUserData userData, IScoreData scoreData, ITrackData trackData)
+                            IArtistData artistData, IGenreData genreData, IStyleData styleData, IUserData userData, ITrackData trackData)
         {
             this.tracksFilter = tracksFilter;
             this.selectListConfig = selectListConfig;
             this.comparableTrackCreator = comparableTrackCreator;
             this.scoreSorter = scoreSorter;
             this.userData = userData;
-            this.scoreData = scoreData;
             this.trackData = trackData;
             this.artistData = artistData;
             this.genreData = genreData;
@@ -95,19 +91,6 @@ namespace ASPTrackTracker.Pages.Tracks
             scoreSorter.SortComparable(comparableTracks, SelectedStat);
 
             FormatFilterPrompt();
-        }
-
-        public async Task<IActionResult> OnPost()
-        {
-            var selects = new {UserId, SelectedStat, StyleId, GenreId, ArtistId};
-
-            return RedirectToPage(selects);
-        }
-        public async Task<IActionResult> OnPostReset()
-        {
-            var selects = new { UserId = 0, StatSelected = "Average", StyleId = 0, GenreId = 0, ArtistId = 0 };
-
-            return RedirectToPage(selects);
         }
 
         private void FormatFilterPrompt()
