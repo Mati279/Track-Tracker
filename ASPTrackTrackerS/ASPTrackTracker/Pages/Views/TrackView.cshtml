@@ -3,6 +3,7 @@
 @{
 }
 <form method="get">
+    <input asp-for="@Model.Id" value="@Model.Id" type="hidden" />
     <table>
         <tr>
             <td>        </td>
@@ -56,5 +57,21 @@
             <td><strong>Instrumental score: </strong></td>
             <td>@Model.ReturnScoreOrDash(@Model.InstrumentalScore)</td>
         </tr>
+        <tr>
+            <td>        </td>
+            <td>        </td>
+            <td>        </td>
+            <td>        </td>
+            @if(!await Model.CheckIfUserVoted(Model.Track, 1)) //Hardocoded User.
+            {
+            <td><a asp-page="../Tracks/RateTrack" asp-route-id="Model.Id" class="btn btn-danger">Rate</a></td>
+            }
+            else{
+            <td><a asp-page="../Tracks/RateTrack" asp-route-id="Model.Id" class="btn btn-danger">Modify Rating</a></td>
+            }
+        </tr>
     </table>
 </form>
+
+
+

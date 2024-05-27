@@ -23,28 +23,20 @@ namespace ASPTrackTracker.Pages.Views
 
         [BindProperty(SupportsGet = true)]
         public int Id { get; set; }
-
         [BindProperty(SupportsGet = true)]
         public int ScoresUserId { get; set; } 
         public string TrackUser { get; set; }
         public string TrackArtist { get; set; }
         public string TrackGenre { get; set; }
         public string TrackStyle { get; set; }
-
         public List<SelectListItem> UsersSelectList { get; set; }
-
         private List<UserModel> AllUsers {  get; set; }
         public TrackModel Track {  get; set; } 
-
         public UserModel User {  get; set; }
         public UserModel ScoresUser {  get; set; }
-
         public ArtistModel Artist {  get; set; }
-
         public GenreModel Genre {  get; set; }
-
         public StyleModel Style {  get; set; }
-
         public double AverageScore { get; set; }
         public double AffinityScore { get; set; }
         public double ComplexityScore { get; set; }
@@ -93,11 +85,25 @@ namespace ASPTrackTracker.Pages.Views
             InstrumentalScore = GetTrackScoreByStat("Instrumental");
         }
 
+        private List<ScoreModel> GetScoresFromSelectedUser()
+        {
+            List<ScoreModel> userScores = new List<ScoreModel>();
+
+            foreach(ScoreModel score in TrackScores)
+            {
+                if(score.UserId == ScoresUserId || ScoresUserId == 0)
+                {
+                    userScores.Add(score);
+                }
+            }
+
+            return userScores;
+        }
 
         private double GetTrackScoreByStat(string Stat)
         {
 
-            foreach(ScoreModel score in scores)
+            foreach(ScoreModel score in GetScoresFromSelectedUser())
             {
                 if(score.Stat == Stat)
                 {
@@ -113,7 +119,7 @@ namespace ASPTrackTracker.Pages.Views
             int count = 0;
             double values = 0;
 
-            foreach (ScoreModel score in TrackScores)
+            foreach (ScoreModel score in GetScoresFromSelectedUser())
             {
                 if (score.Value != 0)
                 {
@@ -136,6 +142,11 @@ namespace ASPTrackTracker.Pages.Views
             {
                 return score.ToString();
             }
+        }
+
+        public async Task<bool> CheckIfUserVoted(TrackModel track, int userId)
+        {
+           return await scoresManager.CheckIfUserVoted(track, userId);
         }
     }
 }
