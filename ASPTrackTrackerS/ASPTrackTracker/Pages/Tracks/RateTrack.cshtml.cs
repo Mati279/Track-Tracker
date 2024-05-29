@@ -145,7 +145,7 @@ namespace ASPTrackTracker.Pages.Tracks
 
         private void CheckIstrumentalOrChoral(StyleModel _style)
         {
-            if (_style.Name == "Instrumental")
+            if (Style.Name == "Instrumental" || Style.Name == "Guitar" || Style.Name == "Piano")
                 Instrumental = true;
 
             if (_style.Name == "Choral")
