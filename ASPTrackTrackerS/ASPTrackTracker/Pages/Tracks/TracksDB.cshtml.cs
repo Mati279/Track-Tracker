@@ -11,6 +11,7 @@ namespace ASPTrackTracker.Pages.Tracks
 {
     public class TracksDBModel : PageModel
     {
+        private readonly ScoresManager scoresManager;
         private readonly TrackFilter tracksFilter;
         private readonly SelectListsFiller selectListConfig;
         private readonly ComparablesCreator comparableTrackCreator;
@@ -52,9 +53,10 @@ namespace ASPTrackTracker.Pages.Tracks
 
 
 
-        public TracksDBModel(TrackFilter tracksFilter, SelectListsFiller selectListConfig, ComparablesCreator comparableTrackCreator, ScoresSorter scoreSorter,
+        public TracksDBModel(ScoresManager scoresManager, TrackFilter tracksFilter, SelectListsFiller selectListConfig, ComparablesCreator comparableTrackCreator, ScoresSorter scoreSorter,
                             IArtistData artistData, IGenreData genreData, IStyleData styleData, IUserData userData, ITrackData trackData)
         {
+            this.scoresManager = scoresManager;
             this.tracksFilter = tracksFilter;
             this.selectListConfig = selectListConfig;
             this.comparableTrackCreator = comparableTrackCreator;
@@ -103,6 +105,13 @@ namespace ASPTrackTracker.Pages.Tracks
             var Track = await trackData.GetById<TrackModel>(comparableTrack.ModelId);
 
             return Track.Id;
+        }
+
+        public async Task<bool> CheckIfUserVotedTrack(int trackId)
+        {
+            TrackModel Track = await trackData.GetById<TrackModel>(trackId);
+
+            return await scoresManager.CheckIfUserVotedTrack(Track, 1); //Hardcoded - user.
         }
 
 

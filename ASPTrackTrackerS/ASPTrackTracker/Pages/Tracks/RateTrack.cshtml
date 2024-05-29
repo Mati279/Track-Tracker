@@ -9,8 +9,9 @@
 
 <form method="post">
         <table>
+            <input type="hidden" asp-for="@Model.alreadyRated" />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <tbody>
+        <tbody>
                 <tr>
                     <td><label>Affinity</label></td>
                     <td><input asp-for="valueAffinity" class="form-control" type="number" step="0.1" min="0.1" max="10" style="width: 3rem" /></td>
@@ -51,7 +52,18 @@
         <input type="submit" class="btn" />
     </div>
 </form>
-    <button onclick="window.history.back()" class="btn btn-primary">Cancel</button>
+<button onclick="window.history.back()" class="btn btn-primary">Cancel</button>
+
+
+@if (@Model.Track.Link.Length > 10)
+{
+    <h3><a href="@Model.Track.Link" target="_blank">Listen 📣</a></h3>
+}
+else
+{
+    <h3>No link 🔇</h3>
+}
+
 
 @section scripts {
     @{

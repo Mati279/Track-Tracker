@@ -23,12 +23,9 @@ namespace ASPTrackTracker.Pages.Views
 
         [BindProperty(SupportsGet = true)]
         public int Id { get; set; }
+
         [BindProperty(SupportsGet = true)]
         public int ScoresUserId { get; set; } 
-        public string TrackUser { get; set; }
-        public string TrackArtist { get; set; }
-        public string TrackGenre { get; set; }
-        public string TrackStyle { get; set; }
         public List<SelectListItem> UsersSelectList { get; set; }
         private List<UserModel> AllUsers {  get; set; }
         public TrackModel Track {  get; set; } 
@@ -144,9 +141,9 @@ namespace ASPTrackTracker.Pages.Views
             }
         }
 
-        public async Task<bool> CheckIfUserVoted(TrackModel track, int userId)
+        public async Task<bool> CheckIfUserVotedTrack(TrackModel track, int userId)
         {
-           return await scoresManager.CheckIfUserVoted(track, userId);
+           return await scoresManager.CheckIfUserVotedTrack(track, userId);
         }
     }
 }

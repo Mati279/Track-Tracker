@@ -62,12 +62,12 @@
             <td>        </td>
             <td>        </td>
             <td>        </td>
-            @if(!await Model.CheckIfUserVoted(Model.Track, 1)) //Hardocoded User.
+            @if(await Model.CheckIfUserVotedTrack(Model.Track, 1)) //Hardocoded User.
             {
-            <td><a asp-page="../Tracks/RateTrack" asp-route-id="Model.Id" class="btn btn-danger">Rate</a></td>
+            <td><a asp-page="../Tracks/RateTrack" asp-route-id="@Model.Id" class="btn btn-danger">Modify Rating</a></td>
             }
             else{
-            <td><a asp-page="../Tracks/RateTrack" asp-route-id="Model.Id" class="btn btn-danger">Modify Rating</a></td>
+            <td><a asp-page="../Tracks/RateTrack" asp-route-id="@Model.Id" class="btn btn-danger">Rate</a></td>
             }
         </tr>
     </table>

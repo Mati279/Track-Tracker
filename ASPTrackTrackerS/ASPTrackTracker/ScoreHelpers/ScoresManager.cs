@@ -103,7 +103,7 @@ namespace ASPTrackTracker.ScoreHelpers
             }
         }
 
-        public async Task<bool> CheckIfUserVoted(TrackModel track, int userId)
+        public async Task<bool> CheckIfUserVotedTrack(TrackModel track, int userId)
         {
             List<ScoreModel> trackScores = await GetTrackScores(track);
 

@@ -1,3 +1,6 @@
+using ASPTrackTracker.Comparers;
+using ASPTrackTracker.ScoreHelpers;
+using DataLibrary.BL;
 using DataLibrary.Data;
 using DataLibrary.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -11,14 +14,21 @@ namespace ASPTrackTracker.Pages.Tracks
     {
         private readonly IScoreData scoreData;
         private readonly IArtistData artistData;
+        private readonly IUserData userData;
+        private readonly ScoresManager scoresManager;
 
         public ITrackData trackData { get; }
         public IStyleData StyleData { get; }
         public string artistName { get; set; }
         public StyleModel Style { get; set; }
-        public bool Instrumental  { get; set; }
-        public bool Choral  { get; set; }
+        public bool Instrumental { get; set; }
+        public bool Choral { get; set; }
 
+        [BindProperty]
+        public List<ScoreModel> userVotesForTrack {get; set;}
+
+        [BindProperty]
+        public bool alreadyRated { get; set; }
 
         [BindProperty(SupportsGet = true)]
         public int Id { get; set; }
@@ -48,19 +58,15 @@ namespace ASPTrackTracker.Pages.Tracks
         [Range(0, 10)]
         public double valueInstrumental { get; set; }
         
-        public RateTrackModel(IScoreData _scoreData, ITrackData _trackData, IArtistData _artistData, IStyleData _styleData)
+        public RateTrackModel(IScoreData _scoreData, ITrackData _trackData, IArtistData _artistData, IStyleData _styleData, IUserData _userData, ScoresManager scoresManager)
         {
             scoreData = _scoreData;
             trackData = _trackData;
             artistData = _artistData;
             StyleData = _styleData;
-
-            valueAffinity = 7;
-            valueLyrics = 7;
-            valueCreativity = 7;
-            valueComplexity = 7;
-            valueVoices = 7;
-            valueInstrumental = 7;
+            userData = _userData;
+            this.scoresManager = scoresManager;
+            
         }
         public async Task OnGet()
         {
@@ -72,6 +78,9 @@ namespace ASPTrackTracker.Pages.Tracks
             Style = await StyleData.GetById<StyleModel>(Track.StyleId);
 
             CheckIstrumentalOrChoral(Style);
+
+            await GetUserPreviousScores(Track, 1); //Hardcoded user.
+            AsignScoresToFields();
 
         }
 
@@ -87,34 +96,51 @@ namespace ASPTrackTracker.Pages.Tracks
 
             CheckIstrumentalOrChoral(Style);
 
-            await CreateScore(valueAffinity, "Affinity");
+            await GetUserPreviousScores(Track, 1); //Hardcoded user.
 
-            await CreateScore(valueCreativity, "Creativity");
+            await SubmitScore(valueAffinity, "Affinity");
 
-            await CreateScore(valueComplexity, "Complexity");
+            await SubmitScore(valueCreativity, "Creativity");
+
+            await SubmitScore(valueComplexity, "Complexity");
 
             if (Style.Name != "Instrumental" && Style.Name != "Guitar" && Style.Name != "Piano")
             {
-                await CreateScore(valueLyrics, "Lyrics");
+                await SubmitScore(valueLyrics, "Lyrics");
 
-                await CreateScore(valueVoices, "Voices");
+                await SubmitScore(valueVoices, "Voices");
             }
 
             if (Style.Name != "Choral")
             {
-                await CreateScore(valueInstrumental, "Instrumental");
+                await SubmitScore(valueInstrumental, "Instrumental");
             }
 
-            return RedirectToPage("../Index");
+            return RedirectToPage("./TracksDB");
         }
 
-        private async Task CreateScore(double _value, string _stat)
+        private async Task SubmitScore(double _value, string _stat)
         {
-            await Console.Out.WriteLineAsync("Método llamado con " + _stat + ".");
-            Score.Value = _value;
-            Score.Stat = _stat;
 
-            await scoreData.Create(Score);
+            //Chequeando por qué sólo actualiza "Affinity". Puede tener que ver con el score Id.
+            if (alreadyRated)
+            {
+                foreach(ScoreModel score in userVotesForTrack)
+                {
+                    if(score.Stat == _stat)
+                    {
+                        await scoreData.UpdateValue(score.Id, _value);
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                Score.Value = _value;
+                Score.Stat = _stat;
+
+                await scoreData.Create(Score);
+            }
         }
 
         private void CheckIstrumentalOrChoral(StyleModel _style)
@@ -124,6 +150,70 @@ namespace ASPTrackTracker.Pages.Tracks
 
             if (_style.Name == "Choral")
                 Choral = true;
+        }
+
+        private async Task GetUserPreviousScores(TrackModel track, int userId) 
+        {
+            userVotesForTrack = new List<ScoreModel>();
+
+            if (await scoresManager.CheckIfUserVotedTrack(track, userId))
+            {
+                alreadyRated = true;
+                List<ScoreModel> trackScores = await scoresManager.GetTrackScores(track);
+
+                foreach(ScoreModel score in trackScores)
+                {
+                    if(score.UserId == userId)
+                    {
+                        userVotesForTrack.Add(score);   
+                    }
+                }
+            }
+            else
+            {
+                alreadyRated = false;
+            }
+        }
+
+        private void AsignScoresToFields()
+        {
+            if (alreadyRated)
+            {
+                foreach (ScoreModel score in userVotesForTrack)
+                {
+                    switch (score.Stat)
+                    {
+                        case "Affinity":
+                            valueAffinity = score.Value;
+                            break;
+                        case "Lyrics":
+                            valueLyrics = score.Value;
+                            break;
+                        case "Creativity":
+                            valueCreativity = score.Value;
+                            break;
+                        case "Complexity":
+                            valueComplexity = score.Value;
+                            break;
+                        case "Voices":
+                            valueVoices = score.Value;
+                            break;
+                        case "Instrumental":
+                            valueInstrumental = score.Value;
+                            break;
+                    }
+                }
+            }
+            else
+            {
+                valueAffinity = 7;
+                valueLyrics = 7;
+                valueCreativity = 7;
+                valueComplexity = 7;
+                valueVoices = 7;
+                valueInstrumental = 7;
+
+            }
         }
     }
 }   

@@ -41,39 +41,59 @@
         <table class="tableDBH">
             <thead>
                 <tr>
+                    <th>  </th>
                     <th><h2>Track</h2></th>
                     <th><h2>User</h2></th>
                     <th><h2>Artist</h2></th>
                     <th><h2>Genre</h2></th>
                     <th><h2>Style</h2></th>
                     <th><h2>Stat</h2></th>
+                    <th>
+                        
+                    </th>
                 </tr>
                 <tr>@Model.FilterPrompt</tr>
             </thead>
             <thead>
                 <tr>
-                    <th><button type="submit">Filter</button></th>
+                    <th> </th>
+                    <th> </th>
                     <th><h3><select asp-for="UserId" asp-items="Model.UserItems" class="form-control select"></select></h3></th>
                     <th><h3><select asp-for="ArtistId" asp-items="Model.ArtistItems" class="form-control select"></select></h3></th>
                     <th><h3><select asp-for="GenreId" asp-items="Model.GenreItems" class="form-control select"></select></h3></th>
                     <th><h3><select asp-for="StyleId" asp-items="Model.StyleItems" class="form-control select"></select></h3></th>
                     <th><h3><select asp-for="SelectedStat" asp-items="Model.StatItems" class="form-control select"></select></h3></th>
+                    <th><button type="submit">Filter</button></th>
                 </tr>
             </thead>
             <tbody class="tableDBB">
                 @foreach (var track in Model.comparableTracks)
                 {
                     <tr>
-                        <td>@track.Name</td>
+                        @if(track.Link.Length > 10)
+                        {
+                            <td><a href="@track.Link" target="_blank">📣</a></td>
+                        }
+                        else
+                        {
+                            <td>🔇</td>
+                        }
+                        <td><strong>@Html.Raw(@Model.comparableTracks.IndexOf(track) + 1) - @track.Name</strong></td>
                         <td>@track.UserName</td>
                         <td>@track.ArtistName</td>
                         <td>@track.Genre</td>
                         <td>@track.StyleName</td>
-                        <td title="@track.Voted votes.">@Html.Raw(track.GetScoreByStat(Model.SelectedStat))</td>
-                        <td><a asp-page="../Views/TrackView" asp-route-id="@track.ModelId" class="btn btn-danger">View</a></td>
+                        <td title="@track.Voted votes."><strong>@Html.Raw(track.GetScoreByStat(Model.SelectedStat))</strong></td>
+                        @if(await @Model.CheckIfUserVotedTrack(track.ModelId))
+                        {
+                            <td><a asp-page="../Views/TrackView" asp-route-id="@track.ModelId" class="btn btn-danger">View</a></td>
+                        }
+                        else
+                        {
+                            <td><a asp-page="./RateTrack" asp-route-id="@track.ModelId" class="btn2 btn-danger">Rate</a></td>
+                        }
                     </tr>
                 }		
-
                 @if (Model.filteredTracks.Count < 1)
                 {
                     <tr>
@@ -85,10 +105,9 @@
     </body>
 </form>
 
-<form method="">
-    <th><button type="submit">Reset Filters</button></th>
+<form method="get">
+    <button type="submit">Reset Filters</button>
 </form>
-
 <form method="post" asp-page-handler="RateAll">
     <th><button type="submit">Rate All</button></th>
 </form>

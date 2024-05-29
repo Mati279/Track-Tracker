@@ -58,10 +58,10 @@
                 @foreach (var artist in Model.comparableArtists)
                 {
                     <tr>
-                        <td><strong>@Html.Raw(@Model.comparableArtists.IndexOf(artist) + 1)</strong> - @artist.Name</td>
+                        <td><strong>@Html.Raw(@Model.comparableArtists.IndexOf(artist) + 1) - @artist.Name</strong></td>
                         <td>@artist.Genre</td>
                         <td>Filtering by @Model.StyleId</td>
-                        <td title="@await Model.artistsFilter.CheckAmmountArtistStyleTracks(artist, @Model.StyleId) tracks.">@Html.Raw(artist.GetScoreByStat(Model.SelectedStat))</td>
+                        <td title="@await Model.artistsFilter.CheckAmmountArtistStyleTracks(artist, @Model.StyleId) tracks."><strong>@Html.Raw(artist.GetScoreByStat(Model.SelectedStat))</strong></td>
                         <td><input type="button" value="View" /></td>
                     </tr>
                 }
