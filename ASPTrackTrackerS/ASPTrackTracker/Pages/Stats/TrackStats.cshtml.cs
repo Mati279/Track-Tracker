@@ -8,9 +8,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Reflection.Metadata.Ecma335;
 
-namespace ASPTrackTracker.Pages.Views
+namespace ASPTrackTracker.Pages.Stats
 {
-    public class TrackViewModel : PageModel
+    public class TrackStatsModel : PageModel
     {
         private readonly ScoresManager scoresManager;
         private readonly SelectListsFiller selectListFilter;
@@ -44,7 +44,7 @@ namespace ASPTrackTracker.Pages.Views
         List<ScoreModel> TrackScores { get; set; }
         public string ScoresPrompt { get; set; }
 
-        public TrackViewModel(ScoresManager scoresManager, SelectListsFiller selectListFilter, ITrackData trackData, IUserData userData, IArtistData artistData, IGenreData genreData, IStyleData styleData, IScoreData scoreData)
+        public TrackStatsModel(ScoresManager scoresManager, SelectListsFiller selectListFilter, ITrackData trackData, IUserData userData, IArtistData artistData, IGenreData genreData, IStyleData styleData, IScoreData scoreData)
         {
             this.scoresManager = scoresManager;
             this.selectListFilter = selectListFilter;

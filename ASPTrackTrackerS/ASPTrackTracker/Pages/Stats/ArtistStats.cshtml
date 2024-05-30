@@ -1,35 +1,31 @@
 ﻿@page
-@model ASPTrackTracker.Pages.Views.TrackViewModel
+@model ASPTrackTracker.Pages.Stats.ArtistStatsModel
 @{
 }
 <form method="get">
-    <input asp-for="@Model.Id" value="@Model.Id" type="hidden" />
     <table>
         <tr>
             <td>        </td>
             <td>        </td>
-            <td><h1>@Model.Track.Name</h1></td>
+            <td><h1>@Model.Artist.Name</h1></td>
         </tr>
         <tr>
-            <td><h3>Track Info</h3></td>
+            <td><h3>Artist Info</h3></td>
             <td></td>
             <td></td>
-            <td><h3>Track Scores</h3></td>
-            <td><h3>@Model.ScoresPrompt</h3></td>
+            <td><h3>Artist Scores</h3></td>
         </tr>
         <tr>
-            <td><strong>Uploaded by: </strong></td>
-            <td>@Model.User.Name</td>
+            <td><strong>Genre: </strong></td>
+            <td>@Model.genreName</td>
             <td>        </td>
             <td><strong>Average score: </strong></td>
             <td>@Model.ReturnScoreOrDash(@Model.AverageScore)</td>
             <td>        </td>
-            <td><select asp-for="ScoresUserId" asp-items="Model.UsersSelectList" class="form-control"></select> </td>
-            <td><button type="submit">Filter</button></td>
         </tr>
         <tr>
-            <td><strong>Artist: </strong></td>
-            <td>@Model.Artist.Name</td>
+            <td><strong>Tracks: </strong></td>
+            <td>@Model.trackAmmount</td>
             <td>        </td>
             <td><strong>Affinity score: </strong></td>
             <td>@Model.ReturnScoreOrDash(@Model.AffinityScore)</td>
@@ -38,8 +34,8 @@
             <td>@Model.ReturnScoreOrDash(@Model.VoicesScore)</td>
         </tr>
         <tr>
-            <td><strong>Genre: </strong></td>
-            <td>@Model.Genre.Name</td>
+            <td></td>
+            <td></td>
             <td>        </td>
             <td><strong>Creativity score: </strong></td>
             <td>@Model.ReturnScoreOrDash(@Model.CreativityScore)</td>
@@ -48,8 +44,8 @@
             <td>@Model.ReturnScoreOrDash(@Model.LyricsScore)</td>
         </tr>
         <tr>
-            <td><strong>Style: </strong></td>
-            <td>@Model.Style.Name</td>
+            <td><strong></strong></td>
+            <td></td>
             <td>        </td>
             <td><strong>Complexity score: </strong></td>
             <td>@Model.ReturnScoreOrDash(@Model.ComplexityScore)</td>
@@ -57,21 +53,10 @@
             <td><strong>Instrumental score: </strong></td>
             <td>@Model.ReturnScoreOrDash(@Model.InstrumentalScore)</td>
         </tr>
-        <tr>
-            <td>        </td>
-            <td>        </td>
-            <td>        </td>
-            <td>        </td>
-            @if(await Model.CheckIfUserVotedTrack(Model.Track, 1)) //Hardocoded User.
-            {
-            <td><a asp-page="../Tracks/RateTrack" asp-route-id="@Model.Id" class="btn btn-danger">Modify Rating</a></td>
-            }
-            else{
-            <td><a asp-page="../Tracks/RateTrack" asp-route-id="@Model.Id" class="btn btn-danger">Rate</a></td>
-            }
-        </tr>
+
+
+
+
     </table>
 </form>
-
-
 

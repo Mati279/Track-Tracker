@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[spScores_UpdateValue]
 	@Id int,
-	@Value decimal
+	@Value float
 AS
 
 BEGIN

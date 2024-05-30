@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[spScores_Insert]
-	@Value decimal,
+	@Value float,
 	@TrackId int,
 	@UserId int,
 	@Stat varchar(50),

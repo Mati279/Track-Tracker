@@ -48,10 +48,11 @@
             </thead>
             <thead>
                 <tr>
-                    <th><button type="submit">Filter</button></th>
+                    <th> </th>
                     <th><h2><select asp-for="GenreId" asp-items="Model.GenreItems" class="form-control select"></select></h2></th>
                     <th><h2><select asp-for="StyleId" asp-items="Model.StyleItems" class="form-control select"></select></h2></th>
                     <th><h2><select asp-for="SelectedStat" asp-items="Model.StatItems" class="form-control select"></select></h2></th>
+                    <th><button type="submit">Filter</button></th>
                   </tr>
             </thead>
             <tbody class="tableDBB">
@@ -60,9 +61,9 @@
                     <tr>
                         <td><strong>@Html.Raw(@Model.comparableArtists.IndexOf(artist) + 1) - @artist.Name</strong></td>
                         <td>@artist.Genre</td>
-                        <td>Filtering by @Model.StyleId</td>
+                        <td>Filtering by @Model.FilterStyleName</td>
                         <td title="@await Model.artistsFilter.CheckAmmountArtistStyleTracks(artist, @Model.StyleId) tracks."><strong>@Html.Raw(artist.GetScoreByStat(Model.SelectedStat))</strong></td>
-                        <td><input type="button" value="View" /></td>
+                        <td><a asp-page="../Stats/ArtistStats" asp-route-id="@artist.ModelId" class="btn btn-danger">View</a></td>
                     </tr>
                 }
                 @if (Model.filteredArtists.Count < 1)

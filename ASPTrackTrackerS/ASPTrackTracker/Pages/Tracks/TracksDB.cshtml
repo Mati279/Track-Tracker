@@ -70,7 +70,7 @@
                 @foreach (var track in Model.comparableTracks)
                 {
                     <tr>
-                        @if(track.Link.Length > 10)
+                        @if(track.Link?.Length > 10)
                         {
                             <td><a href="@track.Link" target="_blank">📣</a></td>
                         }
@@ -86,7 +86,7 @@
                         <td title="@track.Voted votes."><strong>@Html.Raw(track.GetScoreByStat(Model.SelectedStat))</strong></td>
                         @if(await @Model.CheckIfUserVotedTrack(track.ModelId))
                         {
-                            <td><a asp-page="../Views/TrackView" asp-route-id="@track.ModelId" class="btn btn-danger">View</a></td>
+                            <td><a asp-page="../Stats/TrackStats" asp-route-id="@track.ModelId" class="btn btn-danger">View</a></td>
                         }
                         else
                         {

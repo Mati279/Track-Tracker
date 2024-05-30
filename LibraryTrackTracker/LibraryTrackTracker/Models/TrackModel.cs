@@ -12,9 +12,7 @@ namespace DataLibrary.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-
-        [Required(AllowEmptyStrings = true)]
-        public string Link { get; set; }
+        public string? Link { get; set; }
         public int UserId { get; set; } 
         public int ArtistId { get; set; } 
         public int GenreId { get; set; } 

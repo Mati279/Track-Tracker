@@ -20,9 +20,7 @@ namespace ASPTrackTracker.Pages.TrackHolders
         private readonly IGenreData genreData;
         private readonly IStyleData styleData;
         public ArtistsFilter artistsFilter { get; set; }
-
         public List<ArtistModel> allArtists { get; set; }
-
         public List<ArtistModel> filteredArtists { get; set; }
         public List<ComparableArtist> comparableArtists { get; set; }
         public List<SelectListItem> StyleItems { get; set; }
@@ -31,6 +29,8 @@ namespace ASPTrackTracker.Pages.TrackHolders
 
         [BindProperty(SupportsGet = true)]
         public int GenreId { get; set; }
+
+        public string FilterStyleName { get; set; }
 
         [BindProperty(SupportsGet = true)]
         public int StyleId { get; set; }
@@ -66,6 +66,8 @@ namespace ASPTrackTracker.Pages.TrackHolders
             selectListFiller.FillSelectTrackHolder(StyleItems, styles);
             selectListFiller.FillSelectStats(StatItems);
 
+            
+
             filteredArtists = await artistsFilter.FilterArtists(GenreId, StyleId);
 
             comparableArtists = await comparablesCreator.CreateComparableArtists(filteredArtists);
@@ -86,11 +88,13 @@ namespace ASPTrackTracker.Pages.TrackHolders
 
             if (GenreId == 0 && StyleId == 0)
             {
+                FilterStyleName = "All";
                 genrePrompt = "";
                 finalDot = "";
             }
             else if (GenreId == 0)
             {
+                FilterStyleName = style.Name;
                 genrePrompt = "Filtering artists ";
             }
             else
@@ -100,6 +104,7 @@ namespace ASPTrackTracker.Pages.TrackHolders
 
             if (StyleId == 0)
             {
+                FilterStyleName = "All";
                 stylePrompt = "";
             }
             else
