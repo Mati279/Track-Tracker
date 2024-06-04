@@ -52,7 +52,9 @@
                         
                     </th>
                 </tr>
-                <tr>@Model.FilterPrompt</tr>
+                <tr>
+                    @Model.FilterPrompt - Query average: @Model.GetQueryAverage()
+                </tr>
             </thead>
             <thead>
                 <tr>
@@ -83,7 +85,7 @@
                         <td>@track.ArtistName</td>
                         <td>@track.Genre</td>
                         <td>@track.StyleName</td>
-                        <td title="@track.Voted votes."><strong>@Html.Raw(track.GetScoreByStat(Model.SelectedStat))</strong></td>
+                        <td title="@track.Voted votes."><strong>@Html.Raw(track.GetScoreByStatAsString(Model.SelectedStat))</strong></td>
                         @if(await @Model.CheckIfUserVotedTrack(track.ModelId))
                         {
                             <td><a asp-page="../Stats/TrackStats" asp-route-id="@track.ModelId" class="btn btn-danger">View</a></td>

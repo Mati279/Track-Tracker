@@ -126,7 +126,7 @@ namespace ASPTrackTracker.Pages.Stats
             }
             double average = values / count;
 
-            return  Math.Round(average, 2);
+            return  Math.Round(average, 1);
         }
 
         public string ReturnScoreOrDash(double score)

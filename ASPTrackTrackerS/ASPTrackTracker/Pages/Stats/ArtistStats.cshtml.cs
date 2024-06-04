@@ -12,7 +12,6 @@ namespace ASPTrackTracker.Pages.Stats
     {
         private readonly ScoresManager scoresManager;
         private readonly IArtistData artistData;
-        private readonly IScoreData scoreData;
         private readonly IGenreData genreData;
         private readonly ITrackData trackData;
 
@@ -30,11 +29,10 @@ namespace ASPTrackTracker.Pages.Stats
         public double InstrumentalScore { get; private set; }
         public List<ScoreModel> artistScores { get; set; }
 
-        public ArtistStatsModel(ScoresManager scoresManager, IArtistData artistData, IScoreData scoreData, IGenreData genreData, ITrackData trackData)
+        public ArtistStatsModel(ScoresManager scoresManager, IArtistData artistData, IGenreData genreData, ITrackData trackData)
         {
             this.scoresManager = scoresManager;
             this.artistData = artistData;
-            this.scoreData = scoreData;
             this.genreData = genreData;
             this.trackData = trackData;
         }
@@ -60,16 +58,19 @@ namespace ASPTrackTracker.Pages.Stats
 
         private double GetArtistScoreByStat(string Stat)
         {
+            double value = 0;
+            int count = 0;
 
             foreach (ScoreModel score in artistScores)
             {
                 if (score.Stat == Stat)
                 {
-                    return score.Value;
+                    value += score.Value;
+                    count++;
                 }
             }
 
-            return 0;
+            return Math.Round(value / count, 1);
         }
         private double GetAverage()
         {
@@ -86,7 +87,7 @@ namespace ASPTrackTracker.Pages.Stats
             }
             double average = values / count;
 
-            return Math.Round(average, 2);
+            return Math.Round(average, 1);
         }
 
         private async Task<int> GetTrackAmmount()

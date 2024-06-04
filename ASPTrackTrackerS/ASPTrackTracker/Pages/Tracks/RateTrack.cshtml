@@ -55,7 +55,7 @@
 <button onclick="window.history.back()" class="btn btn-primary">Cancel</button>
 
 
-@if (@Model.Track.Link.Length > 10)
+@if (@Model.Track.Link?.Length > 10)
 {
     <h3><a href="@Model.Track.Link" target="_blank">Listen 📣</a></h3>
 }

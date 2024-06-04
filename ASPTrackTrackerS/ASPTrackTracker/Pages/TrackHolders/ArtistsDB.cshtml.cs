@@ -15,8 +15,6 @@ namespace ASPTrackTracker.Pages.TrackHolders
         private readonly SelectListsFiller selectListFiller;
         private readonly ComparablesCreator comparablesCreator;
         private readonly ScoresSorter scoreSorter;
-        private readonly ITrackData trackData;
-        private readonly IArtistData artistData;
         private readonly IGenreData genreData;
         private readonly IStyleData styleData;
         public ArtistsFilter artistsFilter { get; set; }
@@ -47,8 +45,6 @@ namespace ASPTrackTracker.Pages.TrackHolders
             this.artistsFilter = artistsFilter;
             this.comparablesCreator = comparablesCreator;
             this.scoreSorter = scoreSorter;
-            this.trackData = trackData;
-            this.artistData = artistData;
             this.genreData = genreData;
             this.styleData = styleData;
         }

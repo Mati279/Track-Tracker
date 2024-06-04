@@ -62,7 +62,7 @@
                         <td><strong>@Html.Raw(@Model.comparableArtists.IndexOf(artist) + 1) - @artist.Name</strong></td>
                         <td>@artist.Genre</td>
                         <td>Filtering by @Model.FilterStyleName</td>
-                        <td title="@await Model.artistsFilter.CheckAmmountArtistStyleTracks(artist, @Model.StyleId) tracks."><strong>@Html.Raw(artist.GetScoreByStat(Model.SelectedStat))</strong></td>
+                        <td title="@await Model.artistsFilter.CheckAmmountArtistStyleTracks(artist, @Model.StyleId) tracks."><strong>@Html.Raw(artist.GetScoreByStatAsString(Model.SelectedStat))</strong></td>
                         <td><a asp-page="../Stats/ArtistStats" asp-route-id="@artist.ModelId" class="btn btn-danger">View</a></td>
                     </tr>
                 }

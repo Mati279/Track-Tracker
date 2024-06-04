@@ -1,7 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[spUsers_Insert]
 	@Name nvarchar(220),
 	@eMail nvarchar(220),
-	@Password int,
+	@Password nvarchar(220),
 	@Id int output
 
 	

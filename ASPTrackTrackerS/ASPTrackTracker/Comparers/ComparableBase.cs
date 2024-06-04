@@ -21,7 +21,16 @@
             ModelId = modelId; 
         }
 
-        public string GetScoreByStat(string stat)
+        public string GetScoreByStatAsString(string stat)
+        {
+            
+            double roundedScore = Math.Round(GetScoreByStat(stat), 1);
+
+            string resultString = roundedScore == 0 ? "- -" : roundedScore.ToString();
+            return resultString;
+        }
+
+        public double GetScoreByStat(string stat)
         {
             double score = 0;
 
@@ -54,8 +63,7 @@
 
             double roundedScore = Math.Round(score, 1);
 
-            string resultString = roundedScore == 0 ? "- -" : roundedScore.ToString();
-            return resultString;
+            return roundedScore;
         }
     }
 }

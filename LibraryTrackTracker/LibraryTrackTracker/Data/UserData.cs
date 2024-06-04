@@ -41,17 +41,5 @@ namespace DataLibrary.Data
         {
             await _dataAccess.SaveData("spUsers_UpdatePassword", new { @Id = Id, @Password = password }, _connectionString.sqlConnectionName);
         }
-
-        public async Task<IReadOnlyList<User>> MappUsers()
-        {
-            var models = await GetAll<UserModel>();
-
-            foreach (var model in models)
-            {
-                var user = new User(_trackData, model.Id, model.Name, model.eMail, model.Password);
-                allUsers.Add(user);
-            }
-            return allUsers;
-        }
     }
 }

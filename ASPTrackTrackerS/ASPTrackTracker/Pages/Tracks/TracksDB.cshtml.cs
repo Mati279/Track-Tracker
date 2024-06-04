@@ -6,6 +6,7 @@ using DataLibrary.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Reflection;
 
 namespace ASPTrackTracker.Pages.Tracks
 {
@@ -112,6 +113,20 @@ namespace ASPTrackTracker.Pages.Tracks
             TrackModel Track = await trackData.GetById<TrackModel>(trackId);
 
             return await scoresManager.CheckIfUserVotedTrack(Track, 1); //Hardcoded - user.
+        }
+
+        public double GetQueryAverage()
+        {
+            double value = 0;
+            int count = 0;
+
+            foreach(ComparableTrack track in comparableTracks)
+            {
+                value += track.GetScoreByStat(SelectedStat);
+                count++;
+            }
+
+            return Math.Round(value / count, 1);
         }
 
 

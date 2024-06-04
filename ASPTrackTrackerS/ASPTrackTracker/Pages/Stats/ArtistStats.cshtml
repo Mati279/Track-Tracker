@@ -13,13 +13,13 @@
             <td><h3>Artist Info</h3></td>
             <td></td>
             <td></td>
-            <td><h3>Artist Scores</h3></td>
+            <td><h3>Avg. Scores</h3></td>
         </tr>
         <tr>
             <td><strong>Genre: </strong></td>
             <td>@Model.genreName</td>
             <td>        </td>
-            <td><strong>Average score: </strong></td>
+            <td><strong>Average: </strong></td>
             <td>@Model.ReturnScoreOrDash(@Model.AverageScore)</td>
             <td>        </td>
         </tr>
@@ -27,36 +27,32 @@
             <td><strong>Tracks: </strong></td>
             <td>@Model.trackAmmount</td>
             <td>        </td>
-            <td><strong>Affinity score: </strong></td>
+            <td><strong>Affinity: </strong></td>
             <td>@Model.ReturnScoreOrDash(@Model.AffinityScore)</td>
             <td>        </td>
-            <td><strong>Voices score: </strong></td>
+            <td><strong>Voices: </strong></td>
             <td>@Model.ReturnScoreOrDash(@Model.VoicesScore)</td>
         </tr>
         <tr>
             <td></td>
             <td></td>
             <td>        </td>
-            <td><strong>Creativity score: </strong></td>
+            <td><strong>Creativity: </strong></td>
             <td>@Model.ReturnScoreOrDash(@Model.CreativityScore)</td>
             <td>        </td>
-            <td><strong>Lyrics score: </strong></td>
+            <td><strong>Lyrics: </strong></td>
             <td>@Model.ReturnScoreOrDash(@Model.LyricsScore)</td>
         </tr>
         <tr>
             <td><strong></strong></td>
             <td></td>
             <td>        </td>
-            <td><strong>Complexity score: </strong></td>
+            <td><strong>Complexity: </strong></td>
             <td>@Model.ReturnScoreOrDash(@Model.ComplexityScore)</td>
             <td>                            </td>
-            <td><strong>Instrumental score: </strong></td>
+            <td><strong>Instrumental: </strong></td>
             <td>@Model.ReturnScoreOrDash(@Model.InstrumentalScore)</td>
         </tr>
-
-
-
-
     </table>
 </form>
 
