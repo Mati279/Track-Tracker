@@ -4,6 +4,7 @@ using ASPTrackTracker.ScoreHelpers;
 using DataLibrary;
 using DataLibrary.Data;
 using DataLibrary.Db;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace ASPTrackTracker
 {
@@ -34,6 +35,14 @@ namespace ASPTrackTracker
             builder.Services.AddSingleton<ScoresManager, ScoresManager>();
             builder.Services.AddSingleton<ScoresSorter, ScoresSorter>();
             builder.Services.AddSingleton<ArtistsFilter, ArtistsFilter>();
+
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+        .AddCookie(options =>
+        {
+            options.LoginPath = "/Login";
+            options.LogoutPath = "/Logout";
+            options.AccessDeniedPath = "/AccessDenied";
+        });
 
             var app = builder.Build();
 

@@ -1,3 +1,4 @@
+using ASPTrackTracker.Auth;
 using ASPTrackTracker.FillersAndFilters;
 using ASPTrackTracker.ScoreHelpers;
 using DataLibrary.BL;
@@ -10,7 +11,7 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace ASPTrackTracker.Pages.Stats
 {
-    public class TrackStatsModel : PageModel
+    public class TrackStatsModel : AuthenticatedPageModel
     {
         private readonly ScoresManager scoresManager;
         private readonly SelectListsFiller selectListFilter;

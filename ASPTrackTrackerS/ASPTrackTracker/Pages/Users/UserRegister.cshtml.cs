@@ -5,11 +5,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Runtime.CompilerServices;
 using BCrypt.Net;
 using Microsoft.Data.SqlClient;
+using ASPTrackTracker.Auth;
 
 
 namespace ASPTrackTracker.Pages.Users
 {
-    public class UserRegisterModel : PageModel
+    public class UserRegisterModel : AuthenticatedPageModel
     {
         private readonly IUserData userData;
 
@@ -29,51 +30,36 @@ namespace ASPTrackTracker.Pages.Users
         {
             this.userData = userData;
         }
-        public void OnGet()
-        {
-
-        }
 
         public async Task<IActionResult> OnPost()
         {
-            UserModel newUser = new UserModel
-            {
-                Name = UserName,
-                eMail = eMail,
-                Password = BCrypt.Net.BCrypt.HashPassword(Password)
-            };
             try
             {
-                int Id = await userData.Create(newUser);
-            }
-            catch (SqlException ex)
-            {
-                if (ex.Number == 2627)
+                UserModel newUser = new UserModel
                 {
-                    errorMessage = "Mail already in use.";
-                    return Page();
+                    Name = UserName,
+                    eMail = eMail,
+                    Password = BCrypt.Net.BCrypt.HashPassword(Password)
+                };
+                try
+                {
+                    int Id = await userData.Create(newUser);
+                }
+                catch (SqlException ex)
+                {
+                    if (ex.Number == 2627)
+                    {
+                        errorMessage = "Mail already in use.";
+                        return Page();
+                    }
                 }
             }
-
+            catch
+            {
+                errorMessage = "Error.";
+                return Page();
+            }
             return Page();
-        }
-
-        public async Task<bool> CheckEmail(string email)
-        {
-            List<string> allEmails = new List<string>();
-
-            List<UserModel> allUsers = new List<UserModel>();
-
-            allUsers = await userData.GetAll<UserModel>();
-
-            foreach (var user in allUsers)
-            {
-                if (allEmails.Contains(user.eMail))
-                {
-                    return true;
-                }
-            }
-            return false;
         }
     }
 }

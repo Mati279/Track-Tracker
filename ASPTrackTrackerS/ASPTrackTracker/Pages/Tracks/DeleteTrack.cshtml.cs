@@ -1,3 +1,4 @@
+using ASPTrackTracker.Auth;
 using DataLibrary.Data;
 using DataLibrary.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -5,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ASPTrackTracker.Pages.Tracks
 {
-    public class DeleteTrackModel : PageModel
+    public class DeleteTrackModel : AuthenticatedPageModel
     {
         private readonly ITrackData trackData;
 

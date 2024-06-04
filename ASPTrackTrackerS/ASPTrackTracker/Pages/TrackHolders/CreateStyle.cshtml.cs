@@ -1,3 +1,4 @@
+using ASPTrackTracker.Auth;
 using DataLibrary.Data;
 using DataLibrary.Db;
 using DataLibrary.Models;
@@ -6,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ASPTrackTracker.Pages.TrackHolders
 {
-    public class CreateStyleModel : PageModel
+    public class CreateStyleModel : AuthenticatedPageModel
     {
         public IStyleData StyleData { get; set; }
 

@@ -1,3 +1,4 @@
+using ASPTrackTracker.Auth;
 using ASPTrackTracker.Comparers;
 using ASPTrackTracker.FillersAndFilters;
 using ASPTrackTracker.ScoreHelpers;
@@ -10,7 +11,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ASPTrackTracker.Pages.TrackHolders
 {
-    public class ArtistsDBModel : PageModel
+    public class ArtistsDBModel : AuthenticatedPageModel
     {
         private readonly SelectListsFiller selectListFiller;
         private readonly ComparablesCreator comparablesCreator;

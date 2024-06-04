@@ -1,3 +1,4 @@
+using ASPTrackTracker.Auth;
 using ASPTrackTracker.ScoreHelpers;
 using DataLibrary.BL;
 using DataLibrary.Data;
@@ -8,7 +9,7 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace ASPTrackTracker.Pages.Stats
 {
-    public class ArtistStatsModel : PageModel
+    public class ArtistStatsModel : AuthenticatedPageModel
     {
         private readonly ScoresManager scoresManager;
         private readonly IArtistData artistData;

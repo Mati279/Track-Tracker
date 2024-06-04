@@ -1,3 +1,4 @@
+using ASPTrackTracker.Auth;
 using DataLibrary.Data;
 using DataLibrary.Db;
 using DataLibrary.Models;
@@ -6,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ASPTrackTracker.Pages.Tracks
 {
-    public class DisplayTrackModel : PageModel
+    public class DisplayTrackModel : AuthenticatedPageModel
     {
         public ITrackData trackData { get; }
         public IGenreData genreData { get; }

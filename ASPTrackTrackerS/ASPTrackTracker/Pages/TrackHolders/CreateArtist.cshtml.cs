@@ -1,3 +1,4 @@
+using ASPTrackTracker.Auth;
 using DataLibrary.Data;
 using DataLibrary.Db;
 using DataLibrary.Models;
@@ -7,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ASPTrackTracker.Pages.TrackHolders
 {
-    public class CreateArtistModel : PageModel
+    public class CreateArtistModel : AuthenticatedPageModel
     {
         private readonly IArtistData artistData;
         private readonly IGenreData genreData;

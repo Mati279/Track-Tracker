@@ -1,3 +1,4 @@
+using ASPTrackTracker.Auth;
 using ASPTrackTracker.ScoreHelpers;
 using DataLibrary.BL;
 using DataLibrary.Data;
@@ -7,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ASPTrackTracker.Pages.Stats
 {
-    public class UserStatsModel : PageModel
+    public class UserStatsModel : AuthenticatedPageModel
     {
         private readonly ScoresManager scoresManager;
         private readonly IUserData userData;

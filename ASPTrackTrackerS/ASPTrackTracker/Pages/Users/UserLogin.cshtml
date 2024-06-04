@@ -1,17 +1,12 @@
 ﻿@page
-@model ASPTrackTracker.Pages.Users.UserRegisterModel
+@model ASPTrackTracker.Pages.Users.UserLoginModel
 @{
-    ViewData["Title"] = "Register new account";
+    ViewData["Title"] = "Login";
 }
-<h2>Register new account</h2>
+<h2>Login</h2>
 
 <form method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div>
-        <label>User Name</label>
-        <input asp-for="UserName" class="form-control" />
-        <span asp-validation-for="UserName" class="text-danger"></span>
-    </div>
     <div>
         <label>Email</label>
         <input asp-for="eMail" class="form-control" />
@@ -22,7 +17,6 @@
         <input type="password" asp-for="Password" />
         <span asp-validation-for="Password" class="text-danger"></span>
     </div>
-    <button type="submit">Register</button>
+    <button type="submit">Login</button>
 </form>
-        <label class="text-danger">@Model.errorMessage</label>
-
+<label class="text-danger">@Model.errorMessage</label>

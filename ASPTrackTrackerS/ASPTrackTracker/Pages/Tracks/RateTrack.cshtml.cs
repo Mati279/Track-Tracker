@@ -1,3 +1,4 @@
+using ASPTrackTracker.Auth;
 using ASPTrackTracker.Comparers;
 using ASPTrackTracker.ScoreHelpers;
 using DataLibrary.BL;
@@ -10,7 +11,7 @@ using static System.Formats.Asn1.AsnWriter;
 
 namespace ASPTrackTracker.Pages.Tracks
 {
-    public class RateTrackModel : PageModel
+    public class RateTrackModel : AuthenticatedPageModel
     {
         private readonly IScoreData scoreData;
         private readonly IArtistData artistData;

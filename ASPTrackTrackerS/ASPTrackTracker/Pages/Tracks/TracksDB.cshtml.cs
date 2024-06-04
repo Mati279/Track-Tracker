@@ -1,3 +1,4 @@
+using ASPTrackTracker.Auth;
 using ASPTrackTracker.Comparers;
 using ASPTrackTracker.FillersAndFilters;
 using ASPTrackTracker.ScoreHelpers;
@@ -10,7 +11,7 @@ using System.Reflection;
 
 namespace ASPTrackTracker.Pages.Tracks
 {
-    public class TracksDBModel : PageModel
+    public class TracksDBModel : AuthenticatedPageModel
     {
         private readonly ScoresManager scoresManager;
         private readonly TrackFilter tracksFilter;
