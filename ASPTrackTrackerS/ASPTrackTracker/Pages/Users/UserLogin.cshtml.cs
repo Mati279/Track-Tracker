@@ -22,12 +22,17 @@ namespace ASPTrackTracker.Pages.Users
         [BindProperty]
         public string errorMessage { get; set; }
 
+        public string ReturnUrl { get; set; }
+
         public UserLoginModel(IUserData userData)
         {
             this.userData = userData;
         }
-        public async Task<IActionResult> OnPostAsync()
+
+        
+        public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
+            
 
             UserModel user = await GetUserByEmail(eMail);
 
@@ -54,7 +59,7 @@ namespace ASPTrackTracker.Pages.Users
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             var authProperties = new AuthenticationProperties
             {
-                IsPersistent = true // Esto hace que la cookie sea persistente
+                IsPersistent = true 
             };
 
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);

@@ -1,11 +1,25 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Track Tracker";
 }
-<h2>Bienvenido, @User.Identity.Name</h2>
-<h2>User Id:  @Model.UserId</h2>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-</div>
+
+    <div class="text-center">
+        @if(@User.Identity.Name != null)
+        {
+            <h1 class="display-4">Welcome, @User.Identity.Name</h1>
+
+            <form method="post">
+                <button type="submit">Logout</button>
+            </form>
+        }
+        else
+        {
+            <div>
+                <a asp-page="/Users/UserLogin" class="btn btn-primary">Login</a>
+                <a asp-page="/Users/UserRegister" class="btn btn-secondary">Register</a>
+            </div>
+        }
+    </div>
+

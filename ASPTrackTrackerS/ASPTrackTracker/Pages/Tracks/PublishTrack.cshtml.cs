@@ -1,14 +1,16 @@
 using ASPTrackTracker.Auth;
 using DataLibrary.Data;
 using DataLibrary.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Diagnostics;
 
+
 namespace ASPTrackTracker.Pages.Tracks
 {
-    //Viendo el Insert y cómo dar los ID (user, artist, etc.) al modelo creado.
+    [Authorize]
     public class PublishTrackModel : AuthenticatedPageModel
     {
         private readonly ITrackData trackData;

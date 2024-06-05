@@ -6,7 +6,6 @@ using System.Security.Claims;
 
 namespace ASPTrackTracker.Auth
 {
-    [Authorize]
     public class AuthenticatedPageModel : PageModel
     {
         public int UserId { get; private set; }

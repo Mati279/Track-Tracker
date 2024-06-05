@@ -2,11 +2,13 @@ using ASPTrackTracker.Auth;
 using DataLibrary.Data;
 using DataLibrary.Db;
 using DataLibrary.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ASPTrackTracker.Pages.Tracks
 {
+    [Authorize]
     public class DisplayTrackModel : AuthenticatedPageModel
     {
         public ITrackData trackData { get; }

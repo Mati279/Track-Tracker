@@ -39,8 +39,8 @@ namespace ASPTrackTracker
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
         .AddCookie(options =>
         {
-            options.LoginPath = "/Login";
-            options.LogoutPath = "/Logout";
+            options.LoginPath = "/Users/UserLogin";
+            options.LogoutPath = "/Index";
             options.AccessDeniedPath = "/AccessDenied";
         });
 
@@ -59,6 +59,7 @@ namespace ASPTrackTracker
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapRazorPages();

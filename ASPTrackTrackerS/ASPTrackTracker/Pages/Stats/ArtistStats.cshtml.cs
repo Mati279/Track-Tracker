@@ -3,12 +3,14 @@ using ASPTrackTracker.ScoreHelpers;
 using DataLibrary.BL;
 using DataLibrary.Data;
 using DataLibrary.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Reflection.Metadata.Ecma335;
 
 namespace ASPTrackTracker.Pages.Stats
 {
+    [Authorize]
     public class ArtistStatsModel : AuthenticatedPageModel
     {
         private readonly ScoresManager scoresManager;

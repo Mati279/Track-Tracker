@@ -59,7 +59,7 @@ namespace ASPTrackTracker.Pages.Users
                 errorMessage = "Error.";
                 return Page();
             }
-            return Page();
+            return RedirectToPage("/Users/UserLogin");
         }
     }
 }

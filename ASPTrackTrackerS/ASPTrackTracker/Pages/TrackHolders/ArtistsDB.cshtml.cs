@@ -5,12 +5,14 @@ using ASPTrackTracker.ScoreHelpers;
 using DataLibrary.BL;
 using DataLibrary.Data;
 using DataLibrary.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ASPTrackTracker.Pages.TrackHolders
 {
+    [Authorize]
     public class ArtistsDBModel : AuthenticatedPageModel
     {
         private readonly SelectListsFiller selectListFiller;

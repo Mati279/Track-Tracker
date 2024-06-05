@@ -4,6 +4,7 @@ using ASPTrackTracker.FillersAndFilters;
 using ASPTrackTracker.ScoreHelpers;
 using DataLibrary.Data;
 using DataLibrary.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -11,6 +12,7 @@ using System.Reflection;
 
 namespace ASPTrackTracker.Pages.Tracks
 {
+    [Authorize]
     public class TracksDBModel : AuthenticatedPageModel
     {
         private readonly ScoresManager scoresManager;

@@ -3,8 +3,10 @@
 @{
     ViewData["Title"] = "Register new account";
 }
-<h2>Register new account</h2>
 
+@if (@User.Identity.Name == null)
+{
+<h2>Register new account</h2>
 <form method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div>
@@ -25,4 +27,9 @@
     <button type="submit">Register</button>
 </form>
         <label class="text-danger">@Model.errorMessage</label>
-
+}
+else
+{
+    <h3>You are Logged as @User.Identity.Name, to logout head to Home.</h3>
+    <a asp-page="/Index" class="btn btn-primary">Home</a>
+}
