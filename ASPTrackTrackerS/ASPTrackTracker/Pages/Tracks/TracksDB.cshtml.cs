@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Reflection;
+using System.Reflection.Metadata.Ecma335;
 
 namespace ASPTrackTracker.Pages.Tracks
 {
@@ -71,7 +72,7 @@ namespace ASPTrackTracker.Pages.Tracks
             this.genreData = genreData;
             this.styleData = styleData;
         }
-        public async Task OnGet()
+        public async Task OnGetAsync()
         {
             List<UserModel> users = await userData.GetAll<UserModel>();
             List<ArtistModel> artists = await artistData.GetAll<ArtistModel>();
@@ -125,10 +126,12 @@ namespace ASPTrackTracker.Pages.Tracks
 
             foreach(ComparableTrack track in comparableTracks)
             {
-                value += track.GetScoreByStat(SelectedStat);
-                count++;
+                if(track.GetScoreByStat(SelectedStat) > 0)
+                {
+                    value += track.GetScoreByStat(SelectedStat);
+                    count++;
+                }
             }
-
             return Math.Round(value / count, 1);
         }
 

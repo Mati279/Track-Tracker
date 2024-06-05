@@ -32,7 +32,7 @@ namespace ASPTrackTracker.Pages.TrackHolders
 
         }
 
-        public async Task<IActionResult> OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
             await GenreData.Create(Genre);
 

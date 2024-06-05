@@ -32,7 +32,7 @@ namespace ASPTrackTracker.Pages.Tracks
             genreData = _genreData;
             styleData = _styleData;
         }
-        public async Task OnGet()
+        public async Task OnGetAsync()
         {
             Track = await trackData.GetById<TrackModel>(Id);
 

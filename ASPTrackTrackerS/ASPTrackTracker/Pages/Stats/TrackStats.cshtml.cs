@@ -58,7 +58,7 @@ namespace ASPTrackTracker.Pages.Stats
             this.styleData = styleData;
             this.scoreData = scoreData;
         }
-        public async Task OnGet()
+        public async Task OnGetAsync()
         {
             Track = await trackData.GetById<TrackModel>(Id);
             ScoresUser = await userData.GetById<UserModel>(ScoresUserId);

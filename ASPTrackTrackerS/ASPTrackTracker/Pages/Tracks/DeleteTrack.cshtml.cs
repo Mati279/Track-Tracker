@@ -20,12 +20,12 @@ namespace ASPTrackTracker.Pages.Tracks
         {
             trackData = _trackData;
         }
-        public async Task OnGet()
+        public async Task OnGetAsync()
         {
             Track = await trackData.GetById<TrackModel>(Id);
         }
 
-        public async Task<IActionResult> OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
             await trackData.Delete(Id);
 

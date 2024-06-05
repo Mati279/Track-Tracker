@@ -29,7 +29,7 @@ namespace ASPTrackTracker.Pages.TrackHolders
 
         //Viendo para que Create THolder vuelva a la página anterior y no a PublishTrack por defecto como está ahora. 
 
-        public async Task OnGet()
+        public async Task OnGetAsync()
         {
             GenreItems = new List<SelectListItem>();
             List<GenreModel> genres = await genreData.GetAll<GenreModel>();
@@ -44,7 +44,7 @@ namespace ASPTrackTracker.Pages.TrackHolders
             await FillSelect(GenreItems, genres);
         }
         
-        public async Task<IActionResult> OnPost() 
+        public async Task<IActionResult> OnPostAsync() 
         {
             await artistData.Create(Artist);
 

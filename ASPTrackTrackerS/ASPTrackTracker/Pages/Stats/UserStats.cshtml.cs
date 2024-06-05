@@ -30,7 +30,7 @@ namespace ASPTrackTracker.Pages.Stats
             this.genreData = genreData;
             this.trackData = trackData;
         }
-        public async Task OnGet()
+        public async Task OnGetAsync()
         {
             User = await userData.GetById<UserModel>(Id);
 

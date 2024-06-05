@@ -52,7 +52,7 @@ namespace ASPTrackTracker.Pages.TrackHolders
             this.styleData = styleData;
         }
 
-        public async Task OnGet()
+        public async Task OnGetAsync()
         {
             GenreItems = new List<SelectListItem>();
             StyleItems = new List<SelectListItem>();

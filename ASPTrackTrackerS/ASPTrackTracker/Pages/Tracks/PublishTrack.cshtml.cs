@@ -28,7 +28,7 @@ namespace ASPTrackTracker.Pages.Tracks
             this.styleData = styleData;
             this.trackData = trackData;
         }
-        public async Task OnGet()
+        public async Task OnGetAsync()
         {
             ArtistItems = new List<SelectListItem>();
             StyleItems = new List<SelectListItem>();
@@ -40,7 +40,7 @@ namespace ASPTrackTracker.Pages.Tracks
             await FillSelect(StyleItems, styles);
         }
 
-        public async Task<IActionResult> OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
             if (ModelState.IsValid == false) 
             {

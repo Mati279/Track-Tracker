@@ -71,7 +71,7 @@ namespace ASPTrackTracker.Pages.Tracks
             this.scoresManager = scoresManager;
             
         }
-        public async Task OnGet()
+        public async Task OnGetAsync()
         {
             Track = await trackData.GetById<TrackModel>(Id);
 
@@ -88,7 +88,7 @@ namespace ASPTrackTracker.Pages.Tracks
         }
 
         //@Value, @StatId, @UserId, @TrackId
-        public async Task<IActionResult> OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
             Score.UserId = UserId; //Hardcoded.
             Score.TrackId = Id;

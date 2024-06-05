@@ -31,7 +31,7 @@ namespace ASPTrackTracker.Pages.Users
             this.userData = userData;
         }
 
-        public async Task<IActionResult> OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
             try
             {

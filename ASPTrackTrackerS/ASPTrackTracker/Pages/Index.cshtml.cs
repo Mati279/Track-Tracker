@@ -16,7 +16,7 @@ namespace ASPTrackTracker.Pages
         }
 
         
-        public async Task<IActionResult> OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 

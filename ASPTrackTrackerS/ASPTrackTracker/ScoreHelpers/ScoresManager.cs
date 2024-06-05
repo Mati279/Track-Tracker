@@ -62,22 +62,22 @@ namespace ASPTrackTracker.ScoreHelpers
                 switch (score.Stat)
                 {
                     case "Affinity":
-                        comparableTrack.AffinityScore = score.Value;
+                        comparableTrack.AffinityScore += score.Value/ comparableTrack.Voted;
                         break;
                     case "Creativity":
-                        comparableTrack.CreativityScore = score.Value;
+                        comparableTrack.CreativityScore += score.Value / comparableTrack.Voted; ;
                         break;
                     case "Complexity":
-                        comparableTrack.ComplexityScore = score.Value;
+                        comparableTrack.ComplexityScore += score.Value / comparableTrack.Voted; ;
                         break;
                     case "Voices":
-                        comparableTrack.VoicesScore = score.Value;
+                        comparableTrack.VoicesScore += score.Value / comparableTrack.Voted; ;
                         break;
                     case "Lyrics":
-                        comparableTrack.LyricsScore = score.Value;
+                        comparableTrack.LyricsScore += score.Value / comparableTrack.Voted; ;
                         break;
                     case "Instrumental":
-                        comparableTrack.InstrumentalScore = score.Value;
+                        comparableTrack.InstrumentalScore += score.Value / comparableTrack.Voted; ;
                         break;
                     default:
                         throw new InvalidOperationException("Unhandled exception");

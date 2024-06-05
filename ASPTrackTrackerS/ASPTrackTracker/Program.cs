@@ -36,13 +36,14 @@ namespace ASPTrackTracker
             builder.Services.AddSingleton<ScoresSorter, ScoresSorter>();
             builder.Services.AddSingleton<ArtistsFilter, ArtistsFilter>();
 
+            //En Program.cs.
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-        .AddCookie(options =>
-        {
-            options.LoginPath = "/Users/UserLogin";
-            options.LogoutPath = "/Index";
-            options.AccessDeniedPath = "/AccessDenied";
-        });
+            .AddCookie(options =>
+            {
+                options.LoginPath = "/Users/UserLogin"; 
+                options.LogoutPath = "/Index"; 
+                options.AccessDeniedPath = "/AccessDenied"; 
+            });
 
             var app = builder.Build();
 
