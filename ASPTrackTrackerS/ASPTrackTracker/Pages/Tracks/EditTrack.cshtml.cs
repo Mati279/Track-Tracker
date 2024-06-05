@@ -52,9 +52,9 @@ namespace ASPTrackTracker.Pages.Tracks
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (ModelState.IsValid == false) //Si hay algún error en el modelo, cuando se hace el Submit (POST).
+            if (ModelState.IsValid == false) 
             {
-                return Page(); //Devuelve la página actual.
+                return Page(); 
             }
 
             var artist = await artistData.GetById<ArtistModel>(Track.ArtistId);

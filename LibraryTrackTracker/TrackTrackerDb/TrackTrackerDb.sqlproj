@@ -115,6 +115,7 @@
     <Build Include="dbo\Stored Procedures\spTracks\spTracks_GetByStyle.sql" />
     <Build Include="dbo\Stored Procedures\spTracks\spTracks_GetByUser.sql" />
     <Build Include="dbo\Stored Procedures\spTracks\spTracks_Update.sql" />
+    <Build Include="dbo\Stored Procedures\spArtists\spArtists_updateGenre.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment.sql" />

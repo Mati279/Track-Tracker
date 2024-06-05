@@ -1,0 +1,34 @@
+﻿@page
+@model ASPTrackTracker.Pages.TrackHolders.EditArtistModel
+@{
+    ViewData["Title"] = "Edit Artist";
+}
+<h1>Edit Artist</h1>
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label class="control-label">Name</label>
+        <input asp-for="Artist.Name" class="form-control">
+        <span asp-validation-for="Artist.Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label class="control-label">Genre</label>
+        <select asp-for="Artist.GenreId" asp-items="Model.GenreItems" class="form-control"></select>
+        <span asp-validation-for="Artist.GenreId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Confirm" class="btn btn-primary" />
+    </div>
+</form>
+<tr>
+    <td colspan="2">
+        <a asp-page="./DeleteArtist" asp-route-id="@Model.Artist.Id" class="btn btn-danger">Delete Artist</a>
+    </td>
+</tr>
+<button onclick="window.history.back()" class="btn btn-primary">Cancel</button>
+
+@section scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -13,7 +13,7 @@ namespace DataLibrary.Data
         protected override string spGetById_Name { get; set; } = "spArtists_GetById";
         protected override string spInsert_Name { get; set; } = "spArtists_Insert";
         protected override string spDelete_Name { get; set; } = "spArtists_Delete";
-        protected override string spUpdateName_Name { get; set; } = "spTracks_UpdateName";
+        protected override string spUpdateName_Name { get; set; } = "spArtists_UpdateName";
 
         private readonly IDataAccess _dataAccess;
         public ConnectionStringData _connectionString { get; }
@@ -22,6 +22,11 @@ namespace DataLibrary.Data
         {
             _dataAccess = dataAccess;
             _connectionString = connectionString;
+        }
+
+        public async Task UpdateGenre(int Id, int genreId)
+        {
+            await _dataAccess.SaveData("spArtists_updateGenre", new { @Id = Id, @GenreId = genreId }, _connectionString.sqlConnectionName);
         }
     }
 }

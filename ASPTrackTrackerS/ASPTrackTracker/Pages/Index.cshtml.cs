@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ASPTrackTracker.Pages
 {
+    [Authorize]
     public class IndexModel : AuthenticatedPageModel
     {
         private readonly ILogger<IndexModel> _logger;
@@ -15,7 +17,6 @@ namespace ASPTrackTracker.Pages
             _logger = logger;
         }
 
-        
         public async Task<IActionResult> OnPostAsync()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);

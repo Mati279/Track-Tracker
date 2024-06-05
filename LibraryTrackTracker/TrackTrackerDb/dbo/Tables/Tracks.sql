@@ -9,7 +9,7 @@
 	[StyleId] INT NULL, 
 
 	FOREIGN KEY ([UserId]) REFERENCES [dbo].[Users]([Id]),
-	FOREIGN KEY ([ArtistId]) REFERENCES [dbo].[Artists]([Id]),
+	FOREIGN KEY ([ArtistId]) REFERENCES [dbo].[Artists]([Id]) ON DELETE CASCADE,
 	FOREIGN KEY ([GenreId]) REFERENCES [dbo].[Genres]([Id]),
 	FOREIGN KEY ([StyleId]) REFERENCES [dbo].[Styles]([Id])
 );

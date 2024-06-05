@@ -148,5 +148,16 @@ namespace ASPTrackTracker.Pages.Stats
         {
            return await scoresManager.CheckIfUserVotedTrack(track, userId);
         }
+        public bool CheckIfUserPublishedTrack(TrackModel track, int userId)
+        {
+            if(track.UserId == userId)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

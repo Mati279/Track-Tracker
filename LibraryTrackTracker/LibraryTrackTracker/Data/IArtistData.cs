@@ -11,5 +11,6 @@ namespace DataLibrary.Data
         Task<int> Create(object model);
         Task Delete(int Id);
         Task UpdateName(int Id, string name);
+        Task UpdateGenre(int Id, int genreId);
     }
 }

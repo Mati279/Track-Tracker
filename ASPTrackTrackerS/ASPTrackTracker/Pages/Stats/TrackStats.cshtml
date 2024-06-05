@@ -58,16 +58,19 @@
             <td>@Model.ReturnScoreOrDash(@Model.InstrumentalScore)</td>
         </tr>
         <tr>
-            <td>        </td>
-            <td>        </td>
-            <td>        </td>
-            <td>        </td>
-            @if(await Model.CheckIfUserVotedTrack(Model.Track, 1)) //Hardocoded User.
+            @if (@Model.CheckIfUserPublishedTrack(Model.Track, Model.UserId))
             {
-            <td><a asp-page="../Tracks/RateTrack" asp-route-id="@Model.Id" class="btn btn-danger">Modify Rating</a></td>
+                <td><a asp-page="../Tracks/EditTrack" asp-route-id="@Model.Id" class="btn btn-danger">Edit Track</a> </td>
+            }
+            <td>        </td>
+            <td>        </td>
+            <td>        </td>
+            @if(await Model.CheckIfUserVotedTrack(Model.Track, Model.UserId)) //Hardocoded User.
+            {
+                <td><a asp-page="../Tracks/RateTrack" asp-route-id="@Model.Id" class="btn btn-danger">Modify Rating</a></td>
             }
             else{
-            <td><a asp-page="../Tracks/RateTrack" asp-route-id="@Model.Id" class="btn btn-danger">Rate</a></td>
+                <td><a asp-page="../Tracks/RateTrack" asp-route-id="@Model.Id" class="btn btn-danger">Rate</a></td>
             }
         </tr>
     </table>
