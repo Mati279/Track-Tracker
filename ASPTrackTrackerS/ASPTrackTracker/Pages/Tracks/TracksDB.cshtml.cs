@@ -115,7 +115,7 @@ namespace ASPTrackTracker.Pages.Tracks
         {
             TrackModel Track = await trackData.GetById<TrackModel>(trackId);
 
-            return await scoresManager.CheckIfUserVotedTrack(Track, 1); //Hardcoded - user.
+            return await scoresManager.CheckIfUserVotedTrack(Track, base.UserId); //Hardcoded - user.
         }
 
         public double GetQueryAverage()

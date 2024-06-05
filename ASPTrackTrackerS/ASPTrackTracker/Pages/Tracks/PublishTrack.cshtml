@@ -7,7 +7,7 @@
 <form method="post" class="publish-form">
     @*Crea un formulario HTML con POST como el método de envío del formulario.*@
     <div asp-validation-summary="ModelOnly" class="text-danger"></div> @*Validación de toda la sección <div>.*@
-    <input asp-for="Track.UserId" value="1" type="hidden" /> @*UserId siempre siendo 1 ---- HARDCODEADO.*@
+    <input asp-for="Track.UserId" value="@Model.UserId" type="hidden" /> @*UserId siempre siendo 1 ---- HARDCODEADO.*@
     <div class="form-group">
         <label  class="control-label">Name</label>
         <input asp-for="Track.Name" class="form-control">

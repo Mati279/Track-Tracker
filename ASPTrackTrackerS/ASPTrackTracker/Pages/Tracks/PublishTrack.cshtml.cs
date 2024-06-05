@@ -42,15 +42,15 @@ namespace ASPTrackTracker.Pages.Tracks
 
         public async Task<IActionResult> OnPost()
         {
-            if (ModelState.IsValid == false) //Si hay algún error en el modelo, cuando se hace el Submit (POST).
+            if (ModelState.IsValid == false) 
             {
-                return Page(); //Devuelve la página actual.
+                return Page(); 
             }
 
             var artist = await artistData.GetById<ArtistModel>(Track.ArtistId);
 
             Track.GenreId = artist.GenreId;
-
+            Track.UserId = UserId;
             int Id = await trackData.Create(Track); 
 
             return RedirectToPage("./DisplayTrack", new { Id = Id }); 

@@ -82,7 +82,7 @@ namespace ASPTrackTracker.Pages.Tracks
 
             CheckIstrumentalOrChoral(Style);
 
-            await GetUserPreviousScores(Track, 1); //Hardcoded user.
+            await GetUserPreviousScores(Track, UserId); //Hardcoded user.
             AsignScoresToFields();
 
         }
@@ -90,7 +90,7 @@ namespace ASPTrackTracker.Pages.Tracks
         //@Value, @StatId, @UserId, @TrackId
         public async Task<IActionResult> OnPost()
         {
-            Score.UserId = 1; //Hardcoded.
+            Score.UserId = UserId; //Hardcoded.
             Score.TrackId = Id;
 
             Track = await trackData.GetById<TrackModel>(Id);
@@ -99,7 +99,7 @@ namespace ASPTrackTracker.Pages.Tracks
 
             CheckIstrumentalOrChoral(Style);
 
-            await GetUserPreviousScores(Track, 1); //Hardcoded user.
+            await GetUserPreviousScores(Track, UserId); //Hardcoded user.
 
             await SubmitScore(valueAffinity, "Affinity");
 

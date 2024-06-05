@@ -1,7 +1,7 @@
 ﻿@page
 @model ASPTrackTracker.Pages.Tracks.TracksDBModel
 @{
-    ViewData["Title"] = "Tracks Rating";
+    ViewData["Title"] = "Tracks Ratings";
 }
 
 <head>
@@ -33,10 +33,9 @@
         }
     </style>
 </head>
-<h1>Tracks Rating</h1>
 <form method="get">
     <body>
-        <h1 class="title">Tracks Data Base</h1>
+        <h1 class="title">Tracks Ratings</h1>
         <table class="tableDBH">
             <thead>
                 <tr>
@@ -52,7 +51,8 @@
                     </th>
                 </tr>
                 <tr>
-                    @Model.FilterPrompt - Query average: @Model.GetQueryAverage()
+                    @Model.FilterPrompt -
+                    <strong>Query average: @Model.GetQueryAverage()</strong>
                 </tr>
             </thead>
             <thead>

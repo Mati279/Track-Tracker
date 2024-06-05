@@ -61,7 +61,7 @@ namespace ASPTrackTracker.Pages.Tracks
 
             Track.GenreId = artist.GenreId;
 
-            await trackData.UpdateTrack(Id, Track.Name, Track.Link, 1, Track.ArtistId, 
+            await trackData.UpdateTrack(Id, Track.Name, Track.Link, UserId, Track.ArtistId, 
                 Track.GenreId, Track.StyleId); //Hardcoded.
 
             return RedirectToPage("./DisplayTrack", new { Id = Id });
