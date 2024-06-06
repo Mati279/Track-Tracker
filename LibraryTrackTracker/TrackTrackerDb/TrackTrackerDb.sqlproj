@@ -118,9 +118,6 @@
     <Build Include="dbo\Stored Procedures\spArtists\spArtists_updateGenre.sql" />
   </ItemGroup>
   <ItemGroup>
-    <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
-  </ItemGroup>
-  <ItemGroup>
     <RefactorLog Include="TrackTrackerDb.refactorlog" />
   </ItemGroup>
 </Project>

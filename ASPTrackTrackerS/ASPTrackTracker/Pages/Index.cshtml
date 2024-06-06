@@ -4,7 +4,47 @@
     ViewData["Title"] = "Home";
 }
 
-
-<div class="text-center">
-    <h1 class="display-4">Welcome, @User.Identity.Name</h1>
-</div>
+<table>
+    <tr>
+        <div class="text-center">
+            <h1 class="display-4">Welcome, @User.Identity.Name</h1>
+        </div>
+    </tr>
+    <tr>
+        <td>
+            <div>
+                @if(Model.TracksNotRated > 1)
+                {
+                    <p>You have <strong>@Model.TracksNotRated</strong> track awaiting your rating!</p>
+                    <td><a asp-page="/Tracks/TracksDB" class="btn btn-danger">Tracks Ratings</a></td>
+                }
+                else if(Model.TracksNotRated == 1)
+                {
+            <p>You have <strong>@Model.TracksNotRated</strong> track awaiting your rating!</p>
+                    <td><a asp-page="/Tracks/TracksDB" class="btn btn-danger">Tracks Ratings</a></td>
+                }
+                else
+                {
+                    <p>You are up to date! You rated all tracks.</p>
+                }
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @if (Model.TracksPublished > 1)
+            {
+                <p>You have published <strong>@Model.TracksPublished</strong> tracks.</p>
+            }
+            else if (Model.TracksPublished == 1)
+            {
+                <p>You have published <strong>@Model.TracksPublished</strong> track.</p>
+            }
+            else
+            {
+                <p>You haven´t still published any track!</p>
+                <td><a asp-page="/Tracks/PublishTrack" class="btn btn-danger">Publish</a></td>
+            }
+        </td>
+    </tr>
+</table>

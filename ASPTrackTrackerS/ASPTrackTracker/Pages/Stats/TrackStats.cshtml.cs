@@ -45,6 +45,7 @@ namespace ASPTrackTracker.Pages.Stats
         public double LyricsScore { get; set; }
         public double InstrumentalScore { get; set; }
         List<ScoreModel> TrackScores { get; set; }
+        public int UsersWhoVoted { get; set; }
         public string ScoresPrompt { get; set; }
 
         public TrackStatsModel(ScoresManager scoresManager, SelectListsFiller selectListFilter, ITrackData trackData, IUserData userData, IArtistData artistData, IGenreData genreData, IStyleData styleData, IScoreData scoreData)
@@ -73,7 +74,7 @@ namespace ASPTrackTracker.Pages.Stats
 
             UsersSelectList = new List<SelectListItem>();
 
-            selectListFilter.FillSelectTrackHolder(UsersSelectList, AllUsers);
+            selectListFilter.FillSelectTrackHolder(UsersSelectList, await GetUsersWhoVotedTrack(Track));
 
 
             AverageScore = GetAverage();
@@ -158,6 +159,22 @@ namespace ASPTrackTracker.Pages.Stats
             {
                 return false;
             }
+        }
+
+        public async Task<List<UserModel>> GetUsersWhoVotedTrack(TrackModel track)
+        {
+            List<UserModel> usersVoted = new List<UserModel>();
+
+            foreach(UserModel user in AllUsers)
+            {
+                if(await CheckIfUserVotedTrack(track, user.Id))
+                {
+                    usersVoted.Add(user);
+
+                }
+            }
+            UsersWhoVoted = usersVoted.Count;
+            return usersVoted;
         }
     }
 }

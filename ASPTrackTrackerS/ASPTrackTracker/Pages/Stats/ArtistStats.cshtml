@@ -55,5 +55,8 @@
         </tr>
     </table>
 </form>
-<a asp-page="../TrackHolders/EditArtist" asp-route-id="@Model.Artist.Id" class="btn btn-danger">Edit Artist</a>
+@if(Model.UserId == 1) //Privilege.
+{
+    <a asp-page="../TrackHolders/EditArtist" asp-route-id="@Model.Artist.Id" class="btn btn-danger">Edit Artist</a>
+}
 
