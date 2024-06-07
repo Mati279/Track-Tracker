@@ -24,9 +24,14 @@
         <input type="password" asp-for="Password" />
         <span asp-validation-for="Password" class="text-danger"></span>
     </div>
+    <div>
+        <label>Repeat password</label>
+        <input type="password" asp-for="RepeatedPassword" />
+        <span asp-validation-for="RepeatedPassword" class="text-danger"></span>
+    </div>
     <button type="submit">Register</button>
 </form>
-        <label class="text-danger">@Model.errorMessage</label>
+        <label class="text-danger">@Model.ErrorMessage</label>
 }
 else
 {

@@ -89,30 +89,38 @@ namespace ASPTrackTracker.Pages.Stats
         private List<ScoreModel> GetScoresFromSelectedUser()
         {
             List<ScoreModel> userScores = new List<ScoreModel>();
-
-            foreach(ScoreModel score in TrackScores)
+            if(ScoresUserId != 0)
             {
-                if(score.UserId == ScoresUserId || ScoresUserId == 0)
+                foreach(ScoreModel score in TrackScores)
                 {
-                    userScores.Add(score);
+                    if(score.UserId == ScoresUserId)
+                    {
+                        userScores.Add(score);
+                    }
                 }
+                return userScores;
             }
-
-            return userScores;
+            else
+            {
+                return TrackScores;
+            }
         }
 
         private double GetTrackScoreByStat(string Stat)
         {
+            double value = 0;
+            int count = 0;
+            List<ScoreModel> userScores = GetScoresFromSelectedUser();
 
-            foreach(ScoreModel score in GetScoresFromSelectedUser())
+            foreach (ScoreModel score in userScores)
             {
                 if(score.Stat == Stat)
                 {
-                    return score.Value;
+                    count++;
+                    value += score.Value;
                 }
             }
-
-            return 0;
+            return Math.Round(value / count, 1);
         }
 
         private double GetAverage()

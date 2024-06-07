@@ -41,8 +41,8 @@
                 <tr>
                     <th>  </th>
                     <th><h2>Track</h2></th>
-                    <th><h2>Published by</h2></th>
                     <th><h2>Artist</h2></th>
+                    <th><h2>Published by</h2></th>
                     <th><h2>Genre</h2></th>
                     <th><h2>Style</h2></th>
                     <th><h2>Stat</h2></th>
@@ -80,8 +80,8 @@
                             <td>🔇</td>
                         }
                         <td><strong>@Html.Raw(@Model.comparableTracks.IndexOf(track) + 1) - @track.Name</strong></td>
+                        <td><strong>@track.ArtistName</strong></td>
                         <td>@track.UserName</td>
-                        <td>@track.ArtistName</td>
                         <td>@track.Genre</td>
                         <td>@track.StyleName</td>
                         <td title="@track.Voted votes."><strong>@Html.Raw(track.GetScoreByStatAsString(Model.SelectedStat))</strong></td>

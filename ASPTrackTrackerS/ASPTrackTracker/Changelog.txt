@@ -1,0 +1,14 @@
+
+# Changelog
+
+## [1.0.1] - 2024-06-07
+### Fixed
+- Added Changelog page.
+- Fixed Track Stats showing ratings of last user who voted as average for all users.
+- Added password verification on registering new user.
+- Rearranged Track Ratings column order for easier track identification with Artist.
+
+## [1.0.0] - 2024-06-06
+### Added
+- First stable version of the application.
+- Main functionalities implemented.
