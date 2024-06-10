@@ -6,32 +6,37 @@
 
 @if (@User.Identity.Name == null)
 {
-<h2>Register new account</h2>
-<form method="post">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div>
-        <label>User Name</label>
-        <input asp-for="UserName" class="form-control" />
-        <span asp-validation-for="UserName" class="text-danger"></span>
-    </div>
-    <div>
-        <label>Email</label>
-        <input asp-for="eMail" class="form-control" />
-        <span asp-validation-for="eMail" class="text-danger"></span>
-    </div>
-    <div>
-        <label>Password</label>
-        <input type="password" asp-for="Password" />
-        <span asp-validation-for="Password" class="text-danger"></span>
-    </div>
-    <div>
-        <label>Repeat password</label>
-        <input type="password" asp-for="RepeatedPassword" />
-        <span asp-validation-for="RepeatedPassword" class="text-danger"></span>
-    </div>
-    <button type="submit">Register</button>
-</form>
-        <label class="text-danger">@Model.ErrorMessage</label>
+    <form method="post">
+        <h2>Register new account</h2>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group">
+            <label for="username">User Name</label>
+            <input asp-for="UserName" class="form-control" id="username" />
+            <span asp-validation-for="UserName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input asp-for="eMail" class="form-control" id="email" />
+            <span asp-validation-for="eMail" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" asp-for="Password" class="form-control" id="password" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="repeatedpassword">Repeat password</label>
+            <input type="password" asp-for="RepeatedPassword" class="form-control" id="repeatedpassword" />
+            <span asp-validation-for="RepeatedPassword" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn">Register</button>
+    </form>
+    <label class="text-danger" class="form-control">@Model.ErrorMessage</label>
 }
 else
 {
