@@ -2,10 +2,15 @@
 @model ASPTrackTracker.Pages.Stats.ArtistStatsModel
 @{
 }
-<div class="table-container">
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <h2><span class="cust-high">Artist</span> Info</h2>
     <form method="get">
-        <table class="styled-table">
-            <thead>
+        <input asp-for="@Model.Id" value="@Model.Id" type="hidden" />
+        <div class="cust-cards">
+            <table class="table-stats">
                 <tr>
                     <td colspan="6"><h1>@Model.Artist.Name</h1></td>
                 </tr>
@@ -14,8 +19,6 @@
                     <td colspan="2"></td>
                     <td><h3>Avg. Scores</h3></td>
                 </tr>
-            </thead>
-            <tbody>
                 <tr>
                     <td><strong>Genre: </strong></td>
                     <td>@Model.genreName</td>
@@ -45,7 +48,7 @@
                     <td>@Model.ReturnScoreOrDash(@Model.LyricsScore)</td>
                 </tr>
                 <tr>
-                    <td></td>
+                    <td><a asp-page="../TrackHolders/EditArtist" asp-route-id="@Model.Artist.Id" class="btn btn-danger">Edit Artist</a></td>
                     <td></td>
                     <td></td>
                     <td><strong>Complexity: </strong></td>
@@ -54,12 +57,14 @@
                     <td><strong>Instrumental: </strong></td>
                     <td>@Model.ReturnScoreOrDash(@Model.InstrumentalScore)</td>
                 </tr>
-            </tbody>
-        </table>
+            </table>
+                @if (Model.UserId == 1) //Privilege.
+                {
+                }
+                <div>
+                    
+                </div>
+        </div>
     </form>
-</div>
-@if(Model.UserId == 1) //Privilege.
-{
-    <a asp-page="../TrackHolders/EditArtist" asp-route-id="@Model.Artist.Id" class="btn btn-danger">Edit Artist</a>
-}
-
+</body>
+</html>

@@ -14,9 +14,20 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  :root {
-    scroll-behavior: smooth;
-  }
+    :root {
+        scroll-behavior: smooth;
+        --color_db: #233142;
+        --color_lb: #455d7a;
+        --color_red: #dc3545;
+        --color_gr: #e3e3e3;
+    }
+}
+
+:root {
+    --color_db: #233142;
+    --color_lb: #455d7a;
+    --color_red: #dc3545;
+    --color_gr: #e3e3e3;
 }
 
 body {
@@ -3825,7 +3836,6 @@ textarea.form-control-lg {
 .nav-link {
   display: block;
   padding: 0.5rem 1rem;
-  color: #0d6efd;
   text-decoration: none;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, bTrack-color 0.15s ease-in-out;
 }
@@ -3864,7 +3874,6 @@ textarea.form-control-lg {
 }
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
-  color: #495057;
   background-color: #fff;
   bTrack-color: #dee2e6 #dee2e6 #fff;
 }

@@ -2,30 +2,42 @@
 @model ASPTrackTracker.Pages.Stats.TrackStatsModel
 @{
 }
+<h1><span class="cust-high">Track</span> Info</h1>
 <form method="get">
     <input asp-for="@Model.Id" value="@Model.Id" type="hidden" />
+    <div class="cust-cards">
     <table>
         <tr>
             <td>        </td>
             <td>        </td>
-            <td><h1>@Model.Track.Name</h1></td>
         </tr>
         <tr>
-            <td><h3>Track Info</h3></td>
-            <td></td>
+            <td><h2 class="cust-marg">@Model.Track.Name</h2></td>
+                <td>
+                    
+                        @if (@Model.Track.Link?.Length > 10)
+                        {
+                        <h3 class="cust-marg"><a href="@Model.Track.Link" target="_blank">📣</a></h3>
+                        }
+                        else
+                        {
+                        <h3 class="cust-marg">🔇</h3>
+                        }
+                    
+                </td>
             <td></td>
             <td><h3>Scores</h3></td>
             <td>Votes: @Model.UsersWhoVoted</td>
             <td><h3>@Model.ScoresPrompt</h3></td>
         </tr>
         <tr>
-            <td><strong>Uploaded by: </strong></td>
-            <td>@Model.User.Name</td>
+            <td ><strong>Uploaded by: </strong></td>
+                <td class="cust-marg">@Model.User.Name</td>
             <td>        </td>
             <td><strong>Average: </strong></td>
-            <td>@Model.ReturnScoreOrDash(@Model.AverageScore)</td>
+                <td class="cust-marg">@Model.ReturnScoreOrDash(@Model.AverageScore)</td>
             <td><select asp-for="ScoresUserId" asp-items="Model.UsersSelectList" class="form-control"></select> </td>
-            <td><button type="submit">Filter</button></td>
+            <td ><button class="cust-btn" type="submit">Filter</button></td>
         </tr>
         <tr>
             <td><strong>Artist: </strong></td>
@@ -74,6 +86,7 @@
             }
         </tr>
     </table>
+    </div>
 </form>
 
 

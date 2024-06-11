@@ -3,50 +3,44 @@
 @{
     ViewData["Title"] = "Home";
 }
-
-<table>
-    <tr>
-        <div class="text-center">
-            <h1 class="display-4">Welcome, @User.Identity.Name</h1>
-        </div>
-    </tr>
-    <tr>
-        <td>
-            <div>
-                @if(Model.TracksNotRated > 1)
-                {
-                    <p>You have <strong>@Model.TracksNotRated</strong> track awaiting your rating!</p>
-                    <td><a asp-page="/Tracks/TracksDB" class="btn btn-danger">Tracks Ratings</a></td>
-                }
-                else if(Model.TracksNotRated == 1)
-                {
-            <p>You have <strong>@Model.TracksNotRated</strong> track awaiting your rating!</p>
-                    <td><a asp-page="/Tracks/TracksDB" class="btn btn-danger">Tracks Ratings</a></td>
-                }
-                else
-                {
-                    <p>You are up to date! You rated all tracks.</p>
-                }
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            @if (Model.TracksPublished > 1)
+<body>
+    <div class="text-center">
+        <h2>Welcome, <span class="cust-high">@User.Identity.Name</span></h4>
+    </div>
+    <div>
+        <h5>Ratings</h5>
+        <div class="cust-cards" >
+            @if (Model.TracksNotRated > 1)
             {
-                <p>You have published <strong>@Model.TracksPublished</strong> tracks.</p>
+                <p>You have <span class="cust-high">@Model.TracksNotRated tracks</span> awaiting your rating!</p>
             }
-            else if (Model.TracksPublished == 1)
+            else if (Model.TracksNotRated == 1)
             {
-                <p>You have published <strong>@Model.TracksPublished</strong> track.</p>
+                <p>You have <span class="cust-high">@Model.TracksNotRated track</span> awaiting your rating!</p>
             }
             else
             {
-                <p>You haven´t still published any track!</p>
-                <td><a asp-page="/Tracks/PublishTrack" class="btn btn-danger">Publish</a></td>
+                <p >You are up to date! You rated all tracks.</p>
             }
-        </td>
-    </tr>
-</table>
+        </div>
+    </div>
+    <div>
+        <h5>Published</h5>
+        <div class="cust-cards">
+            @if (Model.TracksPublished > 1)
+            {
+                <p>You have published <span class="cust-high">@Model.TracksPublished tracks</span>.</p>
+            }
+            else if (Model.TracksPublished == 1)
+            {
+                <p>You have published <span class="cust-high">@Model.TracksPublished track</span>.</p>
+            }
+            else
+            {
+                <p>You haven’t published any <span class="cust-high">tracks</span> yet!</p>
+            }
+        </div>
+    </div>
+</body>
 
 

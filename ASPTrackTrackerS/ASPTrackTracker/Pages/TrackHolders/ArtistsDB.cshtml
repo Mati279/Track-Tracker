@@ -3,49 +3,51 @@
 @{
     ViewData["Title"] = "Artists Rating";
 }
-<form method="get">
-    <body>
-        <h1 class="title">Artists Rating</h1>
-        <table class="tableDBH">
-            <thead>
-                <tr>
-                    <th><h2>Artist</h2></th>
-                    <th><h2>Artist Genre</h2></th>
-                    <th><h2>Tracks Style</h2></th>
-                    <th><h2>Stat</h2></th>
-                </tr>
-                <tr>@Model.FilterPrompt</tr>
-            </thead>
-            <thead>
-                <tr>
-                    <th> </th>
-                    <th><h2><select asp-for="GenreId" asp-items="Model.GenreItems" class="form-control select"></select></h2></th>
-                    <th><h2><select asp-for="StyleId" asp-items="Model.StyleItems" class="form-control select"></select></h2></th>
-                    <th><h2><select asp-for="SelectedStat" asp-items="Model.StatItems" class="form-control select"></select></h2></th>
-                    <th><button type="submit">Filter</button></th>
-                  </tr>
-            </thead>
-            <tbody class="tableDBB">
-                @foreach (var artist in Model.comparableArtists)
-                {
+
+<h1 class="title"><span class="cust-high">Artists </span>Rating</h1>
+<strong><tr>@Model.FilterPrompt</tr></strong>
+<body>
+    <form method="get">
+        <button class="cust-btn" type="submit">Reset Filters</button>
+    </form>
+    <form method="get">
+        <table class="tableDBH cust-cards">
+                <thead>
                     <tr>
-                        <td><strong>@Html.Raw(@Model.comparableArtists.IndexOf(artist) + 1) - @artist.Name</strong></td>
-                        <td>@artist.Genre</td>
-                        <td>Filtering by @Model.FilterStyleName</td>
-                        <td title="@await Model.artistsFilter.CheckAmmountArtistStyleTracks(artist, @Model.StyleId) tracks."><strong>@Html.Raw(artist.GetScoreByStatAsString(Model.SelectedStat))</strong></td>
-                        <td><a asp-page="../Stats/ArtistStats" asp-route-id="@artist.ModelId" class="btn btn-danger">View</a></td>
+                    <th><h2 class="cust_tabletitle">Artist</h2></th>
+                    <th><h2 class="cust_tabletitle">Artist Genre</h2></th>
+                    <th><h2 class="cust_tabletitle">Tracks Style</h2></th>
+                    <th><h2 class="cust_tabletitle">Stat</h2></th>
                     </tr>
-                }
-                @if (Model.filteredArtists.Count < 1)
-                {
+                </thead>
+                <thead>
                     <tr>
-                        <td>No matches with the current criteria.</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </body>
-</form>
-<form method="postReset">
-    <th><button type="submit">Reset Filters</button></th>
-</form>
+                        <th> </th>
+                        <th><h2><select asp-for="GenreId" asp-items="Model.GenreItems" class="form-control select"></select></h2></th>
+                        <th><h2><select asp-for="StyleId" asp-items="Model.StyleItems" class="form-control select"></select></h2></th>
+                        <th><h2><select asp-for="SelectedStat" asp-items="Model.StatItems" class="form-control select"></select></h2></th>
+                        <th><button class="cust-btn" type="submit">Filter</button></th>
+                      </tr>
+                </thead>
+                <tbody class="tableDBB">
+                    @foreach (var artist in Model.comparableArtists)
+                    {
+                        <tr>
+                            <td><strong>@Html.Raw(@Model.comparableArtists.IndexOf(artist) + 1) - @artist.Name</strong></td>
+                            <td>@artist.Genre</td>
+                            <td>Filtering by @Model.FilterStyleName</td>
+                            <td title="@await Model.artistsFilter.CheckAmmountArtistStyleTracks(artist, @Model.StyleId) tracks."><strong>@Html.Raw(artist.GetScoreByStatAsString(Model.SelectedStat))</strong></td>
+                        <td><a asp-page="../Stats/ArtistStats" asp-route-id="@artist.ModelId" class="btn btn-view">View</a></td>
+                        </tr>
+                    }
+                    @if (Model.filteredArtists.Count < 1)
+                    {
+                        <tr>
+                            <td>No matches with the current criteria.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+    </form>
+</body>
+

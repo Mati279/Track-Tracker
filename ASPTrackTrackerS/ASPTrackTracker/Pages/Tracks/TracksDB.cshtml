@@ -4,114 +4,118 @@
     ViewData["Title"] = "Tracks Ratings";
 }
 
-<head>
-    <style>
-        .select :hover {
-            cursor: pointer;
-        }
 
-        .title {
-            text-align: center;
-        }
-
-        .tableDBH {
-            border-collapse: separate;
-            border-spacing: 10px; /* Espacio entre las celdas */
-            width: 100%; /* Ancho de la tabla */
-            padding: 10px; /* Espaciado alrededor del contenido de las celdas */
-            background-color:darkslategray ; 
-            text-decoration: bold;
-        }
-
-        .tableDBB {
-            border-collapse: separate;
-            border-spacing: 10px; /* Espacio entre las celdas */
-            width: 100%; /* Ancho de la tabla */
-            padding: 9px; /* Espaciado alrededor del contenido de las celdas */
-            background-color:lightsteelblue ;
-            text-decoration: none;
-        }
-    </style>
-</head>
-<form method="get">
-    <body>
-        <h1 class="title">Tracks Ratings</h1>
-        <table class="tableDBH">
+<h1 class="title"><span class="cust-high">Tracks</span> Ratings</h1>
+<strong>@Model.FilterPrompt - Query average: <span class="cust-high">@Model.GetQueryAverage()</span></strong>
+<body>
+    <form method="get">
+        <button class="cust-btn" type="submit">Reset Filters</button>
+    </form>
+    <form method="get">
+        <table class="tableDBH cust-cards">
             <thead>
                 <tr>
-                    <th>  </th>
-                    <th><h2>Track</h2></th>
-                    <th><h2>Artist</h2></th>
-                    <th><h2>Published by</h2></th>
-                    <th><h2>Genre</h2></th>
-                    <th><h2>Style</h2></th>
-                    <th><h2>Stat</h2></th>
+                    <th></th>
+                    <th><h2 class="cust_tabletitle">Track</h2></th>
+                    <th><h2 class ="cust_tabletitle">Artist</h2></th>
+                    <th><h2 class ="cust_tabletitle">Published by</h2></th>
+                    <th><h2 class ="cust_tabletitle">Genre</h2></th>
+                    <th><h2 class ="cust_tabletitle">Style</h2></th>
+                    <th><h2 class ="cust_tabletitle">Stat</h2></th>
+                    <th></th>
+                </tr>
+                
+                <tr>
+                    <th></th>
+                    <th></th>
                     <th>
-                        
+                        <h3>
+                            <select asp-for="ArtistId" asp-items="Model.ArtistItems" class="form-control select"></select>
+                        </h3>
                     </th>
-                </tr>
-                <tr>
-                    @Model.FilterPrompt -
-                    <strong>Query average: @Model.GetQueryAverage()</strong>
-                </tr>
-            </thead>
-            <thead>
-                <tr>
-                    <th> </th>
-                    <th> </th>
-                    <th><h3><select asp-for="ArtistId" asp-items="Model.ArtistItems" class="form-control select"></select></h3></th>
-                    <th><h3><select asp-for="UserId" asp-items="Model.UserItems" class="form-control select"></select></h3></th>
-                    <th><h3><select asp-for="GenreId" asp-items="Model.GenreItems" class="form-control select"></select></h3></th>
-                    <th><h3><select asp-for="StyleId" asp-items="Model.StyleItems" class="form-control select"></select></h3></th>
-                    <th><h3><select asp-for="SelectedStat" asp-items="Model.StatItems" class="form-control select"></select></h3></th>
-                    <th><button type="submit">Filter</button></th>
+                    <th>
+                        <h3>
+                            <select asp-for="UserId" asp-items="Model.UserItems" class="form-control select"></select>
+                        </h3>
+                    </th>
+                    <th>
+                        <h3>
+                            <select asp-for="GenreId" asp-items="Model.GenreItems" class="form-control select"></select>
+                        </h3>
+                    </th>
+                    <th>
+                        <h3>
+                            <select asp-for="StyleId" asp-items="Model.StyleItems" class="form-control select"></select>
+                        </h3>
+                    </th>
+                    <th>
+                        <h3>
+                            <select asp-for="SelectedStat" asp-items="Model.StatItems" class="form-control select"></select>
+                        </h3>
+                    </th>
+                    <th>
+                        <button class="cust-btn" type="submit">Filter</button>
+                    </th>
                 </tr>
             </thead>
             <tbody class="tableDBB">
                 @foreach (var track in Model.comparableTracks)
                 {
                     <tr>
-                        @if(track.Link?.Length > 10)
-                        {
-                            <td><a href="@track.Link" target="_blank">📣</a></td>
-                        }
-                        else
-                        {
-                            <td>🔇</td>
-                        }
-                        <td><strong>@Html.Raw(@Model.comparableTracks.IndexOf(track) + 1) - @track.Name</strong></td>
-                        <td><strong>@track.ArtistName</strong></td>
-                        <td>@track.UserName</td>
-                        <td>@track.Genre</td>
-                        <td>@track.StyleName</td>
-                        <td title="@track.Voted votes."><strong>@Html.Raw(track.GetScoreByStatAsString(Model.SelectedStat))</strong></td>
-                        @if(await @Model.CheckIfUserVotedTrack(track.ModelId))
-                        {
-                            <td><a asp-page="../Stats/TrackStats" asp-route-id="@track.ModelId" class="btn btn-danger">View</a></td>
-                        }
-                        else
-                        {
-                            <td><a asp-page="./RateTrack" asp-route-id="@track.ModelId" class="btn2 btn-danger">Rate</a></td>
-                        }
+                        <td>
+                            @if (track.Link?.Length > 10)
+                            {
+                                <a href="@track.Link" target="_blank">📣</a>
+                            }
+                            else
+                            {
+                                <p>🔇</p>
+                                    }
+                        </td>
+                        <td>
+                            <strong>@Html.Raw(@Model.comparableTracks.IndexOf(track) + 1) - @track.Name</strong>
+                        </td>
+                        <td>
+                            <strong>@track.ArtistName</strong>
+                        </td>
+                        <td>
+                            @track.UserName
+                        </td>
+                        <td>
+                            @track.Genre
+                        </td>
+                        <td>
+                            @track.StyleName
+                        </td>
+                        <td title="@track.Voted votes.">
+                            <strong>@Html.Raw(track.GetScoreByStatAsString(Model.SelectedStat))</strong>
+                        </td>
+                        <td>
+                            @if (await @Model.CheckIfUserVotedTrack(track.ModelId))
+                            {
+                                <a asp-page="../Stats/TrackStats" asp-route-id="@track.ModelId" class="btn btn-view">View</a>
+                            }
+                            else
+                            {
+                                <a asp-page="./RateTrack" asp-route-id="@track.ModelId" class="btn btn-rate">Rate</a>
+                            }
+                        </td>
                     </tr>
-                }		
+                }
                 @if (Model.filteredTracks.Count < 1)
                 {
                     <tr>
-                        <td>No tracks match current criteria.</td>
+                        <td colspan="8">No tracks match current criteria.</td>
                     </tr>
                 }
             </tbody>
         </table>
-    </body>
-</form>
+    </form>
 
-<form method="get">
-    <button type="submit">Reset Filters</button>
-</form>
-<form method="post" asp-page-handler="RateAll">
-    <th><button type="submit">Rate All</button></th>
-</form>
+    
+</body>
+</html>
+
 
 
 
