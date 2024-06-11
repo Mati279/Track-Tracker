@@ -1,6 +1,11 @@
 
 # Changelog
 
+## [1.0.2] - 2024-06-11
+### Visual
+- Enhanced the page aesthetics using CSS styles.
+
+
 ## [1.0.1] - 2024-06-07
 ### Fixed
 - Added Changelog page.
