@@ -45,6 +45,7 @@ namespace ASPTrackTracker.Pages.Stats
         public double LyricsScore { get; set; }
         public double InstrumentalScore { get; set; }
         List<ScoreModel> TrackScores { get; set; }
+        public int UsersWhoVoted { get; set; }
         public string ScoresPrompt { get; set; }
 
         public TrackStatsModel(ScoresManager scoresManager, SelectListsFiller selectListFilter, ITrackData trackData, IUserData userData, IArtistData artistData, IGenreData genreData, IStyleData styleData, IScoreData scoreData)
@@ -73,7 +74,7 @@ namespace ASPTrackTracker.Pages.Stats
 
             UsersSelectList = new List<SelectListItem>();
 
-            selectListFilter.FillSelectTrackHolder(UsersSelectList, AllUsers);
+            selectListFilter.FillSelectTrackHolder(UsersSelectList, await GetUsersWhoVotedTrack(Track));
 
 
             AverageScore = GetAverage();
@@ -88,30 +89,38 @@ namespace ASPTrackTracker.Pages.Stats
         private List<ScoreModel> GetScoresFromSelectedUser()
         {
             List<ScoreModel> userScores = new List<ScoreModel>();
-
-            foreach(ScoreModel score in TrackScores)
+            if(ScoresUserId != 0)
             {
-                if(score.UserId == ScoresUserId || ScoresUserId == 0)
+                foreach(ScoreModel score in TrackScores)
                 {
-                    userScores.Add(score);
+                    if(score.UserId == ScoresUserId)
+                    {
+                        userScores.Add(score);
+                    }
                 }
+                return userScores;
             }
-
-            return userScores;
+            else
+            {
+                return TrackScores;
+            }
         }
 
         private double GetTrackScoreByStat(string Stat)
         {
+            double value = 0;
+            int count = 0;
+            List<ScoreModel> userScores = GetScoresFromSelectedUser();
 
-            foreach(ScoreModel score in GetScoresFromSelectedUser())
+            foreach (ScoreModel score in userScores)
             {
                 if(score.Stat == Stat)
                 {
-                    return score.Value;
+                    count++;
+                    value += score.Value;
                 }
             }
-
-            return 0;
+            return Math.Round(value / count, 1);
         }
 
         private double GetAverage()
@@ -158,6 +167,22 @@ namespace ASPTrackTracker.Pages.Stats
             {
                 return false;
             }
+        }
+
+        public async Task<List<UserModel>> GetUsersWhoVotedTrack(TrackModel track)
+        {
+            List<UserModel> usersVoted = new List<UserModel>();
+
+            foreach(UserModel user in AllUsers)
+            {
+                if(await CheckIfUserVotedTrack(track, user.Id))
+                {
+                    usersVoted.Add(user);
+
+                }
+            }
+            UsersWhoVoted = usersVoted.Count;
+            return usersVoted;
         }
     }
 }

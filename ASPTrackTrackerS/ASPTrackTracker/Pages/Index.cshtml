@@ -3,8 +3,44 @@
 @{
     ViewData["Title"] = "Home";
 }
+<body>
+    <div class="text-center">
+        <h2>Welcome, <span class="cust-high">@User.Identity.Name</span></h4>
+    </div>
+    <div>
+        <h5>Ratings</h5>
+        <div class="cust-cards" >
+            @if (Model.TracksNotRated > 1)
+            {
+                <p>You have <span class="cust-high">@Model.TracksNotRated tracks</span> awaiting your rating!</p>
+            }
+            else if (Model.TracksNotRated == 1)
+            {
+                <p>You have <span class="cust-high">@Model.TracksNotRated track</span> awaiting your rating!</p>
+            }
+            else
+            {
+                <p >You are up to date! You rated all tracks.</p>
+            }
+        </div>
+    </div>
+    <div>
+        <h5>Published</h5>
+        <div class="cust-cards">
+            @if (Model.TracksPublished > 1)
+            {
+                <p>You have published <span class="cust-high">@Model.TracksPublished tracks</span>.</p>
+            }
+            else if (Model.TracksPublished == 1)
+            {
+                <p>You have published <span class="cust-high">@Model.TracksPublished track</span>.</p>
+            }
+            else
+            {
+                <p>You haven’t published any <span class="cust-high">tracks</span> yet!</p>
+            }
+        </div>
+    </div>
+</body>
 
 
-<div class="text-center">
-    <h1 class="display-4">Welcome, @User.Identity.Name</h1>
-</div>

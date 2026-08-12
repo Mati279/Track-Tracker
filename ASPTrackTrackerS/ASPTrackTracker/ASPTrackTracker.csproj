@@ -17,9 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="DataLibrary">
-      <HintPath>..\..\..\..\Tim Corey\ASP.NET CORE\RPDemoApp\RPDemo\RPDemoApp\DataLibrary.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\..\LibraryTrackTracker\LibraryTrackTracker\DataLibrary.csproj" />
   </ItemGroup>
 
 </Project>

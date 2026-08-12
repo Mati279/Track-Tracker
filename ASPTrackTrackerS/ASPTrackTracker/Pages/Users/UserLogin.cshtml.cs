@@ -20,7 +20,7 @@ namespace ASPTrackTracker.Pages.Users
         public string Password { get; set; }
 
         [BindProperty]
-        public string errorMessage { get; set; }
+        public string ErrorMessage { get; set; }
 
         public string ReturnUrl { get; set; }
 
@@ -38,18 +38,19 @@ namespace ASPTrackTracker.Pages.Users
 
             if (string.IsNullOrEmpty(Password))
             {
-                errorMessage = "A password is required.";
+                ErrorMessage = "A password is required.";
                 return Page();
             }
             else
             {
-
                 if (user == null || !BCrypt.Net.BCrypt.Verify(Password, user?.Password))
                 {
-                    errorMessage = "Invalid email or password.";
+                    ErrorMessage = "Invalid email or password.";
                     return Page();
                 }
             }
+
+            //En OnPostAsync() del UserLogin.cshtml
             var claims = new List<Claim>
             {
                  new Claim(ClaimTypes.Name, user.Name),
@@ -62,7 +63,8 @@ namespace ASPTrackTracker.Pages.Users
                 IsPersistent = true 
             };
 
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, 
+                                            new ClaimsPrincipal(claimsIdentity), authProperties);
 
 
             return RedirectToPage("/Index");

@@ -24,7 +24,10 @@ namespace ASPTrackTracker.Pages.Users
         public string Password { get; set; }
 
         [BindProperty]
-        public string errorMessage { get; set; }
+        public string RepeatedPassword { get; set; }
+
+        [BindProperty]
+        public string ErrorMessage { get; set; }
 
         public UserRegisterModel(IUserData userData)
         {
@@ -33,6 +36,13 @@ namespace ASPTrackTracker.Pages.Users
 
         public async Task<IActionResult> OnPostAsync()
         {
+
+             if (string.IsNullOrEmpty(RepeatedPassword) || RepeatedPassword != Password)
+            {
+                ErrorMessage = "Please rewrite your password exactly.";
+                return Page();
+            }
+
             try
             {
                 UserModel newUser = new UserModel
@@ -49,14 +59,14 @@ namespace ASPTrackTracker.Pages.Users
                 {
                     if (ex.Number == 2627)
                     {
-                        errorMessage = "Mail already in use.";
+                        ErrorMessage = "Mail already in use.";
                         return Page();
                     }
                 }
             }
             catch
             {
-                errorMessage = "Error.";
+                ErrorMessage = "Error.";
                 return Page();
             }
             return RedirectToPage("/Users/UserLogin");

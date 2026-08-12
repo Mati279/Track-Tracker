@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Edit Artist";
 }
-<h1>Edit Artist</h1>
+<h1><span class="cust-high">Edit Artist</span></h1>
 <form method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="form-group">
@@ -20,12 +20,12 @@
         <input type="submit" value="Confirm" class="btn btn-primary" />
     </div>
 </form>
+<button onclick="window.history.back()" class="btn btn-primary">Cancel</button>
 <tr>
-    <td colspan="2">
-        <a asp-page="./DeleteArtist" asp-route-id="@Model.Artist.Id" class="btn btn-danger">Delete Artist</a>
+    <td style="text-align: center;">
+        <a asp-page="./DeleteArtist" asp-route-id="@Model.Artist.Id" class="cust-lnk">Delete Artist</a>
     </td>
 </tr>
-<button onclick="window.history.back()" class="btn btn-primary">Cancel</button>
 
 @section scripts {
     @{
